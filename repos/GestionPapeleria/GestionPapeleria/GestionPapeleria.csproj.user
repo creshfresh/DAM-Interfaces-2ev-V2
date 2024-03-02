@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Compile Update="Cliente\VistaClienteV2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Componentes\ItemArticulo.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Componentes\ItemPedidoAntiguo.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Login.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Registro.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Cliente\VistaCliente.cs">
+      <SubType>Form</SubType>
+    </Compile>
+  </ItemGroup>
+</Project>

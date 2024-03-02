@@ -1,0 +1,12 @@
+D:\Sergio\ProyectosDesarrolloInterfaces\InterfazHamburgueseria\MyBurguerLib\bin\Debug\MyBurguerLib.dll
+D:\Sergio\ProyectosDesarrolloInterfaces\InterfazHamburgueseria\MyBurguerLib\bin\Debug\MyBurguerLib.pdb
+D:\Sergio\ProyectosDesarrolloInterfaces\InterfazHamburgueseria\MyBurguerLib\obj\Debug\MyBurguerLib.csproj.AssemblyReference.cache
+D:\Sergio\ProyectosDesarrolloInterfaces\InterfazHamburgueseria\MyBurguerLib\obj\Debug\MyBurguerLib.csproj.CoreCompileInputs.cache
+D:\Sergio\ProyectosDesarrolloInterfaces\InterfazHamburgueseria\MyBurguerLib\obj\Debug\MyBurguerLib.dll
+D:\Sergio\ProyectosDesarrolloInterfaces\InterfazHamburgueseria\MyBurguerLib\obj\Debug\MyBurguerLib.pdb
+C:\DAM\DAM 2 DUAL\Interfaces\DAM-Interfaces\SERGIO RAMOS TORRES_90590_assignsubmission_file\BurguersSergioRamos\InterfazHamburgueseria\MyBurguerLib\bin\Debug\MyBurguerLib.dll
+C:\DAM\DAM 2 DUAL\Interfaces\DAM-Interfaces\SERGIO RAMOS TORRES_90590_assignsubmission_file\BurguersSergioRamos\InterfazHamburgueseria\MyBurguerLib\bin\Debug\MyBurguerLib.pdb
+C:\DAM\DAM 2 DUAL\Interfaces\DAM-Interfaces\SERGIO RAMOS TORRES_90590_assignsubmission_file\BurguersSergioRamos\InterfazHamburgueseria\MyBurguerLib\obj\Debug\MyBurguerLib.csproj.AssemblyReference.cache
+C:\DAM\DAM 2 DUAL\Interfaces\DAM-Interfaces\SERGIO RAMOS TORRES_90590_assignsubmission_file\BurguersSergioRamos\InterfazHamburgueseria\MyBurguerLib\obj\Debug\MyBurguerLib.csproj.CoreCompileInputs.cache
+C:\DAM\DAM 2 DUAL\Interfaces\DAM-Interfaces\SERGIO RAMOS TORRES_90590_assignsubmission_file\BurguersSergioRamos\InterfazHamburgueseria\MyBurguerLib\obj\Debug\MyBurguerLib.dll
+C:\DAM\DAM 2 DUAL\Interfaces\DAM-Interfaces\SERGIO RAMOS TORRES_90590_assignsubmission_file\BurguersSergioRamos\InterfazHamburgueseria\MyBurguerLib\obj\Debug\MyBurguerLib.pdb

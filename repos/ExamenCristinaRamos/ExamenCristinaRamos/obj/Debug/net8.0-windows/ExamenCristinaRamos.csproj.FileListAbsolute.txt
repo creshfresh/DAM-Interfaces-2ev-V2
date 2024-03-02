@@ -1,0 +1,16 @@
+C:\Users\cris_\source\repos\ExamenCristinaRamos\ExamenCristinaRamos\bin\Debug\net8.0-windows\ExamenCristinaRamos.exe
+C:\Users\cris_\source\repos\ExamenCristinaRamos\ExamenCristinaRamos\bin\Debug\net8.0-windows\ExamenCristinaRamos.deps.json
+C:\Users\cris_\source\repos\ExamenCristinaRamos\ExamenCristinaRamos\bin\Debug\net8.0-windows\ExamenCristinaRamos.runtimeconfig.json
+C:\Users\cris_\source\repos\ExamenCristinaRamos\ExamenCristinaRamos\bin\Debug\net8.0-windows\ExamenCristinaRamos.dll
+C:\Users\cris_\source\repos\ExamenCristinaRamos\ExamenCristinaRamos\bin\Debug\net8.0-windows\ExamenCristinaRamos.pdb
+C:\Users\cris_\source\repos\ExamenCristinaRamos\ExamenCristinaRamos\obj\Debug\net8.0-windows\ExamenCristinaRamos.Form1.resources
+C:\Users\cris_\source\repos\ExamenCristinaRamos\ExamenCristinaRamos\obj\Debug\net8.0-windows\ExamenCristinaRamos.csproj.GenerateResource.cache
+C:\Users\cris_\source\repos\ExamenCristinaRamos\ExamenCristinaRamos\obj\Debug\net8.0-windows\ExamenCristinaRamos.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\cris_\source\repos\ExamenCristinaRamos\ExamenCristinaRamos\obj\Debug\net8.0-windows\ExamenCristinaRamos.AssemblyInfoInputs.cache
+C:\Users\cris_\source\repos\ExamenCristinaRamos\ExamenCristinaRamos\obj\Debug\net8.0-windows\ExamenCristinaRamos.AssemblyInfo.cs
+C:\Users\cris_\source\repos\ExamenCristinaRamos\ExamenCristinaRamos\obj\Debug\net8.0-windows\ExamenCristinaRamos.csproj.CoreCompileInputs.cache
+C:\Users\cris_\source\repos\ExamenCristinaRamos\ExamenCristinaRamos\obj\Debug\net8.0-windows\ExamenCristinaRamos.dll
+C:\Users\cris_\source\repos\ExamenCristinaRamos\ExamenCristinaRamos\obj\Debug\net8.0-windows\refint\ExamenCristinaRamos.dll
+C:\Users\cris_\source\repos\ExamenCristinaRamos\ExamenCristinaRamos\obj\Debug\net8.0-windows\ExamenCristinaRamos.pdb
+C:\Users\cris_\source\repos\ExamenCristinaRamos\ExamenCristinaRamos\obj\Debug\net8.0-windows\ExamenCristinaRamos.genruntimeconfig.cache
+C:\Users\cris_\source\repos\ExamenCristinaRamos\ExamenCristinaRamos\obj\Debug\net8.0-windows\ref\ExamenCristinaRamos.dll

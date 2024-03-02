@@ -1,0 +1,16 @@
+C:\Users\cris_\source\repos\PruebasInterfaces\PruebasInterfaces\bin\Debug\net8.0-windows\PruebasInterfaces.exe
+C:\Users\cris_\source\repos\PruebasInterfaces\PruebasInterfaces\bin\Debug\net8.0-windows\PruebasInterfaces.deps.json
+C:\Users\cris_\source\repos\PruebasInterfaces\PruebasInterfaces\bin\Debug\net8.0-windows\PruebasInterfaces.runtimeconfig.json
+C:\Users\cris_\source\repos\PruebasInterfaces\PruebasInterfaces\bin\Debug\net8.0-windows\PruebasInterfaces.dll
+C:\Users\cris_\source\repos\PruebasInterfaces\PruebasInterfaces\bin\Debug\net8.0-windows\PruebasInterfaces.pdb
+C:\Users\cris_\source\repos\PruebasInterfaces\PruebasInterfaces\obj\Debug\net8.0-windows\PruebasInterfaces.Form1.resources
+C:\Users\cris_\source\repos\PruebasInterfaces\PruebasInterfaces\obj\Debug\net8.0-windows\PruebasInterfaces.csproj.GenerateResource.cache
+C:\Users\cris_\source\repos\PruebasInterfaces\PruebasInterfaces\obj\Debug\net8.0-windows\PruebasInterfaces.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\cris_\source\repos\PruebasInterfaces\PruebasInterfaces\obj\Debug\net8.0-windows\PruebasInterfaces.AssemblyInfoInputs.cache
+C:\Users\cris_\source\repos\PruebasInterfaces\PruebasInterfaces\obj\Debug\net8.0-windows\PruebasInterfaces.AssemblyInfo.cs
+C:\Users\cris_\source\repos\PruebasInterfaces\PruebasInterfaces\obj\Debug\net8.0-windows\PruebasInterfaces.csproj.CoreCompileInputs.cache
+C:\Users\cris_\source\repos\PruebasInterfaces\PruebasInterfaces\obj\Debug\net8.0-windows\PruebasInterfaces.dll
+C:\Users\cris_\source\repos\PruebasInterfaces\PruebasInterfaces\obj\Debug\net8.0-windows\refint\PruebasInterfaces.dll
+C:\Users\cris_\source\repos\PruebasInterfaces\PruebasInterfaces\obj\Debug\net8.0-windows\PruebasInterfaces.pdb
+C:\Users\cris_\source\repos\PruebasInterfaces\PruebasInterfaces\obj\Debug\net8.0-windows\PruebasInterfaces.genruntimeconfig.cache
+C:\Users\cris_\source\repos\PruebasInterfaces\PruebasInterfaces\obj\Debug\net8.0-windows\ref\PruebasInterfaces.dll
