@@ -17,14 +17,36 @@ namespace GestionPapeleria
         //Variables para Articulos
         public static string nombreArt, marcaArt, categoriaArt, precioArt, stockArt, proveedorArt, almacenArt, idCatArt;
         public static int idArt, id_almacenArt, id_proveedorArt;
+        public static string filtro_cat, filtro_nombre, filtro_marca;
+
+        public bool estaEditando = false;
+
 
         //Variables para Categorias
         public static string nombreCatCat;
         public static int idCat;
+        public static string filtro_nombre_cat;
 
-        public bool estaEditando = false;
+        //Variables para Pedidos 
+        public static string nombreClientePedido, fechaPedido, estadoPedido;
+        public static int idPedido, idClientePedido, importePedido, filtro_idcliente_pedido;
+        public static string filtro_estado;
 
-        public static string filtro_cat, filtro_nombre, filtro_marca;
+        //Variables para Clientes
+
+        public static string nombreClienteCompleto, correo, direccion, usernamecliente, telefono;
+        public static int id_cliente;
+        public static string filtro_nombre_completo, filtro_correo, filtro_username_cliente, filtro_direccion;
+
+
+        //Variables para Roles Usuario
+        public static string usernameadmin, rol, contrasenaadmin;
+        public static int id_admin;
+        public static string filtro_username_admin;
+
+
+
+
         public Form1()
         {
             InitializeComponent();
@@ -38,6 +60,7 @@ namespace GestionPapeleria
             cargarComboBoxMarcas();
             cargarPedidos();
             cargarClientes();
+            llenarFiltroEstado();
         }
 
         private void cargarArticulos()
@@ -64,7 +87,7 @@ namespace GestionPapeleria
         private void cargarPedidos()
         {
 
-            string sqlQuery = "Select a.id_pedido, a.id_cliente, a.fecha_pedido, a.importe, a.estado, a.descuento, c.id_cliente from pedidos a, clientes c where a.id_cliente = c.id_cliente";
+            string sqlQuery = "Select a.id_pedido, a.id_cliente, a.fecha_pedido, a.importe, a.estado, c.id_cliente from pedidos a, clientes c where a.id_cliente = c.id_cliente";
             try
             {
                 SqlConnection con = new SqlConnection(connetionString);
@@ -262,9 +285,7 @@ namespace GestionPapeleria
             try
             {
                 SqlConnection con = new SqlConnection(connetionString);
-
                 con.Open();
-
                 SqlCommand cmd = new SqlCommand("AlterarArticulo", con);
 
                 //Indicamos que el comando va a ser un procedimiento almacenado
@@ -275,7 +296,6 @@ namespace GestionPapeleria
                 string nombreArticulo = tb_nombre.Text;
                 string marcaArticulo = cb_marca.Text;
                 int id_categoria = Convert.ToInt32(cb_categoria.SelectedValue);
-                //string nombre_categoria = cb_categoria.SelectedItem.ToString();
                 float precio = float.Parse(tb_precio.Text);
                 int sotck = int.Parse(tb_stock.Text);
                 int proveedor = Convert.ToInt32(cb_proveedor.SelectedValue);
@@ -312,6 +332,7 @@ namespace GestionPapeleria
             }
 
         }
+
         private void button2_Click(object sender, EventArgs e)
         {
             Login lg = new Login();
@@ -428,7 +449,7 @@ namespace GestionPapeleria
         }
 
 
-        //Selecc
+        //Seleccionar los datos de la tabla Articulos
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
@@ -465,11 +486,11 @@ namespace GestionPapeleria
             //Almacen 
             id_almacenArt = int.Parse(dataGridView1.Rows[currentRowIndex].Cells[8].Value.ToString());
 
-            MessageBox.Show("Datos seleccionados");
+            MessageBox.Show("Datos seleccionados", "Seleccionado");
 
         }
 
-
+        //Seleccionar los datos de la tabla Categorias
         private void dataGridView_categorias_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             int currentRowIndex = dataGridView_categorias.CurrentCell.RowIndex;
@@ -478,10 +499,56 @@ namespace GestionPapeleria
             idCat = int.Parse(dataGridView_categorias.Rows[currentRowIndex].Cells[0].Value.ToString());
             //Nombre
             nombreCatCat = dataGridView_categorias.Rows[currentRowIndex].Cells[1].Value.ToString();
-            MessageBox.Show(nombreCatCat);
+            MessageBox.Show("Datos seleccionados", "Seleccionado");
 
         }
 
+        //Seleccionar los datos de la tabla pedidos
+        private void dataGridView_pedidos_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            int currentRowIndex = dataGridView_categorias.CurrentCell.RowIndex;
+            dataGridView_pedidos.Rows[currentRowIndex].Selected = true;
+
+            //id pedido
+            idPedido = int.Parse(dataGridView_pedidos.Rows[currentRowIndex].Cells[0].Value.ToString());
+
+            // id cliente
+            idClientePedido = int.Parse(dataGridView_pedidos.Rows[currentRowIndex].Cells[1].Value.ToString());
+
+            // fecha pedido
+            fechaPedido = dataGridView_pedidos.Rows[currentRowIndex].Cells[2].Value.ToString();
+
+            // importe
+            importePedido = int.Parse(dataGridView_pedidos.Rows[currentRowIndex].Cells[3].Value.ToString());
+
+            //estado 
+            estadoPedido = dataGridView_pedidos.Rows[currentRowIndex].Cells[4].Value.ToString();
+
+        }
+
+
+        private void dataGridView_clientes_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            int currentRowIndex = dataGridView_categorias.CurrentCell.RowIndex;
+            dataGridView_pedidos.Rows[currentRowIndex].Selected = true;
+
+            //id cliente
+            id_cliente = int.Parse(dataGridView_clientes.Rows[currentRowIndex].Cells[0].Value.ToString());
+
+            // nombreCompleto
+            nombreClienteCompleto = dataGridView_clientes.Rows[currentRowIndex].Cells[1].Value.ToString();
+            // correo
+            correo = dataGridView_clientes.Rows[currentRowIndex].Cells[2].Value.ToString();
+
+            // telefono
+            telefono = dataGridView_clientes.Rows[currentRowIndex].Cells[3].Value.ToString();
+            //direccion 
+            direccion = dataGridView_clientes.Rows[currentRowIndex].Cells[4].Value.ToString();
+
+            //username 
+            estadoPedido = dataGridView_clientes.Rows[currentRowIndex].Cells[5].Value.ToString();
+
+        }
         private void llenarDatosFormularioEditarArticulo(object sender, EventArgs e)
         {
 
@@ -605,9 +672,51 @@ namespace GestionPapeleria
             filtro_marca = cb_buscar_marca_art.SelectedValue as string;
 
         }
+
+        private void cb_buscar_estado_ped_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //Se guarda la variable seleccionada
+            filtro_estado = cb_buscar_estado_ped.SelectedValue as string;
+
+        }
         private void tb_filtro_nombre_TextChanged(object sender, EventArgs e)
         {
             filtro_nombre = tb_buscar_nombre_art.Text;
+        }
+
+        private void tb_filtro_nombre_cat_TextChanged(object sender, EventArgs e)
+        {
+            filtro_nombre_cat = tb_filtro_nombre_cat.Text;
+        }
+
+        private void btn_buscar_nombre_cat_Click(object sender, EventArgs e)
+        {
+            try
+            {
+
+                SqlConnection con = new SqlConnection(connetionString);
+                con.Open();
+
+                SqlCommand cmd = new SqlCommand("FiltrarPorNombreCat", con);
+
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.Add(new SqlParameter("@nombreCategoria", filtro_nombre_cat));
+
+                cmd.ExecuteNonQuery();
+
+                SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+                DataTable dt = new DataTable();
+                adapter.Fill(dt);
+
+                dataGridView_categorias.DataSource = dt;
+                tb_filtro_nombre_cat.Text = string.Empty;
+
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Fallo: no se ha introducido el nombre para filtrar ");
+            }
         }
         private void btn_buscar_Nombre_Click(object sender, EventArgs e)
         {
@@ -629,23 +738,51 @@ namespace GestionPapeleria
                 adapter.Fill(dt);
 
                 dataGridView1.DataSource = dt;
-                borrar_filtros_art();
-
+                cargarPedidos();
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Fallo: no se ha introducido el nombre para filtrar ");
             }
         }
+
+        private void llenarFiltroEstado()
+        {
+
+            string sqlQuery = "Select DISTINCT estado from pedidos";
+
+            try
+            {
+                SqlConnection con = new SqlConnection(connetionString);
+                con.Open();
+                SqlDataAdapter adapter = new SqlDataAdapter(sqlQuery, connetionString);
+                DataTable dt = new DataTable();
+                adapter.Fill(dt);
+
+                cb_buscar_estado_ped.DataSource = dt;
+                cb_buscar_estado_ped.DisplayMember = "estado";
+                cb_buscar_estado_ped.ValueMember = "estado";
+                cb_buscar_estado_ped.SelectedIndex = -1;
+            }
+            catch
+            {
+                MessageBox.Show("Error");
+            }
+        }
         private void cb_filtro_categoria_SelectedIndexChanged(object sender, EventArgs e)
         {
             filtro_cat = cb_buscar_categoria_art.SelectedValue as string;
+        }
 
+        private void tb_buscar_nombre_ped_TextChanged(object sender, EventArgs e)
+        {
+            filtro_idcliente_pedido = int.Parse( tb_buscar_nombre_ped.Text);
         }
         private void btn_buscar_categoria_Click(object sender, EventArgs e)
         {
             try
             {
+                cargarCategorias();
 
                 SqlConnection con = new SqlConnection(connetionString);
                 con.Open();
@@ -669,6 +806,37 @@ namespace GestionPapeleria
             catch (Exception ex)
             {
                 MessageBox.Show("Fallo: no se ha introducido categoria para filtrar ");
+            }
+        }
+
+
+        private void btn_buscar_estado_ped_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                cargarCategorias();
+
+                SqlConnection con = new SqlConnection(connetionString);
+                con.Open();
+
+                SqlCommand cmd = new SqlCommand("FiltraPorEstado", con);
+
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.Add(new SqlParameter("@estado", filtro_estado));
+
+                cmd.ExecuteNonQuery();
+
+                SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+                DataTable dt = new DataTable();
+                adapter.Fill(dt);
+
+                dataGridView_pedidos.DataSource = dt;
+                borrar_filtros_art();
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Fallo: no se ha introducido estado de pedido para filtrar ");
             }
         }
 
@@ -700,7 +868,6 @@ namespace GestionPapeleria
                 MessageBox.Show("Fallo: no se ha introducido marca para filtrar ");
             }
         }
-
 
         private void btn_borrar_filtros_Click(object sender, EventArgs e)
         {
@@ -734,10 +901,9 @@ namespace GestionPapeleria
             cb_proveedor.SelectedIndex = -1;
             tb_nombre_cat.Text = string.Empty;
             tb_nombre_editar_cat.Text = string.Empty;
-            tb_nombreCliente_ped.Text = string.Empty;
+//tb_nombreCliente_ped.Text = string.Empty;
             cb_descuento_ped.SelectedIndex = -1;
             tb_importeEditado_ped.Text = string.Empty;
-
 
 
         }
@@ -766,7 +932,7 @@ namespace GestionPapeleria
         {
 
             insertarCategoria();
- }
+        }
 
         private void insertarCategoria()
         {
@@ -845,7 +1011,7 @@ namespace GestionPapeleria
                 int id_categoria = idCat;
                 if (tb_nombre_editar_cat.Text != "" && idCat != null)
                 {
-       
+
                     cmd.Parameters.Add(new SqlParameter("@nombre", nombre));
                     cmd.Parameters.Add(new SqlParameter("@id_categoria", id_categoria));
 
@@ -853,7 +1019,7 @@ namespace GestionPapeleria
                     con.Close();
 
                     MessageBox.Show("Éxito");
-                    
+
                     limpiarDatos();
 
                     //Recargar todos los combobox donde aparecen las categorias
@@ -870,6 +1036,102 @@ namespace GestionPapeleria
             {
                 MessageBox.Show("Fallo");
                 throw;
+            }
+        }
+
+        private void eliminarCategoria()
+        {
+            //Procedimiento almacenado para borrar un articulo  
+            try
+            {
+
+                SqlConnection con = new SqlConnection(connetionString);
+                con.Open();
+                SqlCommand cmd = new SqlCommand("eliminarCategoria", con);
+
+                //Indicamos que el comando va a ser un procedimiento almacenado
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                if (idCat != 0 && idCat != null)
+                {
+                    DialogResult dialogResult = MessageBox.Show("¿Quieres eliminar la categoría seleccionada?", "Confirmar eliminación", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                    if (dialogResult == DialogResult.Yes)
+                    {
+                        cmd.Parameters.AddWithValue("@id_categoria", idCat);
+                        cmd.ExecuteNonQuery();
+                        con.Close();
+
+                        MessageBox.Show("Éxito");
+                        cargarArticulos();
+                        //  filtroMarca();
+                    }
+                    else if (dialogResult == DialogResult.No)
+                    {
+                        MessageBox.Show("Eliminación cancelada");
+                    }
+
+                }
+                else
+                {
+                    MessageBox.Show("Debe seleccionar el articulo a eliminar", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Fallo");
+                throw;
+            }
+        }
+
+        private void btn_eliminar_cat_Click(object sender, EventArgs e)
+        {
+            eliminarCategoria();
+            cargarCategorias();
+        }
+
+        private void btn_borrar_filtros_cat_Click_1(object sender, EventArgs e)
+        {
+            tb_filtro_nombre_cat.Text = string.Empty;
+            cargarCategorias();
+        }
+
+        private void btn_borrar_filtros_ped_Click(object sender, EventArgs e)
+        {
+            tb_buscar_nombre_ped.Text = string.Empty;
+            cb_buscar_estado_ped.SelectedIndex = -1;
+            dtp_buscar_fecha_ped.CustomFormat = " ";
+            cargarPedidos();
+        }
+
+        private void btn_buscar_idcliente_ped_Click(object sender, EventArgs e)
+        {
+            try
+            {
+
+                SqlConnection con = new SqlConnection(connetionString);
+                con.Open();
+
+                SqlCommand cmd = new SqlCommand("FiltrarPedidoPorIdCliente", con);
+
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                //idClientePedido
+                cmd.Parameters.Add(new SqlParameter("@id_cliente", filtro_idcliente_pedido));
+
+                cmd.ExecuteNonQuery();
+
+                SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+                DataTable dt = new DataTable();
+                adapter.Fill(dt);
+
+                dataGridView1.DataSource = dt;
+                cargarPedidos();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Fallo: no se ha introducido el nombre para filtrar ");
             }
         }
     }

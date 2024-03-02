@@ -127,10 +127,8 @@
             lbl_importeEditado = new Label();
             lbl_descuento = new Label();
             btn_borrar_editar_ped = new Button();
-            tb_nombreCliente_ped = new TextBox();
             btn_editar_ped = new Button();
             lb_altaCliente = new Label();
-            lb_nombreCliente = new Label();
             btn_eliminar_ped = new Button();
             btn_enviar_ped = new Button();
             label31 = new Label();
@@ -159,6 +157,7 @@
             label42 = new Label();
             tb_buscar_nombre_cli = new TextBox();
             panel10 = new Panel();
+            lb_ir_alta_cli = new Label();
             cb_password = new CheckBox();
             tb_contrasena_cli = new TextBox();
             tb_username_cli = new TextBox();
@@ -911,6 +910,7 @@
             btn_borrar_filtros_cat.TabIndex = 44;
             btn_borrar_filtros_cat.Text = "Borrar filtro";
             btn_borrar_filtros_cat.UseVisualStyleBackColor = true;
+            btn_borrar_filtros_cat.Click += btn_borrar_filtros_cat_Click_1;
             // 
             // btn_buscar_nombre_cat
             // 
@@ -923,6 +923,7 @@
             btn_buscar_nombre_cat.TabIndex = 41;
             btn_buscar_nombre_cat.Text = "Buscar";
             btn_buscar_nombre_cat.UseVisualStyleBackColor = true;
+            btn_buscar_nombre_cat.Click += btn_buscar_nombre_cat_Click;
             // 
             // lbl_filtros_cat
             // 
@@ -955,6 +956,7 @@
             tb_filtro_nombre_cat.Name = "tb_filtro_nombre_cat";
             tb_filtro_nombre_cat.Size = new Size(175, 20);
             tb_filtro_nombre_cat.TabIndex = 0;
+            tb_filtro_nombre_cat.Validated += tb_filtro_nombre_cat_TextChanged;
             // 
             // pnl_alta_cat
             // 
@@ -1039,6 +1041,7 @@
             btn_eliminar_cat.TabIndex = 44;
             btn_eliminar_cat.Text = "Eliminar";
             btn_eliminar_cat.UseVisualStyleBackColor = false;
+            btn_eliminar_cat.Click += btn_eliminar_cat_Click;
             // 
             // btn_editar_art_gordo
             // 
@@ -1199,6 +1202,7 @@
             btn_buscar_estado_ped.TabIndex = 50;
             btn_buscar_estado_ped.Text = "Buscar";
             btn_buscar_estado_ped.UseVisualStyleBackColor = true;
+            btn_buscar_estado_ped.Click += btn_buscar_estado_ped_Click;
             // 
             // cb_buscar_estado_ped
             // 
@@ -1211,6 +1215,7 @@
             cb_buscar_estado_ped.Name = "cb_buscar_estado_ped";
             cb_buscar_estado_ped.Size = new Size(148, 28);
             cb_buscar_estado_ped.TabIndex = 49;
+            cb_buscar_estado_ped.SelectedIndexChanged += cb_buscar_estado_ped_SelectedIndexChanged;
             // 
             // label50
             // 
@@ -1265,6 +1270,7 @@
             btn_borrar_filtros_ped.TabIndex = 44;
             btn_borrar_filtros_ped.Text = "Borrar filtro";
             btn_borrar_filtros_ped.UseVisualStyleBackColor = true;
+            btn_borrar_filtros_ped.Click += btn_borrar_filtros_ped_Click;
             // 
             // btn_buscar_nombre_ped
             // 
@@ -1277,6 +1283,7 @@
             btn_buscar_nombre_ped.TabIndex = 41;
             btn_buscar_nombre_ped.Text = "Buscar";
             btn_buscar_nombre_ped.UseVisualStyleBackColor = true;
+            btn_buscar_nombre_ped.Click += btn_buscar_idcliente_ped_Click;
             // 
             // label23
             // 
@@ -1296,9 +1303,9 @@
             label24.ForeColor = SystemColors.WindowFrame;
             label24.Location = new Point(27, 47);
             label24.Name = "label24";
-            label24.Size = new Size(102, 19);
+            label24.Size = new Size(83, 19);
             label24.TabIndex = 1;
-            label24.Text = "Nombre cliente";
+            label24.Text = "Id de cliente";
             // 
             // tb_buscar_nombre_ped
             // 
@@ -1309,6 +1316,7 @@
             tb_buscar_nombre_ped.Name = "tb_buscar_nombre_ped";
             tb_buscar_nombre_ped.Size = new Size(175, 20);
             tb_buscar_nombre_ped.TabIndex = 0;
+            tb_buscar_nombre_ped.TextChanged += tb_buscar_nombre_ped_TextChanged;
             // 
             // panel7
             // 
@@ -1319,13 +1327,11 @@
             panel7.Controls.Add(lbl_importeEditado);
             panel7.Controls.Add(lbl_descuento);
             panel7.Controls.Add(btn_borrar_editar_ped);
-            panel7.Controls.Add(tb_nombreCliente_ped);
             panel7.Controls.Add(btn_editar_ped);
             panel7.Controls.Add(lb_altaCliente);
-            panel7.Controls.Add(lb_nombreCliente);
             panel7.Location = new Point(23, 24);
             panel7.Name = "panel7";
-            panel7.Size = new Size(303, 434);
+            panel7.Size = new Size(303, 369);
             panel7.TabIndex = 61;
             // 
             // cb_descuento_ped
@@ -1333,7 +1339,8 @@
             cb_descuento_ped.DropDownStyle = ComboBoxStyle.DropDownList;
             cb_descuento_ped.Font = new Font("Nirmala UI", 9F);
             cb_descuento_ped.FormattingEnabled = true;
-            cb_descuento_ped.Location = new Point(29, 188);
+            cb_descuento_ped.Items.AddRange(new object[] { "5", "10", "15", "20" });
+            cb_descuento_ped.Location = new Point(34, 123);
             cb_descuento_ped.Name = "cb_descuento_ped";
             cb_descuento_ped.Size = new Size(233, 28);
             cb_descuento_ped.TabIndex = 39;
@@ -1342,7 +1349,7 @@
             // 
             tb_importeEditado_ped.Enabled = false;
             tb_importeEditado_ped.Font = new Font("Nirmala UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            tb_importeEditado_ped.Location = new Point(29, 254);
+            tb_importeEditado_ped.Location = new Point(34, 189);
             tb_importeEditado_ped.Name = "tb_importeEditado_ped";
             tb_importeEditado_ped.Size = new Size(233, 27);
             tb_importeEditado_ped.TabIndex = 38;
@@ -1352,7 +1359,7 @@
             lbl_importeEditado.AutoSize = true;
             lbl_importeEditado.Font = new Font("Nirmala UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lbl_importeEditado.ForeColor = SystemColors.WindowFrame;
-            lbl_importeEditado.Location = new Point(29, 226);
+            lbl_importeEditado.Location = new Point(34, 161);
             lbl_importeEditado.Name = "lbl_importeEditado";
             lbl_importeEditado.Size = new Size(109, 20);
             lbl_importeEditado.TabIndex = 37;
@@ -1363,7 +1370,7 @@
             lbl_descuento.AutoSize = true;
             lbl_descuento.Font = new Font("Nirmala UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lbl_descuento.ForeColor = SystemColors.WindowFrame;
-            lbl_descuento.Location = new Point(30, 161);
+            lbl_descuento.Location = new Point(35, 96);
             lbl_descuento.Name = "lbl_descuento";
             lbl_descuento.Size = new Size(125, 20);
             lbl_descuento.TabIndex = 35;
@@ -1374,7 +1381,7 @@
             btn_borrar_editar_ped.FlatStyle = FlatStyle.Flat;
             btn_borrar_editar_ped.Font = new Font("Nirmala UI", 9F, FontStyle.Bold);
             btn_borrar_editar_ped.ForeColor = Color.FromArgb(115, 140, 191);
-            btn_borrar_editar_ped.Location = new Point(30, 349);
+            btn_borrar_editar_ped.Location = new Point(35, 284);
             btn_borrar_editar_ped.Name = "btn_borrar_editar_ped";
             btn_borrar_editar_ped.Size = new Size(233, 39);
             btn_borrar_editar_ped.TabIndex = 33;
@@ -1382,21 +1389,13 @@
             btn_borrar_editar_ped.UseVisualStyleBackColor = true;
             btn_borrar_editar_ped.Click += btn_borrar_editar_ped_Click;
             // 
-            // tb_nombreCliente_ped
-            // 
-            tb_nombreCliente_ped.Font = new Font("Nirmala UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            tb_nombreCliente_ped.Location = new Point(30, 123);
-            tb_nombreCliente_ped.Name = "tb_nombreCliente_ped";
-            tb_nombreCliente_ped.Size = new Size(233, 27);
-            tb_nombreCliente_ped.TabIndex = 0;
-            // 
             // btn_editar_ped
             // 
             btn_editar_ped.BackColor = Color.FromArgb(115, 140, 191);
             btn_editar_ped.FlatStyle = FlatStyle.Flat;
             btn_editar_ped.Font = new Font("Nirmala UI", 9F, FontStyle.Bold);
             btn_editar_ped.ForeColor = SystemColors.ButtonHighlight;
-            btn_editar_ped.Location = new Point(29, 304);
+            btn_editar_ped.Location = new Point(34, 239);
             btn_editar_ped.Name = "btn_editar_ped";
             btn_editar_ped.Size = new Size(236, 39);
             btn_editar_ped.TabIndex = 5;
@@ -1413,17 +1412,6 @@
             lb_altaCliente.Size = new Size(139, 28);
             lb_altaCliente.TabIndex = 7;
             lb_altaCliente.Text = "Editar pedido";
-            // 
-            // lb_nombreCliente
-            // 
-            lb_nombreCliente.AutoSize = true;
-            lb_nombreCliente.Font = new Font("Nirmala UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lb_nombreCliente.ForeColor = SystemColors.WindowFrame;
-            lb_nombreCliente.Location = new Point(30, 100);
-            lb_nombreCliente.Name = "lb_nombreCliente";
-            lb_nombreCliente.Size = new Size(112, 20);
-            lb_nombreCliente.TabIndex = 9;
-            lb_nombreCliente.Text = "Nombre cliente";
             // 
             // btn_eliminar_ped
             // 
@@ -1737,6 +1725,7 @@
             // 
             panel10.BackColor = SystemColors.ButtonHighlight;
             panel10.BorderStyle = BorderStyle.FixedSingle;
+            panel10.Controls.Add(lb_ir_alta_cli);
             panel10.Controls.Add(cb_password);
             panel10.Controls.Add(tb_contrasena_cli);
             panel10.Controls.Add(tb_username_cli);
@@ -1756,6 +1745,17 @@
             panel10.Name = "panel10";
             panel10.Size = new Size(303, 710);
             panel10.TabIndex = 76;
+            // 
+            // lb_ir_alta_cli
+            // 
+            lb_ir_alta_cli.AutoSize = true;
+            lb_ir_alta_cli.ForeColor = Color.FromArgb(235, 140, 52);
+            lb_ir_alta_cli.Location = new Point(89, 608);
+            lb_ir_alta_cli.Name = "lb_ir_alta_cli";
+            lb_ir_alta_cli.Size = new Size(112, 20);
+            lb_ir_alta_cli.TabIndex = 46;
+            lb_ir_alta_cli.Text = "Ir a alta cliente";
+            lb_ir_alta_cli.Visible = false;
             // 
             // cb_password
             // 
@@ -2484,7 +2484,6 @@
         private TextBox tb_nombreCliente;
         private Button btn_editar_ped;
         private Label lb_altaCliente;
-        private Label lb_nombreCliente;
         private Button button15;
         private Button button16;
         private Label label31;
@@ -2581,11 +2580,8 @@
         private TextBox tb_buscar_nombre_ped;
         private Button btn_buscar_nombre_ped;
         private TextBox tb_importeEditado_ped;
-        private TextBox tb_nombreCliente_ped;
         private Button btn_enviar_ped;
         private Button btn_eliminar_ped;
-
-
-
+        private Label lb_ir_alta_cli;
     }
 }
