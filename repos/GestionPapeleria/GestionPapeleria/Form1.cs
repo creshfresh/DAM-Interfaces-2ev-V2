@@ -42,8 +42,6 @@ namespace GestionPapeleria
 
         private void cargarArticulos()
         {
-
-            //string sqlQuery = "Select * from articulos";
             string sqlQuery = "Select a.id_articulo,a.nombre,a.id_categoria, c.nombre as nombre_categoria, a.marca, a.precio, a.stock , a.id_proveedor , a.id_almacen from articulos a, categorias c where a.id_categoria = c.id_categoria";
             try
             {
@@ -53,9 +51,6 @@ namespace GestionPapeleria
                 adapter.Fill(dt);
 
                 dataGridView1.DataSource = dt;
-
-
-                //MessageBox.Show("Exito", "Succes");
 
             }
             catch (Exception ex)
@@ -102,8 +97,6 @@ namespace GestionPapeleria
 
                 dataGridView_categorias.DataSource = dt;
 
-                //MessageBox.Show("Exito", "Succes");
-
             }
             catch (Exception ex)
             {
@@ -124,8 +117,6 @@ namespace GestionPapeleria
                 adapter.Fill(dt);
 
                 dataGridView_clientes.DataSource = dt;
-
-                //MessageBox.Show("Exito", "Succes");
 
             }
             catch (Exception ex)
@@ -153,8 +144,6 @@ namespace GestionPapeleria
 
         private void button1_Click(object sender, EventArgs e)
         {
-
-            //string sqlQuery = "Select * from articulos";
             string sqlQuery = "Select a.id_articulo,a.nombre,a.id_categoria, c.nombre as nombre_categoria, a.marca, a.precio, a.stock , a.id_proveedor , a.id_almacen from articulos a, categorias c where a.id_categoria = c.id_categoria";
             try
             {
@@ -776,31 +765,8 @@ namespace GestionPapeleria
         private void bt_insertar_cat_Click(object sender, EventArgs e)
         {
 
-            setEstaEditando();
-            //Está creando un articulo
-            if (btn_insertar_art.Text.Equals("INSERTAR"))
-            {
-                insertarCategoria();
-                cargarArticulos();
-            }
-            else
-            {
-                //Está editando un articulo seleccionado
-                try
-                {
-                    editarArticulo();
-                    lb_ir_alta_art.Hide();
-                    estaEditando = false;
-                    setEstaEditando();
-
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Error");
-                }
-
-            }
-        }
+            insertarCategoria();
+ }
 
         private void insertarCategoria()
         {
@@ -824,6 +790,7 @@ namespace GestionPapeleria
                     MessageBox.Show("Éxito");
                     cargarCategorias();
                     limpiarDatos();
+                    llevar_cb_categoria();
                 }
                 catch (Exception ex)
                 {
@@ -859,7 +826,51 @@ namespace GestionPapeleria
         //Editar categoria seleccionada
         private void btn_editar_cat_Click(object sender, EventArgs e)
         {
+            editarCategoria();
+        }
 
+        private void editarCategoria()
+        {
+            try
+            {
+                SqlConnection con = new SqlConnection(connetionString);
+
+                con.Open();
+
+                SqlCommand cmd = new SqlCommand("EditarCategoria", con);
+
+                //Indicamos que el comando va a ser un procedimiento almacenado
+                cmd.CommandType = CommandType.StoredProcedure;
+                string nombre = tb_nombre_editar_cat.Text;
+                int id_categoria = idCat;
+                if (tb_nombre_editar_cat.Text != "" && idCat != null)
+                {
+       
+                    cmd.Parameters.Add(new SqlParameter("@nombre", nombre));
+                    cmd.Parameters.Add(new SqlParameter("@id_categoria", id_categoria));
+
+                    cmd.ExecuteNonQuery();
+                    con.Close();
+
+                    MessageBox.Show("Éxito");
+                    
+                    limpiarDatos();
+
+                    //Recargar todos los combobox donde aparecen las categorias
+                    cargarCategorias();
+                    llevar_cb_categoria();
+                    filtroCategoria();
+                }
+                else
+                {
+                    MessageBox.Show("Los campos deben estar rellenos", "Error Message");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Fallo");
+                throw;
+            }
         }
     }
 
