@@ -62,11 +62,12 @@ namespace GestionPapeleria
                     if (reader.Read())
                     {
                         string dbUsername = reader["username"].ToString();
-                        string dbPassword = reader["password"].ToString();
+                        string dbPassword = reader["contrasenaCliente"].ToString();
 
                         if (dbUsername == username && dbPassword == password)
                         {
                             MessageBox.Show("Bienvenido");
+                              return;
                         }
                         else
                         {
@@ -78,7 +79,7 @@ namespace GestionPapeleria
                         MessageBox.Show("Usuario no registrado");
                     }
 
-                    reader.Close(); // Cierra el lector de datos
+                    reader.Close(); 
                     con.Close(); // Cierra la conexión
 
                     }

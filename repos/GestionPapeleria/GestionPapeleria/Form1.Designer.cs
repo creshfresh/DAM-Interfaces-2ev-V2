@@ -145,6 +145,9 @@
             label40 = new Label();
             button19 = new Button();
             panel9 = new Panel();
+            btn_buscar_telefono_cli = new Button();
+            lb_telefono_cli = new Label();
+            cb_buscar_telefono_cli = new TextBox();
             btn_buscar_correo_cli = new Button();
             label65 = new Label();
             tb_buscar_correo_cli = new TextBox();
@@ -188,6 +191,9 @@
             tabPage1 = new TabPage();
             button28 = new Button();
             panel11 = new Panel();
+            cb_buscar_rol_user = new ComboBox();
+            btn_buscar_rol_user = new Button();
+            lbl_buscar_rol_user = new Label();
             btn_borrar_filtros_users = new Button();
             btn_buscar_username_user = new Button();
             label54 = new Label();
@@ -202,8 +208,8 @@
             btn_insertar_user = new Button();
             label56 = new Label();
             label57 = new Label();
-            button33 = new Button();
-            button34 = new Button();
+            btn_eliminar_user = new Button();
+            btn_quitarprivilegio_user = new Button();
             label58 = new Label();
             label59 = new Label();
             dataGridView_rolesUsuarios = new DataGridView();
@@ -213,7 +219,6 @@
             close = new PictureBox();
             pnl_topmenu = new Panel();
             btn_VistaCliente_prov = new Button();
-            label11 = new Label();
             pictureBox1 = new PictureBox();
             toolTip1 = new ToolTip(components);
             toolTip2 = new ToolTip(components);
@@ -1593,6 +1598,9 @@
             // panel9
             // 
             panel9.BackColor = SystemColors.ButtonHighlight;
+            panel9.Controls.Add(btn_buscar_telefono_cli);
+            panel9.Controls.Add(lb_telefono_cli);
+            panel9.Controls.Add(cb_buscar_telefono_cli);
             panel9.Controls.Add(btn_buscar_correo_cli);
             panel9.Controls.Add(label65);
             panel9.Controls.Add(tb_buscar_correo_cli);
@@ -1611,6 +1619,39 @@
             panel9.Name = "panel9";
             panel9.Size = new Size(953, 160);
             panel9.TabIndex = 77;
+            // 
+            // btn_buscar_telefono_cli
+            // 
+            btn_buscar_telefono_cli.FlatStyle = FlatStyle.Flat;
+            btn_buscar_telefono_cli.Font = new Font("Nirmala UI", 8F);
+            btn_buscar_telefono_cli.ForeColor = Color.FromArgb(115, 140, 191);
+            btn_buscar_telefono_cli.Location = new Point(533, 118);
+            btn_buscar_telefono_cli.Name = "btn_buscar_telefono_cli";
+            btn_buscar_telefono_cli.Size = new Size(65, 28);
+            btn_buscar_telefono_cli.TabIndex = 56;
+            btn_buscar_telefono_cli.Text = "Buscar";
+            btn_buscar_telefono_cli.UseVisualStyleBackColor = true;
+            // 
+            // lb_telefono_cli
+            // 
+            lb_telefono_cli.AutoSize = true;
+            lb_telefono_cli.Font = new Font("Nirmala UI", 8F);
+            lb_telefono_cli.ForeColor = SystemColors.WindowFrame;
+            lb_telefono_cli.Location = new Point(382, 98);
+            lb_telefono_cli.Name = "lb_telefono_cli";
+            lb_telefono_cli.Size = new Size(60, 19);
+            lb_telefono_cli.TabIndex = 55;
+            lb_telefono_cli.Text = "Teléfono";
+            // 
+            // cb_buscar_telefono_cli
+            // 
+            cb_buscar_telefono_cli.BackColor = SystemColors.Control;
+            cb_buscar_telefono_cli.BorderStyle = BorderStyle.None;
+            cb_buscar_telefono_cli.Font = new Font("Nirmala UI", 9F);
+            cb_buscar_telefono_cli.Location = new Point(382, 123);
+            cb_buscar_telefono_cli.Name = "cb_buscar_telefono_cli";
+            cb_buscar_telefono_cli.Size = new Size(145, 20);
+            cb_buscar_telefono_cli.TabIndex = 54;
             // 
             // btn_buscar_correo_cli
             // 
@@ -1824,6 +1865,7 @@
             lb_ir_alta_cli.TabIndex = 46;
             lb_ir_alta_cli.Text = "Ir a alta cliente";
             lb_ir_alta_cli.Visible = false;
+            lb_ir_alta_cli.Click += lb_ir_alta_cli_Click;
             // 
             // cb_password
             // 
@@ -1837,6 +1879,7 @@
             cb_password.TabIndex = 45;
             cb_password.Text = "Mostrar contraseña";
             cb_password.UseVisualStyleBackColor = true;
+            cb_password.CheckedChanged += cb_password_CheckedChanged;
             // 
             // tb_contrasena_cli
             // 
@@ -2065,8 +2108,8 @@
             tabPage1.Controls.Add(button28);
             tabPage1.Controls.Add(panel11);
             tabPage1.Controls.Add(panel12);
-            tabPage1.Controls.Add(button33);
-            tabPage1.Controls.Add(button34);
+            tabPage1.Controls.Add(btn_eliminar_user);
+            tabPage1.Controls.Add(btn_quitarprivilegio_user);
             tabPage1.Controls.Add(label58);
             tabPage1.Controls.Add(label59);
             tabPage1.Controls.Add(dataGridView_rolesUsuarios);
@@ -2094,6 +2137,9 @@
             // panel11
             // 
             panel11.BackColor = SystemColors.ButtonHighlight;
+            panel11.Controls.Add(cb_buscar_rol_user);
+            panel11.Controls.Add(btn_buscar_rol_user);
+            panel11.Controls.Add(lbl_buscar_rol_user);
             panel11.Controls.Add(btn_borrar_filtros_users);
             panel11.Controls.Add(btn_buscar_username_user);
             panel11.Controls.Add(label54);
@@ -2103,6 +2149,44 @@
             panel11.Name = "panel11";
             panel11.Size = new Size(953, 116);
             panel11.TabIndex = 92;
+            // 
+            // cb_buscar_rol_user
+            // 
+            cb_buscar_rol_user.BackColor = SystemColors.Control;
+            cb_buscar_rol_user.DropDownStyle = ComboBoxStyle.DropDownList;
+            cb_buscar_rol_user.FlatStyle = FlatStyle.Flat;
+            cb_buscar_rol_user.Font = new Font("Nirmala UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            cb_buscar_rol_user.FormattingEnabled = true;
+            cb_buscar_rol_user.Items.AddRange(new object[] { "worker", "admin" });
+            cb_buscar_rol_user.Location = new Point(300, 68);
+            cb_buscar_rol_user.Name = "cb_buscar_rol_user";
+            cb_buscar_rol_user.Size = new Size(175, 28);
+            cb_buscar_rol_user.TabIndex = 48;
+            cb_buscar_rol_user.SelectedIndexChanged += cb_buscar_rol_user_SelectedIndexChanged;
+            // 
+            // btn_buscar_rol_user
+            // 
+            btn_buscar_rol_user.FlatStyle = FlatStyle.Flat;
+            btn_buscar_rol_user.Font = new Font("Nirmala UI", 8F);
+            btn_buscar_rol_user.ForeColor = Color.FromArgb(115, 140, 191);
+            btn_buscar_rol_user.Location = new Point(481, 68);
+            btn_buscar_rol_user.Name = "btn_buscar_rol_user";
+            btn_buscar_rol_user.Size = new Size(65, 28);
+            btn_buscar_rol_user.TabIndex = 47;
+            btn_buscar_rol_user.Text = "Buscar";
+            btn_buscar_rol_user.UseVisualStyleBackColor = true;
+            btn_buscar_rol_user.Click += btn_buscar_rol_user_Click;
+            // 
+            // lbl_buscar_rol_user
+            // 
+            lbl_buscar_rol_user.AutoSize = true;
+            lbl_buscar_rol_user.Font = new Font("Nirmala UI", 8F);
+            lbl_buscar_rol_user.ForeColor = SystemColors.WindowFrame;
+            lbl_buscar_rol_user.Location = new Point(300, 47);
+            lbl_buscar_rol_user.Name = "lbl_buscar_rol_user";
+            lbl_buscar_rol_user.Size = new Size(28, 19);
+            lbl_buscar_rol_user.TabIndex = 46;
+            lbl_buscar_rol_user.Text = "Rol";
             // 
             // btn_borrar_filtros_users
             // 
@@ -2115,6 +2199,7 @@
             btn_borrar_filtros_users.TabIndex = 44;
             btn_borrar_filtros_users.Text = "Borrar filtro";
             btn_borrar_filtros_users.UseVisualStyleBackColor = true;
+            btn_borrar_filtros_users.Click += btn_borrar_filtros_users_Click;
             // 
             // btn_buscar_username_user
             // 
@@ -2127,6 +2212,7 @@
             btn_buscar_username_user.TabIndex = 41;
             btn_buscar_username_user.Text = "Buscar";
             btn_buscar_username_user.UseVisualStyleBackColor = true;
+            btn_buscar_username_user.Click += btn_buscar_username_user_Click;
             // 
             // label54
             // 
@@ -2159,6 +2245,7 @@
             tb_buscar_username_user.Name = "tb_buscar_username_user";
             tb_buscar_username_user.Size = new Size(175, 20);
             tb_buscar_username_user.TabIndex = 0;
+            tb_buscar_username_user.TextChanged += tb_buscar_username_user_TextChanged;
             // 
             // panel12
             // 
@@ -2189,6 +2276,7 @@
             checkBox1.TabIndex = 48;
             checkBox1.Text = "Mostrar contraseña";
             checkBox1.UseVisualStyleBackColor = true;
+            checkBox1.CheckedChanged += checkBox1_CheckedChanged;
             // 
             // tb_contrasena_user
             // 
@@ -2222,6 +2310,7 @@
             btn_clear_users.TabIndex = 33;
             btn_clear_users.Text = "Borrar formulario";
             btn_clear_users.UseVisualStyleBackColor = true;
+            btn_clear_users.Click += btn_clear_users_Click;
             // 
             // tb_username_user
             // 
@@ -2243,6 +2332,7 @@
             btn_insertar_user.TabIndex = 5;
             btn_insertar_user.Text = "INSERTAR";
             btn_insertar_user.UseVisualStyleBackColor = false;
+            btn_insertar_user.Click += btn_insertar_user_Click;
             // 
             // label56
             // 
@@ -2266,31 +2356,33 @@
             label57.TabIndex = 9;
             label57.Text = "Username";
             // 
-            // button33
+            // btn_eliminar_user
             // 
-            button33.BackColor = Color.FromArgb(115, 140, 191);
-            button33.FlatStyle = FlatStyle.Flat;
-            button33.Font = new Font("Nirmala UI", 9F, FontStyle.Bold);
-            button33.ForeColor = SystemColors.ButtonHighlight;
-            button33.Location = new Point(1170, 686);
-            button33.Name = "button33";
-            button33.Size = new Size(150, 48);
-            button33.TabIndex = 90;
-            button33.Text = "Eliminar";
-            button33.UseVisualStyleBackColor = false;
+            btn_eliminar_user.BackColor = Color.FromArgb(115, 140, 191);
+            btn_eliminar_user.FlatStyle = FlatStyle.Flat;
+            btn_eliminar_user.Font = new Font("Nirmala UI", 9F, FontStyle.Bold);
+            btn_eliminar_user.ForeColor = SystemColors.ButtonHighlight;
+            btn_eliminar_user.Location = new Point(1170, 686);
+            btn_eliminar_user.Name = "btn_eliminar_user";
+            btn_eliminar_user.Size = new Size(150, 48);
+            btn_eliminar_user.TabIndex = 90;
+            btn_eliminar_user.Text = "Eliminar";
+            btn_eliminar_user.UseVisualStyleBackColor = false;
+            btn_eliminar_user.Click += btn_eliminar_user_Click;
             // 
-            // button34
+            // btn_quitarprivilegio_user
             // 
-            button34.BackColor = Color.FromArgb(115, 140, 191);
-            button34.FlatStyle = FlatStyle.Flat;
-            button34.Font = new Font("Nirmala UI", 9F, FontStyle.Bold);
-            button34.ForeColor = SystemColors.ButtonHighlight;
-            button34.Location = new Point(890, 686);
-            button34.Name = "button34";
-            button34.Size = new Size(260, 48);
-            button34.TabIndex = 89;
-            button34.Text = "Quitar privilegio administrador";
-            button34.UseVisualStyleBackColor = false;
+            btn_quitarprivilegio_user.BackColor = Color.FromArgb(115, 140, 191);
+            btn_quitarprivilegio_user.FlatStyle = FlatStyle.Flat;
+            btn_quitarprivilegio_user.Font = new Font("Nirmala UI", 9F, FontStyle.Bold);
+            btn_quitarprivilegio_user.ForeColor = SystemColors.ButtonHighlight;
+            btn_quitarprivilegio_user.Location = new Point(890, 686);
+            btn_quitarprivilegio_user.Name = "btn_quitarprivilegio_user";
+            btn_quitarprivilegio_user.Size = new Size(260, 48);
+            btn_quitarprivilegio_user.TabIndex = 89;
+            btn_quitarprivilegio_user.Text = "Quitar privilegio administrador";
+            btn_quitarprivilegio_user.UseVisualStyleBackColor = false;
+            btn_quitarprivilegio_user.Click += btn_quitarprivilegio_user_Click;
             // 
             // label58
             // 
@@ -2322,6 +2414,7 @@
             dataGridView_rolesUsuarios.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dataGridView_rolesUsuarios.Size = new Size(953, 520);
             dataGridView_rolesUsuarios.TabIndex = 86;
+            dataGridView_rolesUsuarios.CellContentClick += dataGridView_rolesUsuarios_CellContentClick;
             // 
             // label60
             // 
@@ -2365,7 +2458,6 @@
             // 
             pnl_topmenu.BackColor = Color.FromArgb(155, 170, 201);
             pnl_topmenu.Controls.Add(btn_VistaCliente_prov);
-            pnl_topmenu.Controls.Add(label11);
             pnl_topmenu.Controls.Add(pictureBox1);
             pnl_topmenu.Controls.Add(button2);
             pnl_topmenu.Controls.Add(close);
@@ -2384,17 +2476,6 @@
             btn_VistaCliente_prov.Text = "Vista Cliente prov";
             btn_VistaCliente_prov.UseVisualStyleBackColor = true;
             btn_VistaCliente_prov.Click += btn_VistaCliente_prov_Click;
-            // 
-            // label11
-            // 
-            label11.AutoSize = true;
-            label11.BackColor = Color.Transparent;
-            label11.ForeColor = SystemColors.Control;
-            label11.Location = new Point(666, 17);
-            label11.Name = "label11";
-            label11.Size = new Size(180, 20);
-            label11.TabIndex = 8;
-            label11.Text = "Bienvenido administrador";
             // 
             // pictureBox1
             // 
@@ -2457,7 +2538,6 @@
             ((System.ComponentModel.ISupportInitialize)dataGridView_rolesUsuarios).EndInit();
             ((System.ComponentModel.ISupportInitialize)close).EndInit();
             pnl_topmenu.ResumeLayout(false);
-            pnl_topmenu.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
         }
@@ -2495,7 +2575,6 @@
         private Panel panel3;
         private TabPage tabPage4;
         private Panel panel2;
-        private Label label11;
         private TextBox tb_buscar_nombre_art;
         private Button button1;
         private Label lbl_buscarNombre_art;
@@ -2607,8 +2686,8 @@
         private Button btn_insertar_user;
         private Label label56;
         private Label label57;
-        private Button button33;
-        private Button button34;
+        private Button btn_eliminar_user;
+        private Button btn_quitarprivilegio_user;
         private Label label58;
         private Label label59;
         private DataGridView dataGridView_rolesUsuarios;
@@ -2630,7 +2709,6 @@
         private ComboBox cb_descuento_ped;
         private Button btn_buscar_direccion_cli;
         private Label label30;
-        private TextBox tb_buscar_direccion_cli;
         private Button btn_buscar_username_cli;
         private Label label64;
         private TextBox tb_buscar_username_cli;
@@ -2661,5 +2739,12 @@
         private Button btn_editar_pedido;
         private TextBox tb_telefono_cli;
         private Label lbl_telefono_cli;
+        private Button btn_buscar_telefono_cli;
+        private Label lb_telefono_cli;
+        private TextBox cb_buscar_telefono_cli;
+        private TextBox tb_buscar_direccion_cli;
+        private ComboBox cb_buscar_rol_user;
+        private Button btn_buscar_rol_user;
+        private Label lbl_buscar_rol_user;
     }
 }

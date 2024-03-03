@@ -7,6 +7,7 @@ using System.Data;
 using System.Drawing;
 using System.Windows.Forms;
 using static System.Runtime.InteropServices.JavaScript.JSType;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.Button;
 
 namespace GestionPapeleria
 {
@@ -43,7 +44,7 @@ namespace GestionPapeleria
         //Variables para Roles Usuario
         public static string usernameadmin, rol, contrasenaadmin;
         public static int id_admin;
-        public static string filtro_username_admin;
+        public static string filtro_username_admin, filtro_rol_admin;
 
 
 
@@ -62,6 +63,7 @@ namespace GestionPapeleria
             cargarPedidos();
             cargarClientes();
             llenarFiltroEstado();
+            cargarUsuarios();
         }
 
         private void cargarArticulos()
@@ -75,6 +77,26 @@ namespace GestionPapeleria
                 adapter.Fill(dt);
 
                 dataGridView1.DataSource = dt;
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Fallo", "Fail");
+                throw;
+            }
+        }
+
+        private void cargarUsuarios()
+        {
+            string sqlQuery = " Select id_usuario, nombre, rol from usuariosAdministradores";
+            try
+            {
+                SqlConnection con = new SqlConnection(connetionString);
+                SqlDataAdapter adapter = new SqlDataAdapter(sqlQuery, connetionString);
+                DataTable dt = new DataTable();
+                adapter.Fill(dt);
+
+                dataGridView_rolesUsuarios.DataSource = dt;
 
             }
             catch (Exception ex)
@@ -178,6 +200,9 @@ namespace GestionPapeleria
             {
                 btn_insertar_art.Text = "INSERTAR";
                 lbl_altaCliente.Text = "Alta de cliente";
+                tb_contrasena_cli.Enabled = true;
+
+
             }
 
         }
@@ -349,6 +374,57 @@ namespace GestionPapeleria
 
 
 
+
+        }
+
+        private void insertarUsuarioAdmin()
+        {
+
+            if (tb_username_user.Text != "" || tb_contrasena_user.Text != "")
+            {
+                try
+                {
+                    SqlConnection con = new SqlConnection(connetionString);
+
+                    con.Open();
+
+                    SqlCommand cmd = new SqlCommand("InsertarUsuarioAdmin", con);
+
+                    //Indicamos que el comando va a ser un procedimiento almacenado
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    // Comprobar que los campos estén rellenos
+                    string username = tb_username_user.Text;
+
+
+                    //CIFRARLAAAAAAAAAAAA
+                    string password = tb_contrasena_user.Text;
+
+
+                    cmd.Parameters.Add(new SqlParameter("@usernameAdmin", username));
+                    cmd.Parameters.Add(new SqlParameter("@contrasenaAdmin", password));
+
+
+
+                    cmd.ExecuteNonQuery();
+                    con.Close();
+
+                    MessageBox.Show("Éxito");
+                    limpiarDatos();
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Fallo");
+                    throw;
+                }
+            }
+
+            else
+            {
+                MessageBox.Show("Los campos deben estar rellenos", "Error Message");
+
+            }
 
         }
 
@@ -691,10 +767,25 @@ namespace GestionPapeleria
             //estado 
             estadoPedido = dataGridView_pedidos.Rows[currentRowIndex].Cells[4].Value.ToString();
 
-
             MessageBox.Show("Datos seleccionados", "Seleccionado");
         }
 
+        private void dataGridView_rolesUsuarios_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            int currentRowIndex = dataGridView_rolesUsuarios.CurrentCell.RowIndex;
+            dataGridView_rolesUsuarios.Rows[currentRowIndex].Selected = true;
+
+            //id usuario
+            id_admin = int.Parse(dataGridView_rolesUsuarios.Rows[currentRowIndex].Cells[0].Value.ToString());
+            //username
+
+            usernameadmin = dataGridView_rolesUsuarios.Rows[currentRowIndex].Cells[1].Value.ToString();
+            // rol
+
+            rol = dataGridView_rolesUsuarios.Rows[currentRowIndex].Cells[2].Value.ToString();
+
+            MessageBox.Show("Datos seleccionados", "Seleccionado");
+        }
 
         private void dataGridView_clientes_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -810,7 +901,6 @@ namespace GestionPapeleria
             }
 
         }
-
 
         private void eliminarPedido(object sender, EventArgs e)
         {
@@ -1152,7 +1242,6 @@ namespace GestionPapeleria
             cb_proveedor.SelectedIndex = -1;
             tb_nombre_cat.Text = string.Empty;
             tb_nombre_editar_cat.Text = string.Empty;
-            //tb_nombreCliente_ped.Text = string.Empty;
             cb_descuento_ped.SelectedIndex = -1;
             tb_importeEditado_ped.Text = string.Empty;
 
@@ -1404,7 +1493,8 @@ namespace GestionPapeleria
 
                 cmd.CommandType = CommandType.StoredProcedure;
 
-                cmd.Parameters.Add(new SqlParameter("@id_cliente", idClientePedido));
+                int idClienteSelect = int.Parse(tb_buscar_nombre_ped.Text);
+                cmd.Parameters.Add(new SqlParameter("@id_cliente", idClienteSelect));
 
                 cmd.ExecuteNonQuery();
 
@@ -1429,7 +1519,6 @@ namespace GestionPapeleria
             float nuevoDescuento = descuento / 100;
             nuevoTotal = importePedido - (nuevoDescuento * importePedido);
             nuevoTotal = (float)Math.Round(nuevoTotal, 3);
-            MessageBox.Show(nuevoDescuento.ToString() + " - " + importePedido.ToString() + " -" + nuevoTotal.ToString());
             tb_importeEditado_ped.Text = nuevoTotal.ToString();
 
         }
@@ -1458,6 +1547,7 @@ namespace GestionPapeleria
             tb_buscar_username_cli.Text = string.Empty;
             tb_buscar_correo_cli.Text = string.Empty;
             tb_buscar_direccion_cli.Text = string.Empty;
+            cb_buscar_telefono_cli.Text = string.Empty;
         }
 
         private void btn_alta_cliente_Click(object sender, EventArgs e)
@@ -1550,9 +1640,215 @@ namespace GestionPapeleria
                 throw;
             }
         }
+
+        private void btn_insertar_user_Click(object sender, EventArgs e)
+        {
+            insertarUsuarioAdmin();
+            tb_username_user.Text = string.Empty;
+            tb_contrasena_user.Text = string.Empty;
+            cargarUsuarios();
+        }
+
+        private void btn_clear_users_Click(object sender, EventArgs e)
+        {
+            tb_username_user.Text = string.Empty;
+            tb_contrasena_user.Text = string.Empty;
+        }
+
+        private void btn_eliminar_user_Click(object sender, EventArgs e)
+        {
+            //Procedimiento almacenado para borrar un articulo  
+            try
+            {
+
+                SqlConnection con = new SqlConnection(connetionString);
+                con.Open();
+                SqlCommand cmd = new SqlCommand("eliminarUsuario", con);
+
+                //Indicamos que el comando va a ser un procedimiento almacenado
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                if (id_admin != 0 && id_admin != null)
+                {
+                    DialogResult dialogResult = MessageBox.Show("¿Quieres eliminar el usuario seleccionado?", "Confirmar eliminación", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                    if (dialogResult == DialogResult.Yes)
+                    {
+                        cmd.Parameters.AddWithValue("@id_usuario", id_admin);
+                        cmd.ExecuteNonQuery();
+                        con.Close();
+
+                        MessageBox.Show("Éxito");
+                        cargarUsuarios();
+
+
+                    }
+                    else if (dialogResult == DialogResult.No)
+                    {
+                        MessageBox.Show("Eliminación cancelada", "Cancelado");
+                    }
+
+                }
+                else
+                {
+                    MessageBox.Show("Debe seleccionar el usuario a eliminar", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Fallo");
+                throw;
+            }
+        }
+
+        private void lb_ir_alta_cli_Click(object sender, EventArgs e)
+        {
+            estaEditando = false;
+            borrarFormularioCliente();
+            setEstaEditandoClientes();
+            lb_ir_alta_cli.Hide();
+        }
+
+        //Método para quitar los prilegios de administrador (solo no podrán dar de alta a itros usuarios)
+        private void btn_quitarprivilegio_user_Click(object sender, EventArgs e)
+        {
+            //Convertir al usuario admin en worker
+
+            try
+            {
+                if (rol.Contains("admin"))
+                {
+
+
+                    DialogResult dialogResult = MessageBox.Show("¿Quieres quitar los permisos al usuario?", "Confirmar permisos", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                    if (dialogResult == DialogResult.Yes)
+                    {
+                        SqlConnection con = new SqlConnection(connetionString);
+                        con.Open();
+                        SqlCommand cmd = new SqlCommand("QuitarPrivilegios", con);
+                        cmd.CommandType = CommandType.StoredProcedure;
+
+                        cmd.Parameters.Add(new SqlParameter("@id_usuario", id_admin));
+                        cmd.ExecuteNonQuery();
+
+                        SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+                        DataTable dt = new DataTable();
+                        adapter.Fill(dt);
+
+                        dataGridView_pedidos.DataSource = dt;
+
+                        cargarUsuarios();
+                        MessageBox.Show("Permisos modificados");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Operación cancelada", "Cancelado");
+                    }
+
+                }
+                else
+                {
+                    MessageBox.Show("El usuario ya no tiene permisos de administrador", "Info");
+                }
+
+            }
+            catch { MessageBox.Show("Error al cambiar privilegios"); };
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            tb_contrasena_user.PasswordChar = checkBox1.Checked ? '\0' : '*';
+        }
+
+        private void cb_password_CheckedChanged(object sender, EventArgs e)
+        {
+            tb_contrasena_cli.PasswordChar = cb_password.Checked ? '\0' : '*';
+        }
+
+        private void btn_buscar_username_user_Click(object sender, EventArgs e)
+        {
+            try
+            {
+
+                SqlConnection con = new SqlConnection(connetionString);
+                con.Open();
+
+                SqlCommand cmd = new SqlCommand("FiltrarPorUserName", con);
+
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                string usernameAdmin = tb_buscar_username_user.Text;
+                cmd.Parameters.Add(new SqlParameter("@nombre", usernameAdmin));
+
+                cmd.ExecuteNonQuery();
+
+                SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+                DataTable dt = new DataTable();
+                adapter.Fill(dt);
+
+                dataGridView_rolesUsuarios.DataSource = dt;
+
+            }
+            catch (Exception ex)
+            {
+                tb_buscar_nombre_ped.Text = string.Empty;
+                MessageBox.Show("Fallo: no se ha introducido el username para filtrar ");
+            }
+        }
+
+        private void tb_buscar_username_user_TextChanged(object sender, EventArgs e)
+        {
+            filtro_username_admin = tb_buscar_username_user.Text;
+        }
+
+        private void btn_borrar_filtros_users_Click(object sender, EventArgs e)
+        {
+            tb_buscar_username_user.Text = string.Empty;
+            cb_buscar_rol_user.SelectedIndex = -1;
+
+            cargarUsuarios();
+        }
+
+        private void cb_buscar_rol_user_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            filtro_rol_admin = cb_buscar_rol_user.SelectedItem as string;
+
+        }
+
+        private void btn_buscar_rol_user_Click(object sender, EventArgs e)
+        {
+           
+                try
+                {
+                    cargarUsuarios();
+
+                    SqlConnection con = new SqlConnection(connetionString);
+                    con.Open();
+
+                    SqlCommand cmd = new SqlCommand("FiltraPorRol", con);
+
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.Add(new SqlParameter("@rol", filtro_rol_admin));
+
+                    cmd.ExecuteNonQuery();
+
+                    SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+                    DataTable dt = new DataTable();
+                    adapter.Fill(dt);
+
+                   dataGridView_rolesUsuarios.DataSource = dt;
+                   
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Fallo: no se ha introducido rol del usuario para filtrar ");
+                }
+            
+
+        }
     }
-
-
 }
 
 //Unused code
