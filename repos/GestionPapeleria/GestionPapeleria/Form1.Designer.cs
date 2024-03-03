@@ -104,6 +104,7 @@
             label27 = new Label();
             label28 = new Label();
             tabPage3 = new TabPage();
+            btn_editar_pedido = new Button();
             label9 = new Label();
             label16 = new Label();
             label17 = new Label();
@@ -122,6 +123,8 @@
             label24 = new Label();
             tb_buscar_nombre_ped = new TextBox();
             panel7 = new Panel();
+            tb_idpedido_ped = new TextBox();
+            lbl_idpedido_ped = new Label();
             cb_descuento_ped = new ComboBox();
             tb_importeEditado_ped = new TextBox();
             lbl_importeEditado = new Label();
@@ -157,6 +160,8 @@
             label42 = new Label();
             tb_buscar_nombre_cli = new TextBox();
             panel10 = new Panel();
+            tb_telefono_cli = new TextBox();
+            lbl_telefono_cli = new Label();
             lb_ir_alta_cli = new Label();
             cb_password = new CheckBox();
             tb_contrasena_cli = new TextBox();
@@ -1107,6 +1112,7 @@
             // 
             // tabPage3
             // 
+            tabPage3.Controls.Add(btn_editar_pedido);
             tabPage3.Controls.Add(label9);
             tabPage3.Controls.Add(label16);
             tabPage3.Controls.Add(label17);
@@ -1127,6 +1133,20 @@
             tabPage3.TabIndex = 2;
             tabPage3.Text = "     Pedidos";
             tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // btn_editar_pedido
+            // 
+            btn_editar_pedido.BackColor = Color.FromArgb(115, 140, 191);
+            btn_editar_pedido.FlatStyle = FlatStyle.Flat;
+            btn_editar_pedido.Font = new Font("Nirmala UI", 9F, FontStyle.Bold);
+            btn_editar_pedido.ForeColor = SystemColors.ButtonHighlight;
+            btn_editar_pedido.Location = new Point(1010, 686);
+            btn_editar_pedido.Name = "btn_editar_pedido";
+            btn_editar_pedido.Size = new Size(150, 48);
+            btn_editar_pedido.TabIndex = 68;
+            btn_editar_pedido.Text = "Editar";
+            btn_editar_pedido.UseVisualStyleBackColor = false;
+            btn_editar_pedido.Click += btn_editar_pedido_Click;
             // 
             // label9
             // 
@@ -1322,6 +1342,8 @@
             // 
             panel7.BackColor = SystemColors.ButtonHighlight;
             panel7.BorderStyle = BorderStyle.FixedSingle;
+            panel7.Controls.Add(tb_idpedido_ped);
+            panel7.Controls.Add(lbl_idpedido_ped);
             panel7.Controls.Add(cb_descuento_ped);
             panel7.Controls.Add(tb_importeEditado_ped);
             panel7.Controls.Add(lbl_importeEditado);
@@ -1331,8 +1353,27 @@
             panel7.Controls.Add(lb_altaCliente);
             panel7.Location = new Point(23, 24);
             panel7.Name = "panel7";
-            panel7.Size = new Size(303, 369);
+            panel7.Size = new Size(303, 440);
             panel7.TabIndex = 61;
+            // 
+            // tb_idpedido_ped
+            // 
+            tb_idpedido_ped.Font = new Font("Nirmala UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            tb_idpedido_ped.Location = new Point(34, 121);
+            tb_idpedido_ped.Name = "tb_idpedido_ped";
+            tb_idpedido_ped.Size = new Size(233, 27);
+            tb_idpedido_ped.TabIndex = 42;
+            // 
+            // lbl_idpedido_ped
+            // 
+            lbl_idpedido_ped.AutoSize = true;
+            lbl_idpedido_ped.Font = new Font("Nirmala UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lbl_idpedido_ped.ForeColor = SystemColors.WindowFrame;
+            lbl_idpedido_ped.Location = new Point(34, 95);
+            lbl_idpedido_ped.Name = "lbl_idpedido_ped";
+            lbl_idpedido_ped.Size = new Size(74, 20);
+            lbl_idpedido_ped.TabIndex = 40;
+            lbl_idpedido_ped.Text = "Id pedido";
             // 
             // cb_descuento_ped
             // 
@@ -1340,16 +1381,17 @@
             cb_descuento_ped.Font = new Font("Nirmala UI", 9F);
             cb_descuento_ped.FormattingEnabled = true;
             cb_descuento_ped.Items.AddRange(new object[] { "5", "10", "15", "20" });
-            cb_descuento_ped.Location = new Point(34, 123);
+            cb_descuento_ped.Location = new Point(34, 182);
             cb_descuento_ped.Name = "cb_descuento_ped";
             cb_descuento_ped.Size = new Size(233, 28);
             cb_descuento_ped.TabIndex = 39;
+            cb_descuento_ped.SelectedIndexChanged += cb_descuento_ped_SelectedIndexChanged;
             // 
             // tb_importeEditado_ped
             // 
             tb_importeEditado_ped.Enabled = false;
             tb_importeEditado_ped.Font = new Font("Nirmala UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            tb_importeEditado_ped.Location = new Point(34, 189);
+            tb_importeEditado_ped.Location = new Point(34, 248);
             tb_importeEditado_ped.Name = "tb_importeEditado_ped";
             tb_importeEditado_ped.Size = new Size(233, 27);
             tb_importeEditado_ped.TabIndex = 38;
@@ -1359,7 +1401,7 @@
             lbl_importeEditado.AutoSize = true;
             lbl_importeEditado.Font = new Font("Nirmala UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lbl_importeEditado.ForeColor = SystemColors.WindowFrame;
-            lbl_importeEditado.Location = new Point(34, 161);
+            lbl_importeEditado.Location = new Point(34, 220);
             lbl_importeEditado.Name = "lbl_importeEditado";
             lbl_importeEditado.Size = new Size(109, 20);
             lbl_importeEditado.TabIndex = 37;
@@ -1370,7 +1412,7 @@
             lbl_descuento.AutoSize = true;
             lbl_descuento.Font = new Font("Nirmala UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lbl_descuento.ForeColor = SystemColors.WindowFrame;
-            lbl_descuento.Location = new Point(35, 96);
+            lbl_descuento.Location = new Point(35, 155);
             lbl_descuento.Name = "lbl_descuento";
             lbl_descuento.Size = new Size(125, 20);
             lbl_descuento.TabIndex = 35;
@@ -1381,7 +1423,7 @@
             btn_borrar_editar_ped.FlatStyle = FlatStyle.Flat;
             btn_borrar_editar_ped.Font = new Font("Nirmala UI", 9F, FontStyle.Bold);
             btn_borrar_editar_ped.ForeColor = Color.FromArgb(115, 140, 191);
-            btn_borrar_editar_ped.Location = new Point(35, 284);
+            btn_borrar_editar_ped.Location = new Point(35, 343);
             btn_borrar_editar_ped.Name = "btn_borrar_editar_ped";
             btn_borrar_editar_ped.Size = new Size(233, 39);
             btn_borrar_editar_ped.TabIndex = 33;
@@ -1395,19 +1437,20 @@
             btn_editar_ped.FlatStyle = FlatStyle.Flat;
             btn_editar_ped.Font = new Font("Nirmala UI", 9F, FontStyle.Bold);
             btn_editar_ped.ForeColor = SystemColors.ButtonHighlight;
-            btn_editar_ped.Location = new Point(34, 239);
+            btn_editar_ped.Location = new Point(34, 298);
             btn_editar_ped.Name = "btn_editar_ped";
             btn_editar_ped.Size = new Size(236, 39);
             btn_editar_ped.TabIndex = 5;
             btn_editar_ped.Text = "INSERTAR";
             btn_editar_ped.UseVisualStyleBackColor = false;
+            btn_editar_ped.Click += btn_editar_ped_Click;
             // 
             // lb_altaCliente
             // 
             lb_altaCliente.AutoSize = true;
             lb_altaCliente.Font = new Font("Nirmala UI", 11.8F, FontStyle.Bold);
             lb_altaCliente.ForeColor = Color.FromArgb(235, 140, 52);
-            lb_altaCliente.Location = new Point(74, 39);
+            lb_altaCliente.Location = new Point(82, 39);
             lb_altaCliente.Name = "lb_altaCliente";
             lb_altaCliente.Size = new Size(139, 28);
             lb_altaCliente.TabIndex = 7;
@@ -1425,6 +1468,7 @@
             btn_eliminar_ped.TabIndex = 60;
             btn_eliminar_ped.Text = "Eliminar";
             btn_eliminar_ped.UseVisualStyleBackColor = false;
+            btn_eliminar_ped.Click += eliminarPedido;
             // 
             // btn_enviar_ped
             // 
@@ -1432,12 +1476,13 @@
             btn_enviar_ped.FlatStyle = FlatStyle.Flat;
             btn_enviar_ped.Font = new Font("Nirmala UI", 9F, FontStyle.Bold);
             btn_enviar_ped.ForeColor = SystemColors.ButtonHighlight;
-            btn_enviar_ped.Location = new Point(1000, 686);
+            btn_enviar_ped.Location = new Point(854, 686);
             btn_enviar_ped.Name = "btn_enviar_ped";
             btn_enviar_ped.Size = new Size(150, 48);
             btn_enviar_ped.TabIndex = 59;
             btn_enviar_ped.Text = "Enviar pedido";
             btn_enviar_ped.UseVisualStyleBackColor = false;
+            btn_enviar_ped.Click += btn_enviar_ped_Click;
             // 
             // label31
             // 
@@ -1469,6 +1514,7 @@
             dataGridView_pedidos.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dataGridView_pedidos.Size = new Size(953, 520);
             dataGridView_pedidos.TabIndex = 56;
+            dataGridView_pedidos.CellContentClick += dataGridView_pedidos_CellContentClick;
             // 
             // label33
             // 
@@ -1676,6 +1722,7 @@
             btn_borrar_filtros_cli.TabIndex = 44;
             btn_borrar_filtros_cli.Text = "Borrar filtro";
             btn_borrar_filtros_cli.UseVisualStyleBackColor = true;
+            btn_borrar_filtros_cli.Click += btn_borrar_filtros_cli_Click;
             // 
             // btn_buscar_nombre_cli
             // 
@@ -1725,6 +1772,8 @@
             // 
             panel10.BackColor = SystemColors.ButtonHighlight;
             panel10.BorderStyle = BorderStyle.FixedSingle;
+            panel10.Controls.Add(tb_telefono_cli);
+            panel10.Controls.Add(lbl_telefono_cli);
             panel10.Controls.Add(lb_ir_alta_cli);
             panel10.Controls.Add(cb_password);
             panel10.Controls.Add(tb_contrasena_cli);
@@ -1746,11 +1795,30 @@
             panel10.Size = new Size(303, 710);
             panel10.TabIndex = 76;
             // 
+            // tb_telefono_cli
+            // 
+            tb_telefono_cli.Font = new Font("Nirmala UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            tb_telefono_cli.Location = new Point(29, 308);
+            tb_telefono_cli.Name = "tb_telefono_cli";
+            tb_telefono_cli.Size = new Size(233, 27);
+            tb_telefono_cli.TabIndex = 47;
+            // 
+            // lbl_telefono_cli
+            // 
+            lbl_telefono_cli.AutoSize = true;
+            lbl_telefono_cli.Font = new Font("Nirmala UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lbl_telefono_cli.ForeColor = SystemColors.WindowFrame;
+            lbl_telefono_cli.Location = new Point(29, 285);
+            lbl_telefono_cli.Name = "lbl_telefono_cli";
+            lbl_telefono_cli.Size = new Size(66, 20);
+            lbl_telefono_cli.TabIndex = 48;
+            lbl_telefono_cli.Text = "Telefono";
+            // 
             // lb_ir_alta_cli
             // 
             lb_ir_alta_cli.AutoSize = true;
             lb_ir_alta_cli.ForeColor = Color.FromArgb(235, 140, 52);
-            lb_ir_alta_cli.Location = new Point(89, 608);
+            lb_ir_alta_cli.Location = new Point(89, 648);
             lb_ir_alta_cli.Name = "lb_ir_alta_cli";
             lb_ir_alta_cli.Size = new Size(112, 20);
             lb_ir_alta_cli.TabIndex = 46;
@@ -1763,7 +1831,7 @@
             cb_password.FlatStyle = FlatStyle.Flat;
             cb_password.Font = new Font("Nirmala UI Semilight", 7.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             cb_password.ForeColor = SystemColors.ActiveBorder;
-            cb_password.Location = new Point(130, 457);
+            cb_password.Location = new Point(130, 507);
             cb_password.Name = "cb_password";
             cb_password.Size = new Size(133, 21);
             cb_password.TabIndex = 45;
@@ -1773,7 +1841,7 @@
             // tb_contrasena_cli
             // 
             tb_contrasena_cli.Font = new Font("Nirmala UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            tb_contrasena_cli.Location = new Point(32, 425);
+            tb_contrasena_cli.Location = new Point(32, 475);
             tb_contrasena_cli.Name = "tb_contrasena_cli";
             tb_contrasena_cli.PasswordChar = '*';
             tb_contrasena_cli.Size = new Size(233, 27);
@@ -1782,7 +1850,7 @@
             // tb_username_cli
             // 
             tb_username_cli.Font = new Font("Nirmala UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            tb_username_cli.Location = new Point(32, 358);
+            tb_username_cli.Location = new Point(32, 408);
             tb_username_cli.Name = "tb_username_cli";
             tb_username_cli.Size = new Size(233, 27);
             tb_username_cli.TabIndex = 43;
@@ -1792,7 +1860,7 @@
             label37.AutoSize = true;
             label37.Font = new Font("Nirmala UI", 10F, FontStyle.Bold);
             label37.ForeColor = SystemColors.ControlDarkDark;
-            label37.Location = new Point(30, 304);
+            label37.Location = new Point(30, 354);
             label37.Name = "label37";
             label37.Size = new Size(144, 23);
             label37.TabIndex = 42;
@@ -1803,7 +1871,7 @@
             label62.AutoSize = true;
             label62.Font = new Font("Nirmala UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label62.ForeColor = SystemColors.WindowFrame;
-            label62.Location = new Point(31, 397);
+            label62.Location = new Point(31, 447);
             label62.Name = "label62";
             label62.Size = new Size(170, 20);
             label62.TabIndex = 39;
@@ -1815,7 +1883,7 @@
             label63.AutoSize = true;
             label63.Font = new Font("Nirmala UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label63.ForeColor = SystemColors.WindowFrame;
-            label63.Location = new Point(31, 335);
+            label63.Location = new Point(31, 385);
             label63.Name = "label63";
             label63.Size = new Size(75, 20);
             label63.TabIndex = 38;
@@ -1824,7 +1892,7 @@
             // tb_direccion_cli
             // 
             tb_direccion_cli.Font = new Font("Nirmala UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            tb_direccion_cli.Location = new Point(30, 250);
+            tb_direccion_cli.Location = new Point(30, 246);
             tb_direccion_cli.Name = "tb_direccion_cli";
             tb_direccion_cli.Size = new Size(233, 27);
             tb_direccion_cli.TabIndex = 36;
@@ -1834,7 +1902,7 @@
             label36.AutoSize = true;
             label36.Font = new Font("Nirmala UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label36.ForeColor = SystemColors.WindowFrame;
-            label36.Location = new Point(30, 227);
+            label36.Location = new Point(30, 223);
             label36.Name = "label36";
             label36.Size = new Size(72, 20);
             label36.TabIndex = 37;
@@ -1864,12 +1932,13 @@
             btn_clear_cli.FlatStyle = FlatStyle.Flat;
             btn_clear_cli.Font = new Font("Nirmala UI", 9F, FontStyle.Bold);
             btn_clear_cli.ForeColor = Color.FromArgb(115, 140, 191);
-            btn_clear_cli.Location = new Point(30, 539);
+            btn_clear_cli.Location = new Point(30, 589);
             btn_clear_cli.Name = "btn_clear_cli";
             btn_clear_cli.Size = new Size(233, 39);
             btn_clear_cli.TabIndex = 33;
             btn_clear_cli.Text = "Borrar formulario";
             btn_clear_cli.UseVisualStyleBackColor = true;
+            btn_clear_cli.Click += btn_clear_cli_Click;
             // 
             // tb_nombre_cli
             // 
@@ -1885,12 +1954,13 @@
             btn_alta_cliente.FlatStyle = FlatStyle.Flat;
             btn_alta_cliente.Font = new Font("Nirmala UI", 9F, FontStyle.Bold);
             btn_alta_cliente.ForeColor = SystemColors.ButtonHighlight;
-            btn_alta_cliente.Location = new Point(29, 494);
+            btn_alta_cliente.Location = new Point(29, 544);
             btn_alta_cliente.Name = "btn_alta_cliente";
             btn_alta_cliente.Size = new Size(236, 39);
             btn_alta_cliente.TabIndex = 5;
             btn_alta_cliente.Text = "INSERTAR";
             btn_alta_cliente.UseVisualStyleBackColor = false;
+            btn_alta_cliente.Click += btn_alta_cliente_Click;
             // 
             // lbl_altaCliente
             // 
@@ -1926,6 +1996,7 @@
             btn_eliminar_cli.TabIndex = 75;
             btn_eliminar_cli.Text = "Eliminar";
             btn_eliminar_cli.UseVisualStyleBackColor = false;
+            btn_eliminar_cli.Click += btn_eliminar_cli_Click;
             // 
             // btn_editar_cli
             // 
@@ -1939,6 +2010,7 @@
             btn_editar_cli.TabIndex = 74;
             btn_editar_cli.Text = "Editar";
             btn_editar_cli.UseVisualStyleBackColor = false;
+            btn_editar_cli.Click += llenarDatosFormularioEditarCliente;
             // 
             // label45
             // 
@@ -1970,6 +2042,7 @@
             dataGridView_clientes.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dataGridView_clientes.Size = new Size(953, 456);
             dataGridView_clientes.TabIndex = 71;
+            dataGridView_clientes.CellContentClick += dataGridView_clientes_CellContentClick;
             // 
             // label47
             // 
@@ -2583,5 +2656,10 @@
         private Button btn_enviar_ped;
         private Button btn_eliminar_ped;
         private Label lb_ir_alta_cli;
+        private TextBox tb_idpedido_ped;
+        private Label lbl_idpedido_ped;
+        private Button btn_editar_pedido;
+        private TextBox tb_telefono_cli;
+        private Label lbl_telefono_cli;
     }
 }

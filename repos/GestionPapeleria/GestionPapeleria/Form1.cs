@@ -29,7 +29,8 @@ namespace GestionPapeleria
 
         //Variables para Pedidos 
         public static string nombreClientePedido, fechaPedido, estadoPedido;
-        public static int idPedido, idClientePedido, importePedido, filtro_idcliente_pedido;
+        public static int idPedido, idClientePedido, filtro_idcliente_pedido;
+        public static float importePedido, descuento, nuevoTotal;
         public static string filtro_estado;
 
         //Variables para Clientes
@@ -165,6 +166,22 @@ namespace GestionPapeleria
 
         }
 
+        private void setEstaEditandoClientes()
+        {
+
+            if (estaEditando)
+            {
+                btn_insertar_art.Text = "EDITAR";
+                lbl_altaCliente.Text = "Editar cliente";
+            }
+            else
+            {
+                btn_insertar_art.Text = "INSERTAR";
+                lbl_altaCliente.Text = "Alta de cliente";
+            }
+
+        }
+
         private void button1_Click(object sender, EventArgs e)
         {
             string sqlQuery = "Select a.id_articulo,a.nombre,a.id_categoria, c.nombre as nombre_categoria, a.marca, a.precio, a.stock , a.id_proveedor , a.id_almacen from articulos a, categorias c where a.id_categoria = c.id_categoria";
@@ -256,9 +273,65 @@ namespace GestionPapeleria
                     MessageBox.Show("Éxito");
                     limpiarDatos();
 
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Fallo");
+                    throw;
+                }
+            }
+
+            else
+            {
+                MessageBox.Show("Los campos deben estar rellenos", "Error Message");
+
+            }
 
 
 
+
+        }
+
+        private void insertarCliente()
+        {
+
+            if (tb_nombre_cli.Text != "" || tb_correo_cli.Text != "" || tb_direccion_cli.Text != "" || tb_username_cli.Text != "" || tb_contrasena_cli.Text != "")
+            {
+                try
+                {
+                    SqlConnection con = new SqlConnection(connetionString);
+
+                    con.Open();
+
+                    SqlCommand cmd = new SqlCommand("insertarCliente", con);
+
+                    //Indicamos que el comando va a ser un procedimiento almacenado
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    // Comprobar que los campos estén rellenos
+                    string nombreCompleto = tb_nombre_cli.Text;
+                    string correo = tb_correo_cli.Text;
+                    string telefono = tb_telefono_cli.Text;
+
+                    string direccion = tb_direccion_cli.Text;
+                    string username = tb_username_cli.Text;
+
+                    // TO DO
+                    string password = tb_contrasena_cli.Text;
+
+                    cmd.Parameters.Add(new SqlParameter("@nombreCompleto", nombreCompleto));
+                    cmd.Parameters.Add(new SqlParameter("@correo", correo));
+                    cmd.Parameters.Add(new SqlParameter("@telefono", telefono));
+                    cmd.Parameters.Add(new SqlParameter("@direccion", direccion));
+                    cmd.Parameters.Add(new SqlParameter("@username", username));
+                    cmd.Parameters.Add(new SqlParameter("@passwordclient", password));
+
+
+                    cmd.ExecuteNonQuery();
+                    con.Close();
+
+                    MessageBox.Show("Éxito");
+                    limpiarDatos();
 
                 }
                 catch (Exception ex)
@@ -333,6 +406,100 @@ namespace GestionPapeleria
 
         }
 
+
+        private void editarPedido()
+        {
+            try
+            {
+                //Seleccionar el id 
+                SqlConnection con = new SqlConnection(connetionString);
+                con.Open();
+                SqlCommand cmd = new SqlCommand("EditarPedido", con);
+
+                //Indicamos que el comando va a ser un procedimiento almacenado
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                //Seleccionar el descuento
+                descuento = Convert.ToSingle(cb_descuento_ped.SelectedValue);
+
+                int id_pedido = Convert.ToInt32(tb_idpedido_ped.Text);
+
+                // Mostrar el precio con el descuento
+
+                if (tb_idpedido_ped != null && tb_importeEditado_ped != null && cb_descuento_ped != null)
+                {
+
+                    cmd.Parameters.Add(new SqlParameter("@id_pedido", id_pedido));
+                    cmd.Parameters.Add(new SqlParameter("@nuevo_importe", nuevoTotal));
+                    cmd.ExecuteNonQuery();
+                    con.Close();
+
+                    MessageBox.Show("Éxito");
+                    cargarPedidos();
+
+                }
+
+
+            }
+            catch
+            { MessageBox.Show("Fallo al editar el pedido"); }
+        }
+
+        private void editarCliente()
+        {
+
+            if (tb_nombre_cli.Text != "" || tb_correo_cli.Text != "" || tb_direccion_cli.Text != "" || tb_username_cli.Text != "" || tb_contrasena_cli.Text != "")
+            {
+                try
+                {
+                    SqlConnection con = new SqlConnection(connetionString);
+
+                    con.Open();
+
+                    SqlCommand cmd = new SqlCommand("editarCliente", con);
+
+                    //Indicamos que el comando va a ser un procedimiento almacenado
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    // Comprobar que los campos estén rellenos
+                    string nombreCompleto = tb_nombre_cli.Text;
+                    string correo = tb_correo_cli.Text;
+                    string telefono = tb_telefono_cli.Text;
+                    string direccion = tb_direccion_cli.Text;
+                    string username = tb_username_cli.Text;
+
+                    // TO DO
+                    string password = tb_contrasena_cli.Text;
+
+                    cmd.Parameters.Add(new SqlParameter("@nombreCompleto", nombreCompleto));
+                    cmd.Parameters.Add(new SqlParameter("@correo", correo));
+                    cmd.Parameters.Add(new SqlParameter("@telefono", telefono));
+                    cmd.Parameters.Add(new SqlParameter("@direccion", direccion));
+                    cmd.Parameters.Add(new SqlParameter("@username", username));
+                    cmd.Parameters.Add(new SqlParameter("@password", password));
+
+
+                    cmd.ExecuteNonQuery();
+                    con.Close();
+
+                    MessageBox.Show("Éxito");
+                    limpiarDatos();
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Fallo");
+                    throw;
+                }
+            }
+
+            else
+            {
+                MessageBox.Show("Los campos deben estar rellenos", "Error Message");
+
+            }
+
+        }
         private void button2_Click(object sender, EventArgs e)
         {
             Login lg = new Login();
@@ -506,7 +673,7 @@ namespace GestionPapeleria
         //Seleccionar los datos de la tabla pedidos
         private void dataGridView_pedidos_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            int currentRowIndex = dataGridView_categorias.CurrentCell.RowIndex;
+            int currentRowIndex = dataGridView_pedidos.CurrentCell.RowIndex;
             dataGridView_pedidos.Rows[currentRowIndex].Selected = true;
 
             //id pedido
@@ -519,17 +686,19 @@ namespace GestionPapeleria
             fechaPedido = dataGridView_pedidos.Rows[currentRowIndex].Cells[2].Value.ToString();
 
             // importe
-            importePedido = int.Parse(dataGridView_pedidos.Rows[currentRowIndex].Cells[3].Value.ToString());
+            importePedido = float.Parse(dataGridView_pedidos.Rows[currentRowIndex].Cells[3].Value.ToString());
 
             //estado 
             estadoPedido = dataGridView_pedidos.Rows[currentRowIndex].Cells[4].Value.ToString();
 
+
+            MessageBox.Show("Datos seleccionados", "Seleccionado");
         }
 
 
         private void dataGridView_clientes_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            int currentRowIndex = dataGridView_categorias.CurrentCell.RowIndex;
+            int currentRowIndex = dataGridView_clientes.CurrentCell.RowIndex;
             dataGridView_pedidos.Rows[currentRowIndex].Selected = true;
 
             //id cliente
@@ -537,16 +706,20 @@ namespace GestionPapeleria
 
             // nombreCompleto
             nombreClienteCompleto = dataGridView_clientes.Rows[currentRowIndex].Cells[1].Value.ToString();
+
             // correo
             correo = dataGridView_clientes.Rows[currentRowIndex].Cells[2].Value.ToString();
 
             // telefono
             telefono = dataGridView_clientes.Rows[currentRowIndex].Cells[3].Value.ToString();
+
             //direccion 
             direccion = dataGridView_clientes.Rows[currentRowIndex].Cells[4].Value.ToString();
 
             //username 
-            estadoPedido = dataGridView_clientes.Rows[currentRowIndex].Cells[5].Value.ToString();
+            usernamecliente = dataGridView_clientes.Rows[currentRowIndex].Cells[5].Value.ToString();
+
+            MessageBox.Show("Datos seleccionados", "Seleccionado");
 
         }
         private void llenarDatosFormularioEditarArticulo(object sender, EventArgs e)
@@ -571,6 +744,26 @@ namespace GestionPapeleria
             tb_nombre_editar_cat.Text = nombreCatCat;
         }
 
+        private void llenarDatosFormularioEditarPedido(object sender, EventArgs e)
+        {
+            tb_idpedido_ped.Text = idPedido.ToString();
+        }
+
+
+        private void llenarDatosFormularioEditarCliente(object sender, EventArgs e)
+        {
+
+            estaEditando = true;
+            setEstaEditandoClientes();
+            tb_nombre_cli.Text = nombreClienteCompleto;
+            tb_correo_cli.Text = correo;
+            tb_direccion_cli.Text = direccion;
+            tb_telefono_cli.Text = telefono;
+            tb_username_cli.Text = usernamecliente;
+            tb_contrasena_cli.Enabled = false;
+
+            lb_ir_alta_cli.Show();
+        }
         private void elminarRegistroArticulo(object sender, EventArgs e)
         {
             //Procedimiento almacenado para borrar un articulo  
@@ -599,7 +792,7 @@ namespace GestionPapeleria
                     }
                     else if (dialogResult == DialogResult.No)
                     {
-                        MessageBox.Show("Eliminación cancelada");
+                        MessageBox.Show("Eliminación cancelada", "Cancelado");
                     }
 
                 }
@@ -618,6 +811,57 @@ namespace GestionPapeleria
 
         }
 
+
+        private void eliminarPedido(object sender, EventArgs e)
+        {
+            //Procedimiento almacenado para borrar un articulo  
+            try
+            {
+
+                SqlConnection con = new SqlConnection(connetionString);
+                con.Open();
+                SqlCommand cmd = new SqlCommand("EliminarPedido", con);
+
+                //Indicamos que el comando va a ser un procedimiento almacenado
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                if (idPedido != 0 && idPedido != null)
+                {
+                    if (estadoPedido.Contains("enviado"))
+                    {
+                        DialogResult dialogResult = MessageBox.Show("¿Quieres eliminar el pedido seleccionado?", "Confirmar eliminación", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                        if (dialogResult == DialogResult.Yes)
+                        {
+                            cmd.Parameters.AddWithValue("@id_pedido", idPedido);
+                            cmd.ExecuteNonQuery();
+                            con.Close();
+
+                            MessageBox.Show("Éxito");
+                            cargarArticulos();
+                            //  filtroMarca();
+                        }
+                        else if (dialogResult == DialogResult.No)
+                        {
+                            MessageBox.Show("Eliminación cancelada", "Cancelado");
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("No se puede eliminar un pedido sin enviar", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Debe seleccionar el articulo a eliminar", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Fallo");
+                throw;
+            }
+        }
         private void filtroMarca()
         {
             string query = "SELECT DISTINCT marca from articulos ";
@@ -738,7 +982,7 @@ namespace GestionPapeleria
                 adapter.Fill(dt);
 
                 dataGridView1.DataSource = dt;
-                cargarPedidos();
+
             }
             catch (Exception ex)
             {
@@ -776,7 +1020,14 @@ namespace GestionPapeleria
 
         private void tb_buscar_nombre_ped_TextChanged(object sender, EventArgs e)
         {
-            filtro_idcliente_pedido = int.Parse( tb_buscar_nombre_ped.Text);
+            try
+            {
+                filtro_idcliente_pedido = int.Parse(tb_buscar_nombre_ped.Text);
+            }
+            catch
+            {
+                //Para que no salte al quitar el id de filtrado, no sé porqué pasa
+            }
         }
         private void btn_buscar_categoria_Click(object sender, EventArgs e)
         {
@@ -901,7 +1152,7 @@ namespace GestionPapeleria
             cb_proveedor.SelectedIndex = -1;
             tb_nombre_cat.Text = string.Empty;
             tb_nombre_editar_cat.Text = string.Empty;
-//tb_nombreCliente_ped.Text = string.Empty;
+            //tb_nombreCliente_ped.Text = string.Empty;
             cb_descuento_ped.SelectedIndex = -1;
             tb_importeEditado_ped.Text = string.Empty;
 
@@ -980,7 +1231,9 @@ namespace GestionPapeleria
 
         private void btn_borrar_editar_ped_Click(object sender, EventArgs e)
         {
-            limpiarDatos();
+            tb_idpedido_ped.Text = string.Empty;
+            cb_descuento_ped.SelectedIndex = -1;
+            tb_importeEditado_ped.Text = string.Empty;
         }
 
         private void btn_borrar_editar_cat_Click(object sender, EventArgs e)
@@ -994,7 +1247,41 @@ namespace GestionPapeleria
         {
             editarCategoria();
         }
+        private void btn_enviar_ped_Click(object sender, EventArgs e)
+        {
 
+            try
+            {
+                if (estadoPedido != "enviado" || idPedido == null)
+                {
+                    //idPedido
+                    SqlConnection con = new SqlConnection(connetionString);
+                    con.Open();
+                    SqlCommand cmd = new SqlCommand("EnviarPedido", con);
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    cmd.Parameters.Add(new SqlParameter("@id_pedido", idPedido));
+                    cmd.ExecuteNonQuery();
+
+                    SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+                    DataTable dt = new DataTable();
+                    adapter.Fill(dt);
+
+                    dataGridView_pedidos.DataSource = dt;
+
+                    cargarPedidos();
+                    MessageBox.Show("Pedido enviado");
+
+                }
+                else
+                {
+                    MessageBox.Show("El pedido ya ha sido enviado");
+                }
+
+            }
+            catch { MessageBox.Show("Error al enviar el pedido"); };
+
+        }
         private void editarCategoria()
         {
             try
@@ -1067,7 +1354,7 @@ namespace GestionPapeleria
                     }
                     else if (dialogResult == DialogResult.No)
                     {
-                        MessageBox.Show("Eliminación cancelada");
+                        MessageBox.Show("Eliminación cancelada", "Cancelado");
                     }
 
                 }
@@ -1117,8 +1404,7 @@ namespace GestionPapeleria
 
                 cmd.CommandType = CommandType.StoredProcedure;
 
-                //idClientePedido
-                cmd.Parameters.Add(new SqlParameter("@id_cliente", filtro_idcliente_pedido));
+                cmd.Parameters.Add(new SqlParameter("@id_cliente", idClientePedido));
 
                 cmd.ExecuteNonQuery();
 
@@ -1126,16 +1412,145 @@ namespace GestionPapeleria
                 DataTable dt = new DataTable();
                 adapter.Fill(dt);
 
-                dataGridView1.DataSource = dt;
-                cargarPedidos();
+                dataGridView_pedidos.DataSource = dt;
+                //cargarPedidos();
             }
             catch (Exception ex)
             {
+                tb_buscar_nombre_ped.Text = string.Empty;
                 MessageBox.Show("Fallo: no se ha introducido el nombre para filtrar ");
             }
         }
-    }
 
+        private void cb_descuento_ped_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+            descuento = Convert.ToSingle(cb_descuento_ped.SelectedItem);
+            float nuevoDescuento = descuento / 100;
+            nuevoTotal = importePedido - (nuevoDescuento * importePedido);
+            nuevoTotal = (float)Math.Round(nuevoTotal, 3);
+            MessageBox.Show(nuevoDescuento.ToString() + " - " + importePedido.ToString() + " -" + nuevoTotal.ToString());
+            tb_importeEditado_ped.Text = nuevoTotal.ToString();
+
+        }
+
+        private void btn_editar_ped_Click(object sender, EventArgs e)
+        {
+            editarPedido();
+
+            tb_idpedido_ped.Text = string.Empty;
+            cb_descuento_ped.SelectedIndex = -1;
+            tb_importeEditado_ped.Text = string.Empty;
+
+        }
+
+        private void btn_editar_pedido_Click(object sender, EventArgs e)
+        {
+            tb_buscar_nombre_ped.Text = string.Empty;
+            cb_buscar_estado_ped.SelectedIndex = -1;
+            dtp_buscar_fecha_ped.CustomFormat = " ";
+            tb_idpedido_ped.Text = idPedido.ToString();
+        }
+
+        private void btn_borrar_filtros_cli_Click(object sender, EventArgs e)
+        {
+            tb_buscar_nombre_cli.Text = string.Empty;
+            tb_buscar_username_cli.Text = string.Empty;
+            tb_buscar_correo_cli.Text = string.Empty;
+            tb_buscar_direccion_cli.Text = string.Empty;
+        }
+
+        private void btn_alta_cliente_Click(object sender, EventArgs e)
+        {
+
+            setEstaEditandoClientes();
+            //Está creando un articulo
+            if (btn_alta_cliente.Text.Equals("INSERTAR"))
+            {
+                insertarCliente();
+                cargarClientes();
+            }
+            else
+            {
+                //Está editando un articulo seleccionado
+                try
+                {
+                    editarCliente();
+                    lb_ir_alta_cli.Hide();
+                    estaEditando = false;
+                    setEstaEditandoClientes();
+                    borrarFormularioCliente();
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error");
+                }
+
+            }
+        }
+
+        private void borrarFormularioCliente()
+        {
+            tb_nombre_cli.Text = string.Empty;
+            tb_correo_cli.Text = string.Empty;
+            tb_direccion_cli.Text = string.Empty;
+            tb_telefono_cli.Text = string.Empty;
+            tb_username_cli.Text = string.Empty;
+            tb_contrasena_cli.Text = string.Empty;
+        }
+
+        private void btn_clear_cli_Click(object sender, EventArgs e)
+        {
+            borrarFormularioCliente();
+        }
+
+        private void btn_eliminar_cli_Click(object sender, EventArgs e)
+        {
+            //Procedimiento almacenado para borrar un articulo  
+            try
+            {
+
+                SqlConnection con = new SqlConnection(connetionString);
+                con.Open();
+                SqlCommand cmd = new SqlCommand("eliminarCliente", con);
+
+                //Indicamos que el comando va a ser un procedimiento almacenado
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                if (id_cliente != 0 && id_cliente != null)
+                {
+                    DialogResult dialogResult = MessageBox.Show("¿Quieres eliminar el cliente seleccionado?", "Confirmar eliminación", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                    if (dialogResult == DialogResult.Yes)
+                    {
+                        cmd.Parameters.AddWithValue("@id_cliente", id_cliente);
+                        cmd.ExecuteNonQuery();
+                        con.Close();
+
+                        MessageBox.Show("Éxito");
+                        cargarClientes();
+                        //  filtroMarca();
+                    }
+                    else if (dialogResult == DialogResult.No)
+                    {
+                        MessageBox.Show("Eliminación cancelada", "Cancelado");
+                    }
+
+                }
+                else
+                {
+                    MessageBox.Show("Debe seleccionar el cliente a eliminar", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Fallo");
+                throw;
+            }
+        }
+    }
 
 
 }
