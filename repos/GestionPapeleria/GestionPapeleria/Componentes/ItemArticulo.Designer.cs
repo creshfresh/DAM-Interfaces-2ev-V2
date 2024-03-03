@@ -30,18 +30,18 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ItemArticulo));
             panel1 = new Panel();
-            btn_buscar_Nombre = new Button();
+            lbl_precio = new Label();
+            btn_comprar = new Button();
             lbl_nombre_art = new Label();
             pictureBox1 = new PictureBox();
-            label2 = new Label();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
             // panel1
             // 
-            panel1.Controls.Add(label2);
-            panel1.Controls.Add(btn_buscar_Nombre);
+            panel1.Controls.Add(lbl_precio);
+            panel1.Controls.Add(btn_comprar);
             panel1.Controls.Add(lbl_nombre_art);
             panel1.Controls.Add(pictureBox1);
             panel1.Location = new Point(1, 0);
@@ -49,18 +49,29 @@
             panel1.Size = new Size(225, 240);
             panel1.TabIndex = 44;
             // 
-            // btn_buscar_Nombre
+            // lbl_precio
             // 
-            btn_buscar_Nombre.FlatAppearance.BorderSize = 2;
-            btn_buscar_Nombre.FlatStyle = FlatStyle.Flat;
-            btn_buscar_Nombre.Font = new Font("Nirmala UI", 7.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btn_buscar_Nombre.ForeColor = Color.FromArgb(115, 140, 191);
-            btn_buscar_Nombre.Location = new Point(18, 197);
-            btn_buscar_Nombre.Name = "btn_buscar_Nombre";
-            btn_buscar_Nombre.Size = new Size(190, 28);
-            btn_buscar_Nombre.TabIndex = 46;
-            btn_buscar_Nombre.Text = "COMPRAR";
-            btn_buscar_Nombre.UseVisualStyleBackColor = true;
+            lbl_precio.AutoSize = true;
+            lbl_precio.Font = new Font("Nirmala UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lbl_precio.ForeColor = Color.FromArgb(227, 81, 59);
+            lbl_precio.Location = new Point(12, 174);
+            lbl_precio.Name = "lbl_precio";
+            lbl_precio.Size = new Size(62, 20);
+            lbl_precio.TabIndex = 47;
+            lbl_precio.Text = "Precio €";
+            // 
+            // btn_comprar
+            // 
+            btn_comprar.FlatAppearance.BorderSize = 2;
+            btn_comprar.FlatStyle = FlatStyle.Flat;
+            btn_comprar.Font = new Font("Nirmala UI", 7.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btn_comprar.ForeColor = Color.FromArgb(115, 140, 191);
+            btn_comprar.Location = new Point(18, 197);
+            btn_comprar.Name = "btn_comprar";
+            btn_comprar.Size = new Size(190, 28);
+            btn_comprar.TabIndex = 46;
+            btn_comprar.Text = "COMPRAR";
+            btn_comprar.UseVisualStyleBackColor = true;
             // 
             // lbl_nombre_art
             // 
@@ -82,22 +93,10 @@
             pictureBox1.TabIndex = 44;
             pictureBox1.TabStop = false;
             // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.Font = new Font("Nirmala UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label2.ForeColor = Color.FromArgb(227, 81, 59);
-            label2.Location = new Point(12, 174);
-            label2.Name = "label2";
-            label2.Size = new Size(62, 20);
-            label2.TabIndex = 47;
-            label2.Text = "Precio €";
-            // 
             // ItemArticulo
             // 
             BackColor = SystemColors.ButtonHighlight;
             Controls.Add(panel1);
-          
             Name = "ItemArticulo";
             Size = new Size(225, 240);
             panel1.ResumeLayout(false);
@@ -109,8 +108,8 @@
         #endregion
 
         public Panel panel1;
-        public Label label2;
-        public Button btn_buscar_Nombre;
+        public Label lbl_precio;
+        public Button btn_comprar;
         public Label lbl_nombre_art;
         public PictureBox pictureBox1;
     }

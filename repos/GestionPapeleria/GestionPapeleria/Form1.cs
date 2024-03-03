@@ -66,7 +66,8 @@ namespace GestionPapeleria
             cargarUsuarios();
         }
 
-        private void cargarArticulos()
+        //Método para mostrar todos los articulos
+        public static void cargarArticulos()
         {
             string sqlQuery = "Select a.id_articulo,a.nombre,a.id_categoria, c.nombre as nombre_categoria, a.marca, a.precio, a.stock , a.id_proveedor , a.id_almacen from articulos a, categorias c where a.id_categoria = c.id_categoria";
             try
@@ -85,7 +86,7 @@ namespace GestionPapeleria
                 throw;
             }
         }
-
+        //Método para mostrar todos los usuarios
         private void cargarUsuarios()
         {
             string sqlQuery = " Select id_usuario, nombre, rol from usuariosAdministradores";
@@ -106,7 +107,7 @@ namespace GestionPapeleria
             }
         }
 
-
+        //Método para mostrar todos los pedidos
         private void cargarPedidos()
         {
 
@@ -130,6 +131,8 @@ namespace GestionPapeleria
                 throw;
             }
         }
+
+        //Método para mostrar todas las categorias
         private void cargarCategorias()
         {
 
@@ -151,8 +154,9 @@ namespace GestionPapeleria
             }
         }
 
+        //Método para mostrar todos los clientes
 
-        private void cargarClientes()
+        public void cargarClientes()
         {
             string sqlQuery = "Select id_cliente, nombreCompleto , correo, telefono, direccion, username from clientes";
             try
@@ -228,6 +232,7 @@ namespace GestionPapeleria
             }
         }
 
+        //Boón de insertar articulos (Comprueba si se está editando o no)
         private void btn_insertar_Click(object sender, EventArgs e)
         {
             setEstaEditando();
@@ -1688,7 +1693,6 @@ namespace GestionPapeleria
         {
             tb_buscar_nombre_ped.Text = string.Empty;
             cb_buscar_estado_ped.SelectedIndex = -1;
-            dtp_buscar_fecha_ped.CustomFormat = " ";
             cargarPedidos();
         }
 
@@ -1748,7 +1752,7 @@ namespace GestionPapeleria
         {
             tb_buscar_nombre_ped.Text = string.Empty;
             cb_buscar_estado_ped.SelectedIndex = -1;
-            dtp_buscar_fecha_ped.CustomFormat = " ";
+  
             tb_idpedido_ped.Text = idPedido.ToString();
         }
 

@@ -63,6 +63,26 @@ namespace GestionPapeleria.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap banner {
+            get {
+                object obj = ResourceManager.GetObject("banner", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap fa9d5656224581_59a5b03c32253 {
+            get {
+                object obj = ResourceManager.GetObject("fa9d5656224581.59a5b03c32253", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap nologin {
             get {
                 object obj = ResourceManager.GetObject("nologin", resourceCulture);
@@ -86,6 +106,26 @@ namespace GestionPapeleria.Properties {
         internal static System.Drawing.Bitmap nologin2 {
             get {
                 object obj = ResourceManager.GetObject("nologin2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap pexels_anna_shvets_5642024 {
+            get {
+                object obj = ResourceManager.GetObject("pexels-anna-shvets-5642024", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap pexels_antoni_shkraba_4348198 {
+            get {
+                object obj = ResourceManager.GetObject("pexels-antoni-shkraba-4348198", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

@@ -114,9 +114,6 @@
             btn_buscar_estado_ped = new Button();
             cb_buscar_estado_ped = new ComboBox();
             label50 = new Label();
-            label49 = new Label();
-            btn_buscar_fecha_ped = new Button();
-            dtp_buscar_fecha_ped = new DateTimePicker();
             btn_borrar_filtros_ped = new Button();
             btn_buscar_nombre_ped = new Button();
             label23 = new Label();
@@ -1203,9 +1200,6 @@
             panel6.Controls.Add(btn_buscar_estado_ped);
             panel6.Controls.Add(cb_buscar_estado_ped);
             panel6.Controls.Add(label50);
-            panel6.Controls.Add(label49);
-            panel6.Controls.Add(btn_buscar_fecha_ped);
-            panel6.Controls.Add(dtp_buscar_fecha_ped);
             panel6.Controls.Add(btn_borrar_filtros_ped);
             panel6.Controls.Add(btn_buscar_nombre_ped);
             panel6.Controls.Add(label23);
@@ -1221,7 +1215,7 @@
             btn_buscar_estado_ped.FlatStyle = FlatStyle.Flat;
             btn_buscar_estado_ped.Font = new Font("Nirmala UI", 8F);
             btn_buscar_estado_ped.ForeColor = Color.FromArgb(115, 140, 191);
-            btn_buscar_estado_ped.Location = new Point(700, 68);
+            btn_buscar_estado_ped.Location = new Point(454, 65);
             btn_buscar_estado_ped.Name = "btn_buscar_estado_ped";
             btn_buscar_estado_ped.Size = new Size(65, 28);
             btn_buscar_estado_ped.TabIndex = 50;
@@ -1236,7 +1230,7 @@
             cb_buscar_estado_ped.FlatStyle = FlatStyle.Flat;
             cb_buscar_estado_ped.Font = new Font("Nirmala UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             cb_buscar_estado_ped.FormattingEnabled = true;
-            cb_buscar_estado_ped.Location = new Point(542, 68);
+            cb_buscar_estado_ped.Location = new Point(296, 65);
             cb_buscar_estado_ped.Name = "cb_buscar_estado_ped";
             cb_buscar_estado_ped.Size = new Size(148, 28);
             cb_buscar_estado_ped.TabIndex = 49;
@@ -1247,42 +1241,11 @@
             label50.AutoSize = true;
             label50.Font = new Font("Nirmala UI", 8F);
             label50.ForeColor = SystemColors.WindowFrame;
-            label50.Location = new Point(542, 46);
+            label50.Location = new Point(296, 43);
             label50.Name = "label50";
             label50.Size = new Size(50, 19);
             label50.TabIndex = 48;
             label50.Text = "Estado";
-            // 
-            // label49
-            // 
-            label49.AutoSize = true;
-            label49.Font = new Font("Nirmala UI", 8F);
-            label49.ForeColor = SystemColors.WindowFrame;
-            label49.Location = new Point(305, 42);
-            label49.Name = "label49";
-            label49.Size = new Size(90, 19);
-            label49.TabIndex = 47;
-            label49.Text = "Fecha pedido";
-            // 
-            // btn_buscar_fecha_ped
-            // 
-            btn_buscar_fecha_ped.FlatStyle = FlatStyle.Flat;
-            btn_buscar_fecha_ped.Font = new Font("Nirmala UI", 8F);
-            btn_buscar_fecha_ped.ForeColor = Color.FromArgb(115, 140, 191);
-            btn_buscar_fecha_ped.Location = new Point(454, 68);
-            btn_buscar_fecha_ped.Name = "btn_buscar_fecha_ped";
-            btn_buscar_fecha_ped.Size = new Size(65, 28);
-            btn_buscar_fecha_ped.TabIndex = 46;
-            btn_buscar_fecha_ped.Text = "Buscar";
-            btn_buscar_fecha_ped.UseVisualStyleBackColor = true;
-            // 
-            // dtp_buscar_fecha_ped
-            // 
-            dtp_buscar_fecha_ped.Location = new Point(305, 69);
-            dtp_buscar_fecha_ped.MinDate = new DateTime(2000, 1, 1, 0, 0, 0, 0);
-            dtp_buscar_fecha_ped.Name = "dtp_buscar_fecha_ped";
-            dtp_buscar_fecha_ped.Size = new Size(142, 27);
-            dtp_buscar_fecha_ped.TabIndex = 45;
             // 
             // btn_borrar_filtros_ped
             // 
@@ -2562,7 +2525,7 @@
         private TabPage btn_volverInsertar;
         private Label lbl_altaProducto;
         private Button btn_insertar_art;
-        private DataGridView dataGridView1;
+        private static DataGridView dataGridView1;
         private Label label2;
         private Label label1;
         private TextBox tb_nombre;
@@ -2679,9 +2642,7 @@
         private Button button27;
         private ComboBox comboBox1;
         private Label label50;
-        private Label label49;
         private Button button26;
-        private DateTimePicker dtp_buscar_fecha_ped;
         private TabPage tabPage1;
         private Button button28;
         private Panel panel11;
@@ -2736,7 +2697,6 @@
         private Button btn_editar_art_gordo;
         private Button btn_buscar_estado_ped;
         private ComboBox cb_buscar_estado_ped;
-        private Button btn_buscar_fecha_ped;
         private Button btn_borrar_filtros_ped;
         private TextBox tb_buscar_nombre_ped;
         private Button btn_buscar_nombre_ped;

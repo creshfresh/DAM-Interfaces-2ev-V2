@@ -1,4 +1,5 @@
-﻿using GestionPapeleria.Cliente;
+﻿using GestionPapeleria.Clases;
+using GestionPapeleria.Cliente;
 using Microsoft.Data.SqlClient;
 using System;
 using System.Collections.Generic;
@@ -16,6 +17,7 @@ namespace GestionPapeleria
 
     public partial class Login : Form
     {
+        public static ClienteAplicacion clienteLogueado;
         public static bool esAdmin;
         public static string tipoUserLogin;
         public Login(string tipoUser)
@@ -25,8 +27,7 @@ namespace GestionPapeleria
             setEsAdmin();
             lbl_admin.Visible = esAdmin;
             btn_clear.Visible = !esAdmin;
-
-
+    
         }
 
         private void close_Click(object sender, EventArgs e)
@@ -40,8 +41,6 @@ namespace GestionPapeleria
         }
 
         private void btn_login_Click(object sender, EventArgs e)
-
-
         {
         
             if (tb_password.Text == String.Empty || tb_user.Text == String.Empty)
@@ -56,7 +55,6 @@ namespace GestionPapeleria
                 }
                 else
                 {
-
                     if (!esAdmin)
                     {
                         try
@@ -83,9 +81,11 @@ namespace GestionPapeleria
 
                                 if (dbUsername == username && dbPassword == password)
                                 {
+                                   
                                     MessageBox.Show("¡Bienvenido!");
                                     VistaClienteV2 vistaCliente = new VistaClienteV2();
                                     vistaCliente.Show();
+                      
                                     this.Hide();
                                     return;
                                 }
@@ -113,6 +113,8 @@ namespace GestionPapeleria
                     //Es usuario administrador
                    else
                     {
+
+
                         try
                         {
                             SqlConnection con = new SqlConnection(Form1.connetionString);
@@ -137,7 +139,7 @@ namespace GestionPapeleria
 
                                 if (dbUsername == username && dbPassword == password)
                                 {
-
+                                    guardarClienteLogeado();
                                     SqlConnection dbConn = new SqlConnection(Form1.connetionString);
 
                                     dbConn.Open();
@@ -160,7 +162,7 @@ namespace GestionPapeleria
                                         dbConn.Close();
                                         return;
                                     }
-                                    //
+
                                  
                                 }
                                 else
@@ -174,7 +176,7 @@ namespace GestionPapeleria
                             }
 
                             reader.Close();
-                            con.Close(); // Cierra la conexión
+                            con.Close();
 
                         }
                         catch (Exception ex)
@@ -194,6 +196,44 @@ namespace GestionPapeleria
             registro.ShowDialog();
             Hide();
 
+        }
+
+        public void guardarClienteLogeado ()
+        {
+            //Select del id del cliente 
+            string username = tb_user.Text;
+            try
+            {
+                SqlConnection con = new SqlConnection(Form1.connetionString);
+                con.Open();
+                SqlCommand cmd = new SqlCommand("BuscarClienteporUsername", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@username", username);
+                con.Close();
+
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                if (reader.HasRows)
+                {
+
+                    while (reader.Read())
+                    {
+                        int id_cliente = Convert.ToInt32(reader["d_cliente"].ToString());
+                        string nombreCompleto = reader["nombreCompleto"].ToString();
+                        string correo = reader["correo"].ToString();
+                        string telefono = reader["telefono"].ToString();
+                        string direccion = reader["direccion"].ToString();
+
+                        clienteLogueado = new ClienteAplicacion(id_cliente, nombreCompleto, correo, telefono, direccion, username);
+                    }
+
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Fallo", "Fail");
+                throw;
+            }
         }
         private void cbPassword_CheckedChanged(object sender, EventArgs e)
         {

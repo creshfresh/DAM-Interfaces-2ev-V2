@@ -30,7 +30,7 @@
         {
             lbl_pedido_antiguo = new Label();
             panel1 = new Panel();
-            label1 = new Label();
+            lbl_fecha = new Label();
             lbl_precioTotal = new Label();
             panel2 = new Panel();
             SuspendLayout();
@@ -53,15 +53,15 @@
             panel1.Size = new Size(7, 57);
             panel1.TabIndex = 1;
             // 
-            // label1
+            // lbl_fecha
             // 
-            label1.AutoSize = true;
-            label1.Font = new Font("Nirmala UI Semilight", 7.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label1.Location = new Point(22, 23);
-            label1.Name = "label1";
-            label1.Size = new Size(54, 17);
-            label1.TabIndex = 2;
-            label1.Text = "el dia.....";
+            lbl_fecha.AutoSize = true;
+            lbl_fecha.Font = new Font("Nirmala UI Semilight", 7.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lbl_fecha.Location = new Point(22, 23);
+            lbl_fecha.Name = "lbl_fecha";
+            lbl_fecha.Size = new Size(54, 17);
+            lbl_fecha.TabIndex = 2;
+            lbl_fecha.Text = "el dia.....";
             // 
             // lbl_precioTotal
             // 
@@ -87,7 +87,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             Controls.Add(panel2);
             Controls.Add(lbl_precioTotal);
-            Controls.Add(label1);
+            Controls.Add(lbl_fecha);
             Controls.Add(panel1);
             Controls.Add(lbl_pedido_antiguo);
             Name = "ItemPedidoAntiguo";
@@ -99,10 +99,10 @@
 
         #endregion
 
-        private Label lbl_pedido_antiguo;
-        private Panel panel1;
-        private Label label1;
-        private Label lbl_precioTotal;
-        private Panel panel2;
+        public Label lbl_pedido_antiguo;
+        public Panel panel1;
+        public Label lbl_fecha;
+        public Label lbl_precioTotal;
+        public Panel panel2;
     }
 }
