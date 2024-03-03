@@ -41,6 +41,7 @@
             tb_user = new TextBox();
             tb_password = new TextBox();
             label1 = new Label();
+            lbl_admin = new Label();
             ((System.ComponentModel.ISupportInitialize)close).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)logo).BeginInit();
@@ -190,12 +191,26 @@
             label1.Text = "Escriba y pliegue 2024 derechos reservados";
             label1.TextAlign = ContentAlignment.TopCenter;
             // 
+            // lbl_admin
+            // 
+            lbl_admin.AutoSize = true;
+            lbl_admin.Font = new Font("Nirmala UI", 7.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lbl_admin.ForeColor = Color.FromArgb(115, 140, 191);
+            lbl_admin.Location = new Point(662, 135);
+            lbl_admin.Name = "lbl_admin";
+            lbl_admin.Size = new Size(131, 17);
+            lbl_admin.TabIndex = 16;
+            lbl_admin.Text = "ADMINISTRADORES";
+            lbl_admin.TextAlign = ContentAlignment.TopCenter;
+            lbl_admin.Visible = false;
+            // 
             // Login
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ControlLight;
             ClientSize = new Size(989, 643);
+            Controls.Add(lbl_admin);
             Controls.Add(label1);
             Controls.Add(tb_password);
             Controls.Add(pictureBox1);
@@ -233,5 +248,6 @@
         private TextBox tb_user;
         private TextBox tb_password;
         private Label label1;
+        private Label lbl_admin;
     }
 }

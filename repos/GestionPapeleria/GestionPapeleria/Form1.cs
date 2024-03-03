@@ -187,12 +187,12 @@ namespace GestionPapeleria
 
             if (estaEditando)
             {
-                btn_insertar_art.Text = "EDITAR";
+                btn_alta_cliente.Text = "EDITAR";
                 lbl_altaCliente.Text = "Editar cliente";
             }
             else
             {
-                btn_insertar_art.Text = "INSERTAR";
+                btn_alta_cliente.Text = "INSERTAR";
                 lbl_altaCliente.Text = "Alta de cliente";
                 tb_contrasena_cli.Enabled = true;
 
@@ -407,9 +407,8 @@ namespace GestionPapeleria
                             string nombreCompleto = tb_nombre_cli.Text;
                             string correo = tb_correo_cli.Text;
                             string telefono = tb_telefono_cli.Text;
-
                             string direccion = tb_direccion_cli.Text;
-                        
+                      
 
                             // Contraseña cifrada
                             string password = AesCrypt.Encrypt(tb_contrasena_cli.Text);
@@ -660,7 +659,8 @@ namespace GestionPapeleria
                     cmd.ExecuteNonQuery();
                     con.Close();
 
-                    MessageBox.Show("Éxito");
+                    MessageBox.Show("Articulo Editado", "Info");
+
                     limpiarDatos();
                     cargarArticulos();
 
@@ -706,7 +706,8 @@ namespace GestionPapeleria
                     cmd.ExecuteNonQuery();
                     con.Close();
 
-                    MessageBox.Show("Éxito");
+                    MessageBox.Show("Pedido Editado", "Éxito");
+
                     cargarPedidos();
 
                 }
@@ -734,33 +735,36 @@ namespace GestionPapeleria
                     cmd.CommandType = CommandType.StoredProcedure;
 
                     // Comprobar que los campos estén rellenos
+                    
                     string nombreCompleto = tb_nombre_cli.Text;
                     string correo = tb_correo_cli.Text;
                     string telefono = tb_telefono_cli.Text;
                     string direccion = tb_direccion_cli.Text;
                     string username = tb_username_cli.Text;
 
-                    // TO DO
-                    string password = tb_contrasena_cli.Text;
+                    // Contraseña cifrada
+                    // string password = tb_contrasena_cli.Text;
+                    cmd.Parameters.Add(new SqlParameter("@id_cliente", id_cliente));
 
                     cmd.Parameters.Add(new SqlParameter("@nombreCompleto", nombreCompleto));
                     cmd.Parameters.Add(new SqlParameter("@correo", correo));
                     cmd.Parameters.Add(new SqlParameter("@telefono", telefono));
                     cmd.Parameters.Add(new SqlParameter("@direccion", direccion));
                     cmd.Parameters.Add(new SqlParameter("@username", username));
-                    cmd.Parameters.Add(new SqlParameter("@password", password));
+
 
 
                     cmd.ExecuteNonQuery();
+                    
                     con.Close();
-
-                    MessageBox.Show("Éxito");
+                    MessageBox.Show("Cliente Editado", "Éxito");
+                    cargarClientes();
                     limpiarDatos();
 
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Fallo");
+                    MessageBox.Show(ex.Message);
                     throw;
                 }
             }
@@ -774,7 +778,7 @@ namespace GestionPapeleria
         }
         private void button2_Click(object sender, EventArgs e)
         {
-            Login lg = new Login();
+            Login lg = new Login("admin");
             lg.ShowDialog();
         }
 
@@ -1597,6 +1601,8 @@ namespace GestionPapeleria
                     limpiarDatos();
 
                     //Recargar todos los combobox donde aparecen las categorias
+                    MessageBox.Show("Categoria editada", "Éxito");
+
                     cargarCategorias();
                     llevar_cb_categoria();
                     filtroCategoria();
@@ -1769,7 +1775,7 @@ namespace GestionPapeleria
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Error");
+ 
                 }
 
             }

@@ -49,9 +49,15 @@ namespace GestionPapeleria.Cliente
 
         private void bn_login_v2_Click(object sender, EventArgs e)
         {
-            Login lg = new Login();
+            Login lg = new Login("cliente");
             lg.Show();
-            this.Hide();
+        }
+
+        private void btn_login_admin_Click(object sender, EventArgs e)
+        {
+            Login lg = new Login("admin");
+            lg.Show();
+            this.Hide();  
         }
     }
 }

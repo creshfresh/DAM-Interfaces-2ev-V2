@@ -30,11 +30,14 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(VistaClienteV2));
             pnl_topmenu_clientev2 = new Panel();
+            label3 = new Label();
             pb_logo_cliente = new PictureBox();
             bn_login_v2 = new Button();
             close_cliente_v2 = new PictureBox();
             tabControl1 = new TabControl();
             tabPage1 = new TabPage();
+            lbl_frasecool = new Label();
+            pictureBox2 = new PictureBox();
             tabPage2 = new TabPage();
             flowLayoutPanel1 = new FlowLayoutPanel();
             itemArticulo1 = new Componentes.ItemArticulo();
@@ -52,14 +55,13 @@
             panel2 = new Panel();
             pictureBox1 = new PictureBox();
             label2 = new Label();
-            label3 = new Label();
-            lbl_frasecool = new Label();
-            pictureBox2 = new PictureBox();
+            btn_login_admin = new Button();
             pnl_topmenu_clientev2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pb_logo_cliente).BeginInit();
             ((System.ComponentModel.ISupportInitialize)close_cliente_v2).BeginInit();
             tabControl1.SuspendLayout();
             tabPage1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             tabPage2.SuspendLayout();
             flowLayoutPanel1.SuspendLayout();
             tableLayoutPanel1.SuspendLayout();
@@ -67,7 +69,6 @@
             flowLayoutPanel2.SuspendLayout();
             panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             SuspendLayout();
             // 
             // pnl_topmenu_clientev2
@@ -83,6 +84,18 @@
             pnl_topmenu_clientev2.Name = "pnl_topmenu_clientev2";
             pnl_topmenu_clientev2.Size = new Size(1497, 59);
             pnl_topmenu_clientev2.TabIndex = 9;
+            // 
+            // label3
+            // 
+            label3.Anchor = AnchorStyles.None;
+            label3.AutoSize = true;
+            label3.Font = new Font("Nirmala UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label3.ForeColor = Color.White;
+            label3.Location = new Point(591, 10);
+            label3.Name = "label3";
+            label3.Size = new Size(328, 31);
+            label3.TabIndex = 10;
+            label3.Text = "Encuentra todo lo que buscas";
             // 
             // pb_logo_cliente
             // 
@@ -140,6 +153,26 @@
             tabPage1.Text = "       Inicio ";
             tabPage1.UseVisualStyleBackColor = true;
             tabPage1.Click += tabPage1_Click;
+            // 
+            // lbl_frasecool
+            // 
+            lbl_frasecool.Anchor = AnchorStyles.None;
+            lbl_frasecool.AutoSize = true;
+            lbl_frasecool.Font = new Font("Nirmala UI", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lbl_frasecool.ForeColor = Color.FromArgb(235, 140, 52);
+            lbl_frasecool.Location = new Point(48, 88);
+            lbl_frasecool.Name = "lbl_frasecool";
+            lbl_frasecool.Size = new Size(590, 41);
+            lbl_frasecool.TabIndex = 9;
+            lbl_frasecool.Text = "Encuentra la inspiración en cada página. ";
+            // 
+            // pictureBox2
+            // 
+            pictureBox2.Location = new Point(487, 28);
+            pictureBox2.Name = "pictureBox2";
+            pictureBox2.Size = new Size(709, 538);
+            pictureBox2.TabIndex = 10;
+            pictureBox2.TabStop = false;
             // 
             // tabPage2
             // 
@@ -277,6 +310,7 @@
             // panel2
             // 
             panel2.BackColor = SystemColors.ButtonHighlight;
+            panel2.Controls.Add(btn_login_admin);
             panel2.Controls.Add(pictureBox1);
             panel2.Controls.Add(label2);
             panel2.Location = new Point(12, 64);
@@ -307,37 +341,18 @@
             label2.TabIndex = 8;
             label2.Text = "¡Bienvenido!";
             // 
-            // label3
+            // btn_login_admin
             // 
-            label3.Anchor = AnchorStyles.None;
-            label3.AutoSize = true;
-            label3.Font = new Font("Nirmala UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label3.ForeColor = Color.White;
-            label3.Location = new Point(591, 10);
-            label3.Name = "label3";
-            label3.Size = new Size(328, 31);
-            label3.TabIndex = 10;
-            label3.Text = "Encuentra todo lo que buscas";
-            // 
-            // lbl_frasecool
-            // 
-            lbl_frasecool.Anchor = AnchorStyles.None;
-            lbl_frasecool.AutoSize = true;
-            lbl_frasecool.Font = new Font("Nirmala UI", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lbl_frasecool.ForeColor = Color.FromArgb(235, 140, 52);
-            lbl_frasecool.Location = new Point(48, 88);
-            lbl_frasecool.Name = "lbl_frasecool";
-            lbl_frasecool.Size = new Size(590, 41);
-            lbl_frasecool.TabIndex = 9;
-            lbl_frasecool.Text = "Encuentra la inspiración en cada página. ";
-            // 
-            // pictureBox2
-            // 
-            pictureBox2.Location = new Point(487, 28);
-            pictureBox2.Name = "pictureBox2";
-            pictureBox2.Size = new Size(709, 538);
-            pictureBox2.TabIndex = 10;
-            pictureBox2.TabStop = false;
+            btn_login_admin.FlatStyle = FlatStyle.Flat;
+            btn_login_admin.Font = new Font("Nirmala UI", 7.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btn_login_admin.ForeColor = Color.FromArgb(115, 140, 191);
+            btn_login_admin.Location = new Point(19, 782);
+            btn_login_admin.Name = "btn_login_admin";
+            btn_login_admin.Size = new Size(213, 30);
+            btn_login_admin.TabIndex = 34;
+            btn_login_admin.Text = "Colaboradores";
+            btn_login_admin.UseVisualStyleBackColor = true;
+            btn_login_admin.Click += btn_login_admin_Click;
             // 
             // VistaClienteV2
             // 
@@ -359,6 +374,7 @@
             tabControl1.ResumeLayout(false);
             tabPage1.ResumeLayout(false);
             tabPage1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             tabPage2.ResumeLayout(false);
             flowLayoutPanel1.ResumeLayout(false);
             tableLayoutPanel1.ResumeLayout(false);
@@ -369,7 +385,6 @@
             panel2.ResumeLayout(false);
             panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             ResumeLayout(false);
         }
 
@@ -401,5 +416,6 @@
         private Label label3;
         private PictureBox pictureBox2;
         private Label lbl_frasecool;
+        private Button btn_login_admin;
     }
 }

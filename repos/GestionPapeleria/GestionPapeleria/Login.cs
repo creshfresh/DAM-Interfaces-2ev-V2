@@ -16,13 +16,17 @@ namespace GestionPapeleria
 
     public partial class Login : Form
     {
-        public static string connetionString = ConfigurationManager.ConnectionStrings["DatabaseConnectionString"].ConnectionString;
-
-        public Login()
+        public static bool esAdmin;
+        public static string tipoUserLogin;
+        public Login(string tipoUser)
         {
-       
             InitializeComponent();
-  
+            tipoUserLogin = tipoUser;
+            setEsAdmin();
+            lbl_admin.Visible = esAdmin;
+            btn_clear.Visible = !esAdmin;
+
+
         }
 
         private void close_Click(object sender, EventArgs e)
@@ -30,9 +34,16 @@ namespace GestionPapeleria
             this.Close();
         }
 
+        public static void setEsAdmin()
+        {
+            esAdmin = (tipoUserLogin != "cliente");
+        }
 
         private void btn_login_Click(object sender, EventArgs e)
+
+
         {
+        
             if (tb_password.Text == String.Empty || tb_user.Text == String.Empty)
             {
                 MessageBox.Show("Por favor rellene todos los campos", "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -45,55 +56,116 @@ namespace GestionPapeleria
                 }
                 else
                 {
-                    try { 
-                    SqlConnection con = new SqlConnection(connetionString);
-                    string username = tb_user.Text;
-                    string password = AesCrypt.Encrypt( tb_password.Text);
-         
 
-                    con.Open();
-
-                    SqlCommand command = new SqlCommand("login", con);
-                    command.CommandType = CommandType.StoredProcedure;
-
-                    command.Parameters.AddWithValue("@username", username);
-                    command.Parameters.AddWithValue("@password", password);
-
-                    SqlDataReader reader = command.ExecuteReader(); 
-
-                    if (reader.Read())
+                    if (!esAdmin)
                     {
-                        string dbUsername = reader["username"].ToString();
-                        string dbPassword = reader["contrasenaCliente"].ToString();
-
-                        if (dbUsername == username && dbPassword == password)
+                        try
                         {
-                            MessageBox.Show("Bienvenido");
-                            VistaClienteV2 vistaCliente = new VistaClienteV2();
-                            vistaCliente.Show();
-                            this.Hide();
-                            return;
+                            SqlConnection con = new SqlConnection(Form1.connetionString);
+                            string username = tb_user.Text;
+                            string password = AesCrypt.Encrypt(tb_password.Text);
+
+
+                            con.Open();
+
+                            SqlCommand command = new SqlCommand("login", con);
+                            command.CommandType = CommandType.StoredProcedure;
+
+                            command.Parameters.AddWithValue("@username", username);
+                            command.Parameters.AddWithValue("@password", password);
+
+                            SqlDataReader reader = command.ExecuteReader();
+
+                            if (reader.Read())
+                            {
+                                string dbUsername = reader["username"].ToString();
+                                string dbPassword = reader["contrasenaCliente"].ToString();
+
+                                if (dbUsername == username && dbPassword == password)
+                                {
+                                    MessageBox.Show("¡Bienvenido!");
+                                    VistaClienteV2 vistaCliente = new VistaClienteV2();
+                                    vistaCliente.Show();
+                                    this.Hide();
+                                    return;
+                                }
+                                else
+                                {
+                                    MessageBox.Show("Error en el password");
+                                }
+                            }
+                            else
+                            {
+                                MessageBox.Show("Usuario no registrado");
+                            }
+
+                            reader.Close();
+                            con.Close(); // Cierra la conexión
+
                         }
-                        else
+                        catch (Exception ex)
                         {
-                            MessageBox.Show("Error en el password");
+                            MessageBox.Show("Fallo");
+                            throw;
                         }
                     }
-                    else
+                   
+                   else
                     {
-                        MessageBox.Show("Usuario no registrado");
-                    }
+                   
 
-                    reader.Close(); 
-                    con.Close(); // Cierra la conexión
+                        try
+                        {
+                            SqlConnection con = new SqlConnection(Form1.connetionString);
+                            string username = tb_user.Text;
+                            string password = AesCrypt.Encrypt(tb_password.Text);
 
+
+                            con.Open();
+
+                            SqlCommand command = new SqlCommand("loginadmin", con);
+                            command.CommandType = CommandType.StoredProcedure;
+
+                            command.Parameters.AddWithValue("@username", username);
+                            command.Parameters.AddWithValue("@password", password);
+
+                            SqlDataReader reader = command.ExecuteReader();
+
+                            if (reader.Read())
+                            {
+                                string dbUsername = reader["nombre"].ToString();
+                                string dbPassword = reader["passwordAdmin"].ToString();
+
+                                if (dbUsername == username && dbPassword == password)
+                                {
+                                    MessageBox.Show("Bienvenido administrador");
+                                    Form1 form1 = new Form1();
+                                    form1.Show();
+                                    this.Hide();
+                                    return;
+                                }
+                                else
+                                {
+                                    MessageBox.Show("Error en el password");
+                                }
+                            }
+                            else
+                            {
+                                MessageBox.Show("Usuario no registrado");
+                            }
+
+                            reader.Close();
+                            con.Close(); // Cierra la conexión
+
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show("Fallo");
+                            throw;
+                        }
                     }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show("Fallo");
-                        throw;
-                    }
-                   } 
+                
+                } 
                 }       
         }
 
