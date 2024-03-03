@@ -1,4 +1,5 @@
-﻿using Microsoft.Data.SqlClient;
+﻿using GestionPapeleria.Cliente;
+using Microsoft.Data.SqlClient;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -38,7 +39,7 @@ namespace GestionPapeleria
             }
             else
             {
-                if (tb_user.Text.Length < 3 || tb_password.Text.Length < 5)
+                if (tb_user.Text.Length < 3 || tb_password.Text.Length <4)
                 {
                     MessageBox.Show("Username o Password no válido");
                 }
@@ -47,7 +48,8 @@ namespace GestionPapeleria
                     try { 
                     SqlConnection con = new SqlConnection(connetionString);
                     string username = tb_user.Text;
-                    string password = tb_password.Text;
+                    string password = AesCrypt.Encrypt( tb_password.Text);
+         
 
                     con.Open();
 
@@ -67,7 +69,10 @@ namespace GestionPapeleria
                         if (dbUsername == username && dbPassword == password)
                         {
                             MessageBox.Show("Bienvenido");
-                              return;
+                            VistaClienteV2 vistaCliente = new VistaClienteV2();
+                            vistaCliente.Show();
+                            this.Hide();
+                            return;
                         }
                         else
                         {

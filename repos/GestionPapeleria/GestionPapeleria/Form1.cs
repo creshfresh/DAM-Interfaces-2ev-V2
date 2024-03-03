@@ -1,13 +1,7 @@
-using GestionPapeleria.Clases;
 using GestionPapeleria.Cliente;
 using Microsoft.Data.SqlClient;
-using Microsoft.IdentityModel.Tokens;
 using System.Configuration;
 using System.Data;
-using System.Drawing;
-using System.Windows.Forms;
-using static System.Runtime.InteropServices.JavaScript.JSType;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.Button;
 
 namespace GestionPapeleria
 {
@@ -38,7 +32,7 @@ namespace GestionPapeleria
 
         public static string nombreClienteCompleto, correo, direccion, usernamecliente, telefono;
         public static int id_cliente;
-        public static string filtro_nombre_completo, filtro_correo, filtro_username_cliente, filtro_direccion;
+        public static string filtro_nombre_completo, filtro_correo, filtro_username_cliente, filtro_direccion, filtro_telefono;
 
 
         //Variables para Roles Usuario
@@ -316,7 +310,7 @@ namespace GestionPapeleria
 
 
         }
-
+        /*
         private void insertarCliente()
         {
 
@@ -324,39 +318,52 @@ namespace GestionPapeleria
             {
                 try
                 {
-                    SqlConnection con = new SqlConnection(connetionString);
-
-                    con.Open();
-
-                    SqlCommand cmd = new SqlCommand("insertarCliente", con);
-
-                    //Indicamos que el comando va a ser un procedimiento almacenado
-                    cmd.CommandType = CommandType.StoredProcedure;
-
-                    // Comprobar que los campos estén rellenos
-                    string nombreCompleto = tb_nombre_cli.Text;
-                    string correo = tb_correo_cli.Text;
-                    string telefono = tb_telefono_cli.Text;
-
-                    string direccion = tb_direccion_cli.Text;
-                    string username = tb_username_cli.Text;
-
-                    // TO DO
-                    string password = tb_contrasena_cli.Text;
-
-                    cmd.Parameters.Add(new SqlParameter("@nombreCompleto", nombreCompleto));
-                    cmd.Parameters.Add(new SqlParameter("@correo", correo));
-                    cmd.Parameters.Add(new SqlParameter("@telefono", telefono));
-                    cmd.Parameters.Add(new SqlParameter("@direccion", direccion));
-                    cmd.Parameters.Add(new SqlParameter("@username", username));
-                    cmd.Parameters.Add(new SqlParameter("@passwordclient", password));
 
 
-                    cmd.ExecuteNonQuery();
-                    con.Close();
 
-                    MessageBox.Show("Éxito");
-                    limpiarDatos();
+                    if (tb_contrasena_cli.Text.Length >= 4)
+                    {
+                        //DEbo comprobar que ser username no está cogido
+                        SqlConnection con = new SqlConnection(connetionString);
+
+                        con.Open();
+
+                        SqlCommand cmd = new SqlCommand("insertarCliente", con);
+
+                        //Indicamos que el comando va a ser un procedimiento almacenado
+                        cmd.CommandType = CommandType.StoredProcedure;
+
+                        // Comprobar que los campos estén rellenos
+                        string nombreCompleto = tb_nombre_cli.Text;
+                        string correo = tb_correo_cli.Text;
+                        string telefono = tb_telefono_cli.Text;
+
+                        string direccion = tb_direccion_cli.Text;
+                        string username = tb_username_cli.Text;
+
+                        // Contraseña cifrada
+                        string password = AesCrypt.Encrypt(tb_contrasena_cli.Text);
+
+
+                        cmd.Parameters.Add(new SqlParameter("@nombreCompleto", nombreCompleto));
+                        cmd.Parameters.Add(new SqlParameter("@correo", correo));
+                        cmd.Parameters.Add(new SqlParameter("@telefono", telefono));
+                        cmd.Parameters.Add(new SqlParameter("@direccion", direccion));
+                        cmd.Parameters.Add(new SqlParameter("@username", username));
+                        cmd.Parameters.Add(new SqlParameter("@passwordclient", password));
+
+
+                        cmd.ExecuteNonQuery();
+                        con.Close();
+
+                        MessageBox.Show("Éxito");
+                        limpiarDatos();
+                    }
+                    else
+                    {
+                        MessageBox.Show("La contraseña debe ser de 4 carácteres o más", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                   
 
                 }
                 catch (Exception ex)
@@ -373,51 +380,240 @@ namespace GestionPapeleria
             }
 
 
-
-
-        }
-
-        private void insertarUsuarioAdmin()
+        }*/
+        private void insertarCliente()
         {
-
-            if (tb_username_user.Text != "" || tb_contrasena_user.Text != "")
+            if (tb_nombre_cli.Text != "" || tb_correo_cli.Text != "" || tb_direccion_cli.Text != "" || tb_username_cli.Text != "" || tb_contrasena_cli.Text != "")
             {
                 try
                 {
-                    SqlConnection con = new SqlConnection(connetionString);
+                    if (tb_contrasena_cli.Text.Length >= 4)
+                    {
+                        string username = tb_username_cli.Text;
 
-                    con.Open();
+                        // Verificar si el usuario ya existe en la base de datos
+                        bool usuarioExiste = ExisteUsuario.VerificarClienteExistente(username);
 
-                    SqlCommand cmd = new SqlCommand("InsertarUsuarioAdmin", con);
+                        if (!usuarioExiste)
+                        {
+                            // El usuario no existe, proceder con la inserción
+                            SqlConnection con = new SqlConnection(connetionString);
+                            con.Open();
+                            SqlCommand cmd = new SqlCommand("insertarCliente", con);
+                            cmd.CommandType = CommandType.StoredProcedure;
 
-                    //Indicamos que el comando va a ser un procedimiento almacenado
-                    cmd.CommandType = CommandType.StoredProcedure;
+                   
+                            // Comprobar que los campos estén rellenos
+                            string nombreCompleto = tb_nombre_cli.Text;
+                            string correo = tb_correo_cli.Text;
+                            string telefono = tb_telefono_cli.Text;
 
-                    // Comprobar que los campos estén rellenos
-                    string username = tb_username_user.Text;
+                            string direccion = tb_direccion_cli.Text;
+                        
 
-
-                    //CIFRARLAAAAAAAAAAAA
-                    string password = tb_contrasena_user.Text;
-
-
-                    cmd.Parameters.Add(new SqlParameter("@usernameAdmin", username));
-                    cmd.Parameters.Add(new SqlParameter("@contrasenaAdmin", password));
+                            // Contraseña cifrada
+                            string password = AesCrypt.Encrypt(tb_contrasena_cli.Text);
 
 
+                            cmd.Parameters.Add(new SqlParameter("@nombreCompleto", nombreCompleto));
+                            cmd.Parameters.Add(new SqlParameter("@correo", correo));
+                            cmd.Parameters.Add(new SqlParameter("@telefono", telefono));
+                            cmd.Parameters.Add(new SqlParameter("@direccion", direccion));
+                            cmd.Parameters.Add(new SqlParameter("@username", username));
+                            cmd.Parameters.Add(new SqlParameter("@passwordclient", password));
 
-                    cmd.ExecuteNonQuery();
-                    con.Close();
 
-                    MessageBox.Show("Éxito");
-                    limpiarDatos();
+                            cmd.ExecuteNonQuery();
+                            con.Close();
 
+                            MessageBox.Show("Éxito");
+                            limpiarDatos();
+                        }
+                        else
+                        {
+                            MessageBox.Show("El nombre de usuario ya está en uso", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("La contraseña debe ser de 4 caracteres o más", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                 }
                 catch (Exception ex)
                 {
                     MessageBox.Show("Fallo");
                     throw;
                 }
+            }
+            else
+            {
+                MessageBox.Show("Los campos deben estar rellenos", "Error Message");
+            }
+        }
+        private void insertarUsuarioAdmin()
+        {
+            if (tb_username_user.Text != "" || tb_contrasena_user.Text != "")
+            {
+                if (tb_contrasena_user.Text.Length >= 4)
+                {
+                    string username = tb_username_user.Text;
+
+                    // Verificar si el nombre de usuario de administrador ya existe en la base de datos
+                    bool usuarioAdminExiste = ExisteUsuario.VerificarUsuarioExistente(username);
+
+                    if (!usuarioAdminExiste)
+                    {
+                        try
+                        {
+                            SqlConnection con = new SqlConnection(connetionString);
+                            con.Open();
+                            SqlCommand cmd = new SqlCommand("InsertarUsuarioAdmin", con);
+                            cmd.CommandType = CommandType.StoredProcedure;
+
+                            // CIFRAR contraseña
+                            string password = AesCrypt.Encrypt(tb_contrasena_user.Text);
+
+                            cmd.Parameters.Add(new SqlParameter("@usernameAdmin", username));
+                            cmd.Parameters.Add(new SqlParameter("@contrasenaAdmin", password));
+
+                            cmd.ExecuteNonQuery();
+                            con.Close();
+
+                            MessageBox.Show("Éxito");
+                            limpiarDatos();
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show("Fallo");
+                            throw;
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("El nombre de usuario de administrador ya está en uso", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("La contraseña debe ser de 4 caracteres o más", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Los campos deben estar rellenos", "Error Message");
+            }
+        }
+
+        /*
+
+        private bool VerificarClienteExistente(string username)
+        {
+            bool usuarioExiste = false;
+
+            try
+            {
+                SqlConnection con = new SqlConnection(connetionString);
+                con.Open();
+                SqlCommand cmd = new SqlCommand("ComprobarClienteExiste", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@username", username);
+
+                int count = (int)cmd.ExecuteScalar(); // Obtiene el número de clientes con ese nombre de usuario
+
+                if (count > 0)
+                {
+                    usuarioExiste = true;
+                }
+
+                con.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al verificar usuario existente");
+                throw;
+            }
+
+            return usuarioExiste;
+        }
+        private bool VerificarUsuarioExistente(string username)
+        {
+            bool usuarioExiste = false;
+
+            try
+            {
+                SqlConnection con = new SqlConnection(connetionString);
+                con.Open();
+                SqlCommand cmd = new SqlCommand("ComprobarUserAdminExiste", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@username", username);
+
+                int count = (int)cmd.ExecuteScalar(); // Obtiene el número de clientes con ese nombre de usuario
+
+                if (count > 0)
+                {
+                    usuarioExiste = true;
+                }
+
+                con.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al verificar usuario existente");
+                throw;
+            }
+
+            return usuarioExiste;
+        }
+        /*
+        private void insertarUsuarioAdmin()
+        {
+
+            if (tb_username_user.Text != "" || tb_contrasena_user.Text != "") { 
+
+                if (tb_contrasena_user.Text.Length >= 4 ) {
+
+                    try
+                    {
+                        SqlConnection con = new SqlConnection(connetionString);
+
+                        con.Open();
+
+                        SqlCommand cmd = new SqlCommand("InsertarUsuarioAdmin", con);
+
+                        //Indicamos que el comando va a ser un procedimiento almacenado
+                        cmd.CommandType = CommandType.StoredProcedure;
+
+                        // Comprobar que los campos estén rellenos
+                        string username = tb_username_user.Text;
+
+
+                        //CIFRARLAAAAAAAAAAAA
+                        string password = AesCrypt.Encrypt(tb_contrasena_user.Text);
+
+
+                        cmd.Parameters.Add(new SqlParameter("@usernameAdmin", username));
+                        cmd.Parameters.Add(new SqlParameter("@contrasenaAdmin", password));
+
+
+
+                        cmd.ExecuteNonQuery();
+                        con.Close();
+
+                        MessageBox.Show("Éxito");
+                        limpiarDatos();
+
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Fallo");
+                        throw;
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("La contraseña debe ser de 4 carácteres o más", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            
             }
 
             else
@@ -427,7 +623,7 @@ namespace GestionPapeleria
             }
 
         }
-
+        */
         private void editarArticulo()
 
         {
@@ -1073,6 +1269,8 @@ namespace GestionPapeleria
 
                 dataGridView1.DataSource = dt;
 
+                borrar_filtros_art();
+
             }
             catch (Exception ex)
             {
@@ -1503,7 +1701,7 @@ namespace GestionPapeleria
                 adapter.Fill(dt);
 
                 dataGridView_pedidos.DataSource = dt;
-                //cargarPedidos();
+
             }
             catch (Exception ex)
             {
@@ -1543,11 +1741,8 @@ namespace GestionPapeleria
 
         private void btn_borrar_filtros_cli_Click(object sender, EventArgs e)
         {
-            tb_buscar_nombre_cli.Text = string.Empty;
-            tb_buscar_username_cli.Text = string.Empty;
-            tb_buscar_correo_cli.Text = string.Empty;
-            tb_buscar_direccion_cli.Text = string.Empty;
-            cb_buscar_telefono_cli.Text = string.Empty;
+            borrarFiltrosClientes();
+            cargarClientes();
         }
 
         private void btn_alta_cliente_Click(object sender, EventArgs e)
@@ -1810,43 +2005,227 @@ namespace GestionPapeleria
             cargarUsuarios();
         }
 
+        //Obtener el rol de los usuarios
         private void cb_buscar_rol_user_SelectedIndexChanged(object sender, EventArgs e)
         {
             filtro_rol_admin = cb_buscar_rol_user.SelectedItem as string;
 
         }
 
+        //Buscar por el rol de los usuarios
         private void btn_buscar_rol_user_Click(object sender, EventArgs e)
         {
-           
-                try
-                {
-                    cargarUsuarios();
 
-                    SqlConnection con = new SqlConnection(connetionString);
-                    con.Open();
+            try
+            {
+                cargarUsuarios();
 
-                    SqlCommand cmd = new SqlCommand("FiltraPorRol", con);
+                SqlConnection con = new SqlConnection(connetionString);
+                con.Open();
 
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.Add(new SqlParameter("@rol", filtro_rol_admin));
+                SqlCommand cmd = new SqlCommand("FiltraPorRol", con);
 
-                    cmd.ExecuteNonQuery();
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.Add(new SqlParameter("@rol", filtro_rol_admin));
 
-                    SqlDataAdapter adapter = new SqlDataAdapter(cmd);
-                    DataTable dt = new DataTable();
-                    adapter.Fill(dt);
+                cmd.ExecuteNonQuery();
 
-                   dataGridView_rolesUsuarios.DataSource = dt;
-                   
+                SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+                DataTable dt = new DataTable();
+                adapter.Fill(dt);
 
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Fallo: no se ha introducido rol del usuario para filtrar ");
-                }
-            
+                dataGridView_rolesUsuarios.DataSource = dt;
 
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Fallo: no se ha introducido rol del usuario para filtrar ");
+            }
+
+
+        }
+
+        //Botón para buscar por nombre a los clientes
+        private void btn_buscar_nombre_cli_Click(object sender, EventArgs e)
+        {
+            try
+            {
+
+                SqlConnection con = new SqlConnection(connetionString);
+                con.Open();
+
+                SqlCommand cmd = new SqlCommand("FiltrarPorNombreCompletoCliente", con);
+
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.Add(new SqlParameter("@nombreCompleto", filtro_nombre_completo));
+
+                cmd.ExecuteNonQuery();
+
+                SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+                DataTable dt = new DataTable();
+                adapter.Fill(dt);
+
+                dataGridView_clientes.DataSource = dt;
+                borrarFiltrosClientes();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Fallo: no se ha introducido el nombre para filtrar ");
+            }
+        }
+        //Botón para buscar por username a los clientes
+        private void btn_buscar_username_cli_Click(object sender, EventArgs e)
+        {
+            try
+            {
+
+                SqlConnection con = new SqlConnection(connetionString);
+                con.Open();
+
+                SqlCommand cmd = new SqlCommand("FiltrarPorUsernameClientes", con);
+
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.Add(new SqlParameter("@username", filtro_username_cliente));
+
+                cmd.ExecuteNonQuery();
+
+                SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+                DataTable dt = new DataTable();
+                adapter.Fill(dt);
+
+                dataGridView_clientes.DataSource = dt; 
+                borrarFiltrosClientes();
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Fallo: no se ha introducido el nombre para filtrar ");
+            }
+        }
+        // Botón para buscar por el correo a los clientes
+        private void btn_buscar_correo_cli_Click(object sender, EventArgs e)
+        {
+            try
+            {
+
+                SqlConnection con = new SqlConnection(connetionString);
+                con.Open();
+
+                SqlCommand cmd = new SqlCommand("FiltrarPorCorreo", con);
+
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.Add(new SqlParameter("@correo", filtro_correo));
+
+                cmd.ExecuteNonQuery();
+
+                SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+                DataTable dt = new DataTable();
+                adapter.Fill(dt);
+
+                dataGridView_clientes.DataSource = dt;
+                borrarFiltrosClientes();
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Fallo: no se ha introducido el nombre para filtrar ");
+            }
+        }
+        //Botón para buscar por la dirección a los clientes
+        private void btn_buscar_direccion_cli_Click(object sender, EventArgs e)
+        {
+            try
+            {
+
+                SqlConnection con = new SqlConnection(connetionString);
+                con.Open();
+
+                SqlCommand cmd = new SqlCommand("FiltrarPorDirrecion", con);
+
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.Add(new SqlParameter("@direccion", filtro_direccion));
+
+                cmd.ExecuteNonQuery();
+
+                SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+                DataTable dt = new DataTable();
+                adapter.Fill(dt);
+
+                dataGridView_clientes.DataSource = dt;
+                borrarFiltrosClientes();
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Fallo: no se ha introducido el nombre para filtrar ");
+            }
+        }
+        //Botón para buscar por teléfono a los clientes
+        private void btn_buscar_telefono_cli_Click(object sender, EventArgs e)
+        {
+            try
+            {
+
+                SqlConnection con = new SqlConnection(connetionString);
+                con.Open();
+
+                SqlCommand cmd = new SqlCommand("FiltrarPorTelefono", con);
+
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.Add(new SqlParameter("@telefono", filtro_telefono));
+
+                cmd.ExecuteNonQuery();
+
+                SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+                DataTable dt = new DataTable();
+                adapter.Fill(dt);
+
+                dataGridView_clientes.DataSource = dt;
+                borrarFiltrosClientes();
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Fallo: no se ha introducido el teléfono para filtrar ");
+            }
+        }
+
+        private void borrarFiltrosClientes()
+        {
+            tb_buscar_nombre_cli.Text = string.Empty;
+            tb_buscar_username_cli.Text = string.Empty;
+            tb_buscar_correo_cli.Text = string.Empty;
+            tb_buscar_direccion_cli.Text = string.Empty;
+            tb_buscar_telefono_cli.Text = string.Empty;
+
+        }
+
+        //Obtener el nombre introducido para el filtro de nombre clientes
+
+        private void tb_buscar_nombre_cli_TextChanged(object sender, EventArgs e)
+        {
+            filtro_nombre_completo = tb_buscar_nombre_cli.Text;
+        }
+
+        private void tb_buscar_username_cli_TextChanged(object sender, EventArgs e)
+        {
+            filtro_username_cliente = tb_buscar_username_cli.Text;
+        }
+
+        private void tb_buscar_correo_cli_TextChanged(object sender, EventArgs e)
+        {
+            filtro_correo = tb_buscar_correo_cli.Text;
+        }
+
+        private void tb_buscar_direccion_cli_TextChanged(object sender, EventArgs e)
+        {
+            filtro_direccion = tb_buscar_direccion_cli.Text;
+        }
+
+        private void tb_buscar_telefono_cli_TextChanged(object sender, EventArgs e)
+        {
+            filtro_telefono = tb_buscar_telefono_cli.Text;
         }
     }
 }

@@ -23,5 +23,7 @@ namespace GestionPapeleria.Clases
             this.username = username;
     
         }
+
+        public ClienteAplicacion (string username) { this.username = username; }
     }
 }

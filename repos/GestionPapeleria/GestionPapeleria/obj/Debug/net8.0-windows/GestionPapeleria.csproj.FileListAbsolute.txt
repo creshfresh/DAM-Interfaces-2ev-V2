@@ -38,7 +38,6 @@ C:\Users\cris_\source\repos\GestionPapeleria\GestionPapeleria\bin\Debug\net8.0-w
 C:\Users\cris_\source\repos\GestionPapeleria\GestionPapeleria\bin\Debug\net8.0-windows\runtimes\win-x86\native\WebView2Loader.dll
 C:\Users\cris_\source\repos\GestionPapeleria\GestionPapeleria\bin\Debug\net8.0-windows\runtimes\win\lib\net6.0\System.Runtime.Caching.dll
 C:\Users\cris_\source\repos\GestionPapeleria\GestionPapeleria\obj\Debug\net8.0-windows\GestionPapeleria.csproj.AssemblyReference.cache
-C:\Users\cris_\source\repos\GestionPapeleria\GestionPapeleria\obj\Debug\net8.0-windows\GestionPapeleria.VistaCliente.resources
 C:\Users\cris_\source\repos\GestionPapeleria\GestionPapeleria\obj\Debug\net8.0-windows\GestionPapeleria.Cliente.VistaClienteV2.resources
 C:\Users\cris_\source\repos\GestionPapeleria\GestionPapeleria\obj\Debug\net8.0-windows\GestionPapeleria.Componentes.ItemArticulo.resources
 C:\Users\cris_\source\repos\GestionPapeleria\GestionPapeleria\obj\Debug\net8.0-windows\GestionPapeleria.Form1.resources

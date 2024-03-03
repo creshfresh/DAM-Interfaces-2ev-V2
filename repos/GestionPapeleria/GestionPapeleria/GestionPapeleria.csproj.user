@@ -19,8 +19,5 @@
     <Compile Update="Registro.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="Cliente\VistaCliente.cs">
-      <SubType>Form</SubType>
-    </Compile>
   </ItemGroup>
 </Project>

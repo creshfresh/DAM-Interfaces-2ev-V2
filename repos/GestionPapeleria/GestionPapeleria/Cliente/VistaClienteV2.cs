@@ -14,11 +14,11 @@ namespace GestionPapeleria.Cliente
     public partial class VistaClienteV2 : Form
 
     {
-       public static ClienteAplicacion clienteLogueado;
+        public static ClienteAplicacion clienteLogueado;
 
         public VistaClienteV2()
         {
-        InitializeComponent();
+            InitializeComponent();
         }
 
         private void tabPage1_Click(object sender, EventArgs e)
@@ -45,6 +45,13 @@ namespace GestionPapeleria.Cliente
         private void panel2_Paint(object sender, PaintEventArgs e)
         {
 
+        }
+
+        private void bn_login_v2_Click(object sender, EventArgs e)
+        {
+            Login lg = new Login();
+            lg.Show();
+            this.Hide();
         }
     }
 }

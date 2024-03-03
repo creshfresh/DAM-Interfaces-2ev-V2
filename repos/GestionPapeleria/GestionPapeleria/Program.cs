@@ -1,3 +1,5 @@
+using GestionPapeleria.Cliente;
+
 namespace GestionPapeleria
 {
     internal static class Program

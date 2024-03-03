@@ -147,7 +147,7 @@
             panel9 = new Panel();
             btn_buscar_telefono_cli = new Button();
             lb_telefono_cli = new Label();
-            cb_buscar_telefono_cli = new TextBox();
+            tb_buscar_telefono_cli = new TextBox();
             btn_buscar_correo_cli = new Button();
             label65 = new Label();
             tb_buscar_correo_cli = new TextBox();
@@ -1600,7 +1600,7 @@
             panel9.BackColor = SystemColors.ButtonHighlight;
             panel9.Controls.Add(btn_buscar_telefono_cli);
             panel9.Controls.Add(lb_telefono_cli);
-            panel9.Controls.Add(cb_buscar_telefono_cli);
+            panel9.Controls.Add(tb_buscar_telefono_cli);
             panel9.Controls.Add(btn_buscar_correo_cli);
             panel9.Controls.Add(label65);
             panel9.Controls.Add(tb_buscar_correo_cli);
@@ -1631,6 +1631,7 @@
             btn_buscar_telefono_cli.TabIndex = 56;
             btn_buscar_telefono_cli.Text = "Buscar";
             btn_buscar_telefono_cli.UseVisualStyleBackColor = true;
+            btn_buscar_telefono_cli.Click += btn_buscar_telefono_cli_Click;
             // 
             // lb_telefono_cli
             // 
@@ -1643,15 +1644,16 @@
             lb_telefono_cli.TabIndex = 55;
             lb_telefono_cli.Text = "Teléfono";
             // 
-            // cb_buscar_telefono_cli
+            // tb_buscar_telefono_cli
             // 
-            cb_buscar_telefono_cli.BackColor = SystemColors.Control;
-            cb_buscar_telefono_cli.BorderStyle = BorderStyle.None;
-            cb_buscar_telefono_cli.Font = new Font("Nirmala UI", 9F);
-            cb_buscar_telefono_cli.Location = new Point(382, 123);
-            cb_buscar_telefono_cli.Name = "cb_buscar_telefono_cli";
-            cb_buscar_telefono_cli.Size = new Size(145, 20);
-            cb_buscar_telefono_cli.TabIndex = 54;
+            tb_buscar_telefono_cli.BackColor = SystemColors.Control;
+            tb_buscar_telefono_cli.BorderStyle = BorderStyle.None;
+            tb_buscar_telefono_cli.Font = new Font("Nirmala UI", 9F);
+            tb_buscar_telefono_cli.Location = new Point(382, 123);
+            tb_buscar_telefono_cli.Name = "tb_buscar_telefono_cli";
+            tb_buscar_telefono_cli.Size = new Size(145, 20);
+            tb_buscar_telefono_cli.TabIndex = 54;
+            tb_buscar_telefono_cli.TextChanged += tb_buscar_telefono_cli_TextChanged;
             // 
             // btn_buscar_correo_cli
             // 
@@ -1664,6 +1666,7 @@
             btn_buscar_correo_cli.TabIndex = 53;
             btn_buscar_correo_cli.Text = "Buscar";
             btn_buscar_correo_cli.UseVisualStyleBackColor = true;
+            btn_buscar_correo_cli.Click += btn_buscar_correo_cli_Click;
             // 
             // label65
             // 
@@ -1685,6 +1688,7 @@
             tb_buscar_correo_cli.Name = "tb_buscar_correo_cli";
             tb_buscar_correo_cli.Size = new Size(226, 20);
             tb_buscar_correo_cli.TabIndex = 51;
+            tb_buscar_correo_cli.TextChanged += tb_buscar_correo_cli_TextChanged;
             // 
             // btn_buscar_username_cli
             // 
@@ -1697,6 +1701,7 @@
             btn_buscar_username_cli.TabIndex = 50;
             btn_buscar_username_cli.Text = "Buscar";
             btn_buscar_username_cli.UseVisualStyleBackColor = true;
+            btn_buscar_username_cli.Click += btn_buscar_username_cli_Click;
             // 
             // label64
             // 
@@ -1718,6 +1723,7 @@
             tb_buscar_username_cli.Name = "tb_buscar_username_cli";
             tb_buscar_username_cli.Size = new Size(145, 20);
             tb_buscar_username_cli.TabIndex = 48;
+            tb_buscar_username_cli.TextChanged += tb_buscar_username_cli_TextChanged;
             // 
             // btn_buscar_direccion_cli
             // 
@@ -1730,6 +1736,7 @@
             btn_buscar_direccion_cli.TabIndex = 47;
             btn_buscar_direccion_cli.Text = "Buscar";
             btn_buscar_direccion_cli.UseVisualStyleBackColor = true;
+            btn_buscar_direccion_cli.Click += btn_buscar_direccion_cli_Click;
             // 
             // label30
             // 
@@ -1751,6 +1758,7 @@
             tb_buscar_direccion_cli.Name = "tb_buscar_direccion_cli";
             tb_buscar_direccion_cli.Size = new Size(252, 20);
             tb_buscar_direccion_cli.TabIndex = 45;
+            tb_buscar_direccion_cli.TextChanged += tb_buscar_direccion_cli_TextChanged;
             // 
             // btn_borrar_filtros_cli
             // 
@@ -1776,6 +1784,7 @@
             btn_buscar_nombre_cli.TabIndex = 41;
             btn_buscar_nombre_cli.Text = "Buscar";
             btn_buscar_nombre_cli.UseVisualStyleBackColor = true;
+            btn_buscar_nombre_cli.Click += btn_buscar_nombre_cli_Click;
             // 
             // label41
             // 
@@ -1808,6 +1817,7 @@
             tb_buscar_nombre_cli.Name = "tb_buscar_nombre_cli";
             tb_buscar_nombre_cli.Size = new Size(253, 20);
             tb_buscar_nombre_cli.TabIndex = 0;
+            tb_buscar_nombre_cli.TextChanged += tb_buscar_nombre_cli_TextChanged;
             // 
             // panel10
             // 
@@ -2741,7 +2751,7 @@
         private Label lbl_telefono_cli;
         private Button btn_buscar_telefono_cli;
         private Label lb_telefono_cli;
-        private TextBox cb_buscar_telefono_cli;
+        private TextBox tb_buscar_telefono_cli;
         private TextBox tb_buscar_direccion_cli;
         private ComboBox cb_buscar_rol_user;
         private Button btn_buscar_rol_user;
