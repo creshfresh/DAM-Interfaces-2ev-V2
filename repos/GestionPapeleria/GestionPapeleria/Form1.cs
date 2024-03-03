@@ -2,11 +2,13 @@ using GestionPapeleria.Cliente;
 using Microsoft.Data.SqlClient;
 using System.Configuration;
 using System.Data;
+using System.Windows.Forms;
 
 namespace GestionPapeleria
 {
     public partial class Form1 : Form
     {
+        public static string rolUser;
         public static string connetionString = ConfigurationManager.ConnectionStrings["DatabaseConnectionString"].ConnectionString;
 
         //Variables para Articulos
@@ -43,9 +45,13 @@ namespace GestionPapeleria
 
 
 
-        public Form1()
+        public Form1(String rol)
         {
+            rolUser = rol;
             InitializeComponent();
+
+            if (rolUser.Contains("worker")) tabcontrol.TabPages.Remove(tabPage1);
+
             cargarComboBoxAlmacenes();
             cargarComboBoxProveedores();
             filtroMarca();
@@ -440,7 +446,7 @@ namespace GestionPapeleria
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Fallo");
+                    MessageBox.Show(ex.Message);
                     throw;
                 }
             }
@@ -779,6 +785,7 @@ namespace GestionPapeleria
         private void button2_Click(object sender, EventArgs e)
         {
             Login lg = new Login("admin");
+            this.Hide();
             lg.ShowDialog();
         }
 
@@ -1660,7 +1667,7 @@ namespace GestionPapeleria
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Fallo");
+                MessageBox.Show(ex.Message);
                 throw;
             }
         }

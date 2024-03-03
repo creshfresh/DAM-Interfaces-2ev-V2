@@ -30,7 +30,7 @@
         {
             components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
-            Articulos = new TabControl();
+            tabcontrol = new TabControl();
             btn_volverInsertar = new TabPage();
             button1 = new Button();
             panel2 = new Panel();
@@ -222,7 +222,7 @@
             pictureBox1 = new PictureBox();
             toolTip1 = new ToolTip(components);
             toolTip2 = new ToolTip(components);
-            Articulos.SuspendLayout();
+            tabcontrol.SuspendLayout();
             btn_volverInsertar.SuspendLayout();
             panel2.SuspendLayout();
             panel3.SuspendLayout();
@@ -249,20 +249,20 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
-            // Articulos
+            // tabcontrol
             // 
-            Articulos.Controls.Add(btn_volverInsertar);
-            Articulos.Controls.Add(tabPage2);
-            Articulos.Controls.Add(tabPage3);
-            Articulos.Controls.Add(tabPage4);
-            Articulos.Controls.Add(tabPage1);
-            Articulos.Font = new Font("Nirmala UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            Articulos.ItemSize = new Size(300, 45);
-            Articulos.Location = new Point(-3, 59);
-            Articulos.Name = "Articulos";
-            Articulos.SelectedIndex = 0;
-            Articulos.Size = new Size(1387, 838);
-            Articulos.TabIndex = 4;
+            tabcontrol.Controls.Add(btn_volverInsertar);
+            tabcontrol.Controls.Add(tabPage2);
+            tabcontrol.Controls.Add(tabPage3);
+            tabcontrol.Controls.Add(tabPage4);
+            tabcontrol.Controls.Add(tabPage1);
+            tabcontrol.Font = new Font("Nirmala UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            tabcontrol.ItemSize = new Size(300, 45);
+            tabcontrol.Location = new Point(-3, 59);
+            tabcontrol.Name = "tabcontrol";
+            tabcontrol.SelectedIndex = 0;
+            tabcontrol.Size = new Size(1387, 838);
+            tabcontrol.TabIndex = 4;
             // 
             // btn_volverInsertar
             // 
@@ -2503,12 +2503,12 @@
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1381, 900);
             Controls.Add(pnl_topmenu);
-            Controls.Add(Articulos);
+            Controls.Add(tabcontrol);
             FormBorderStyle = FormBorderStyle.None;
             Name = "Form1";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Conexion";
-            Articulos.ResumeLayout(false);
+            tabcontrol.ResumeLayout(false);
             btn_volverInsertar.ResumeLayout(false);
             btn_volverInsertar.PerformLayout();
             panel2.ResumeLayout(false);
@@ -2553,7 +2553,7 @@
         }
 
         #endregion
-        private TabControl Articulos;
+        private TabControl tabcontrol;
         private TabPage tabPage2;
         private Button button2;
         private PictureBox close;

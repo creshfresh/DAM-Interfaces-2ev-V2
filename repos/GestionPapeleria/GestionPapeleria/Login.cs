@@ -101,7 +101,6 @@ namespace GestionPapeleria
 
                             reader.Close();
                             con.Close(); // Cierra la conexión
-
                         }
                         catch (Exception ex)
                         {
@@ -109,11 +108,11 @@ namespace GestionPapeleria
                             throw;
                         }
                     }
-                   
+
+
+                    //Es usuario administrador
                    else
                     {
-                   
-
                         try
                         {
                             SqlConnection con = new SqlConnection(Form1.connetionString);
@@ -138,11 +137,31 @@ namespace GestionPapeleria
 
                                 if (dbUsername == username && dbPassword == password)
                                 {
-                                    MessageBox.Show("Bienvenido administrador");
-                                    Form1 form1 = new Form1();
-                                    form1.Show();
-                                    this.Hide();
-                                    return;
+
+                                    SqlConnection dbConn = new SqlConnection(Form1.connetionString);
+
+                                    dbConn.Open();
+
+                                    SqlCommand commandRol = new SqlCommand("GetRole", dbConn);
+                                    commandRol.CommandType = CommandType.StoredProcedure;
+                                    commandRol.Parameters.AddWithValue("@username", username);
+
+
+                                    SqlDataReader readerRol = commandRol.ExecuteReader();
+
+                                    if (readerRol.Read())
+                                    {
+                                        string rol = readerRol["rol"].ToString();
+
+                                        MessageBox.Show("Bienvenido " + username);
+                                        Form1 form1 = new Form1(rol);
+                                        form1.Show();
+                                        this.Hide();
+                                        dbConn.Close();
+                                        return;
+                                    }
+                                    //
+                                 
                                 }
                                 else
                                 {
