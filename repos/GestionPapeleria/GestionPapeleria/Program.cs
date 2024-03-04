@@ -1,9 +1,12 @@
+using GestionPapeleria.Clases;
 using GestionPapeleria.Cliente;
 
 namespace GestionPapeleria
 {
+
     internal static class Program
     {
+
         /// <summary>
         ///  The main entry point for the application.
         /// </summary>

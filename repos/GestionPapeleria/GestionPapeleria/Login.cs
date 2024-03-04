@@ -87,7 +87,7 @@ namespace GestionPapeleria
                                     vistaCliente.Show();
                       
                                     this.Hide();
-                                    return;
+                         
                                 }
                                 else
                                 {
@@ -108,7 +108,6 @@ namespace GestionPapeleria
                             throw;
                         }
                     }
-
 
                     //Es usuario administrador
                    else
@@ -139,7 +138,7 @@ namespace GestionPapeleria
 
                                 if (dbUsername == username && dbPassword == password)
                                 {
-                                    guardarClienteLogeado();
+                                  
                                     SqlConnection dbConn = new SqlConnection(Form1.connetionString);
 
                                     dbConn.Open();
@@ -160,10 +159,7 @@ namespace GestionPapeleria
                                         form1.Show();
                                         this.Hide();
                                         dbConn.Close();
-                                        return;
                                     }
-
-                                 
                                 }
                                 else
                                 {
@@ -174,7 +170,6 @@ namespace GestionPapeleria
                             {
                                 MessageBox.Show("Usuario no registrado");
                             }
-
                             reader.Close();
                             con.Close();
 
@@ -185,9 +180,9 @@ namespace GestionPapeleria
                             throw;
                         }
                     }
-                
+                    guardarClienteLogeado();
                 } 
-                }       
+             }       
         }
 
         private void btn_clear_Click(object sender, EventArgs e)
@@ -209,7 +204,6 @@ namespace GestionPapeleria
                 SqlCommand cmd = new SqlCommand("BuscarClienteporUsername", con);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@username", username);
-                con.Close();
 
                 SqlDataReader reader = cmd.ExecuteReader();
 
@@ -218,16 +212,21 @@ namespace GestionPapeleria
 
                     while (reader.Read())
                     {
-                        int id_cliente = Convert.ToInt32(reader["d_cliente"].ToString());
+                        int id_cliente = Convert.ToInt32(reader["id_cliente"].ToString());
                         string nombreCompleto = reader["nombreCompleto"].ToString();
                         string correo = reader["correo"].ToString();
                         string telefono = reader["telefono"].ToString();
                         string direccion = reader["direccion"].ToString();
 
                         clienteLogueado = new ClienteAplicacion(id_cliente, nombreCompleto, correo, telefono, direccion, username);
+                        VistaClienteV2.comprobarHayCliente();
+                        VistaClienteV2.cargarAntiguosPedidos();
                     }
 
                 }
+
+                con.Close();
+
             }
             catch (Exception ex)
             {

@@ -13,8 +13,8 @@ namespace GestionPapeleria
 
         //Variables para Articulos
         public static string nombreArt, marcaArt, categoriaArt, precioArt, stockArt, proveedorArt, almacenArt, idCatArt;
-        public static int idArt, id_almacenArt, id_proveedorArt;
-        public static string filtro_cat, filtro_nombre, filtro_marca;
+        public static int idArt, id_almacenArt, id_proveedorArt, filtro_cat;
+        public static string  filtro_nombre, filtro_marca;
 
         public bool estaEditando = false;
 
@@ -69,7 +69,8 @@ namespace GestionPapeleria
         //Método para mostrar todos los articulos
         public static void cargarArticulos()
         {
-            string sqlQuery = "Select a.id_articulo,a.nombre,a.id_categoria, c.nombre as nombre_categoria, a.marca, a.precio, a.stock , a.id_proveedor , a.id_almacen from articulos a, categorias c where a.id_categoria = c.id_categoria";
+            string sqlQuery = "Select a.id_articulo,a.nombre,a.id_categoria,c.nombre as nombre_categoria, a.marca, a.precio, a.stock , a.id_proveedor , a.id_almacen " +
+                "from articulos a, categorias c where a.id_categoria = c.id_categoria";
             try
             {
                 SqlConnection con = new SqlConnection(connetionString);
@@ -1202,7 +1203,7 @@ namespace GestionPapeleria
 
                 cb_buscar_categoria_art.DataSource = dt;
                 cb_buscar_categoria_art.DisplayMember = "nombre";
-                cb_buscar_categoria_art.ValueMember = "nombre";
+                cb_buscar_categoria_art.ValueMember = "id_categoria";
                 cb_buscar_categoria_art.SelectedIndex = -1;
 
             }
@@ -1319,7 +1320,14 @@ namespace GestionPapeleria
         }
         private void cb_filtro_categoria_SelectedIndexChanged(object sender, EventArgs e)
         {
-            filtro_cat = cb_buscar_categoria_art.SelectedValue as string;
+            try
+            {
+            filtro_cat = Convert.ToInt32(cb_buscar_categoria_art.SelectedValue);
+            }
+            catch
+            {
+
+            }
         }
 
         private void tb_buscar_nombre_ped_TextChanged(object sender, EventArgs e)
@@ -1345,7 +1353,7 @@ namespace GestionPapeleria
                 SqlCommand cmd = new SqlCommand("FiltrarPorCategoria", con);
 
                 cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.Add(new SqlParameter("@nombreCategoria", filtro_cat));
+                cmd.Parameters.Add(new SqlParameter("@id_categoria", filtro_cat));
 
                 cmd.ExecuteNonQuery();
 

@@ -85,6 +85,7 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.FromArgb(247, 247, 247);
             Controls.Add(panel2);
             Controls.Add(lbl_precioTotal);
             Controls.Add(lbl_fecha);

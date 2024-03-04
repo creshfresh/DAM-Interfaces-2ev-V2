@@ -43,6 +43,7 @@
             lbl_frasecool = new Label();
             pictureBox2 = new PictureBox();
             tabPage2 = new TabPage();
+            label6 = new Label();
             flowLayoutPanel1 = new FlowLayoutPanel();
             tableLayoutPanel1 = new TableLayoutPanel();
             label1 = new Label();
@@ -54,9 +55,6 @@
             pnl_anitguosped = new Panel();
             label5 = new Label();
             flowLayoutPanel2 = new FlowLayoutPanel();
-            itemPedidoAntiguo1 = new Componentes.ItemPedidoAntiguo();
-            itemPedidoAntiguo2 = new Componentes.ItemPedidoAntiguo();
-            label6 = new Label();
             pnl_topmenu_clientev2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pb_logo_cliente).BeginInit();
             ((System.ComponentModel.ISupportInitialize)close_cliente_v2).BeginInit();
@@ -69,7 +67,6 @@
             pnl_sinlogin.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             pnl_anitguosped.SuspendLayout();
-            flowLayoutPanel2.SuspendLayout();
             SuspendLayout();
             // 
             // pnl_topmenu_clientev2
@@ -231,6 +228,18 @@
             tabPage2.Text = "    Articulos";
             tabPage2.UseVisualStyleBackColor = true;
             // 
+            // label6
+            // 
+            label6.Anchor = AnchorStyles.None;
+            label6.AutoSize = true;
+            label6.Font = new Font("Nirmala UI", 10F, FontStyle.Bold);
+            label6.ForeColor = Color.FromArgb(235, 140, 52);
+            label6.Location = new Point(20, 28);
+            label6.Name = "label6";
+            label6.Size = new Size(156, 23);
+            label6.TabIndex = 9;
+            label6.Text = "Todos los articulos";
+            // 
             // flowLayoutPanel1
             // 
             flowLayoutPanel1.AutoScroll = true;
@@ -340,38 +349,10 @@
             // 
             // flowLayoutPanel2
             // 
-            flowLayoutPanel2.Controls.Add(itemPedidoAntiguo1);
-            flowLayoutPanel2.Controls.Add(itemPedidoAntiguo2);
             flowLayoutPanel2.Location = new Point(0, 91);
             flowLayoutPanel2.Name = "flowLayoutPanel2";
             flowLayoutPanel2.Size = new Size(262, 645);
             flowLayoutPanel2.TabIndex = 0;
-            // 
-            // itemPedidoAntiguo1
-            // 
-            itemPedidoAntiguo1.Location = new Point(3, 3);
-            itemPedidoAntiguo1.Name = "itemPedidoAntiguo1";
-            itemPedidoAntiguo1.Size = new Size(252, 53);
-            itemPedidoAntiguo1.TabIndex = 0;
-            // 
-            // itemPedidoAntiguo2
-            // 
-            itemPedidoAntiguo2.Location = new Point(3, 62);
-            itemPedidoAntiguo2.Name = "itemPedidoAntiguo2";
-            itemPedidoAntiguo2.Size = new Size(252, 53);
-            itemPedidoAntiguo2.TabIndex = 1;
-            // 
-            // label6
-            // 
-            label6.Anchor = AnchorStyles.None;
-            label6.AutoSize = true;
-            label6.Font = new Font("Nirmala UI", 10F, FontStyle.Bold);
-            label6.ForeColor = Color.FromArgb(235, 140, 52);
-            label6.Location = new Point(20, 28);
-            label6.Name = "label6";
-            label6.Size = new Size(156, 23);
-            label6.TabIndex = 9;
-            label6.Text = "Todos los articulos";
             // 
             // VistaClienteV2
             // 
@@ -381,8 +362,8 @@
             Controls.Add(btn_login_admin);
             Controls.Add(tabControl1);
             Controls.Add(pnl_topmenu_clientev2);
-            Controls.Add(pnl_sinlogin);
             Controls.Add(pnl_anitguosped);
+            Controls.Add(pnl_sinlogin);
             FormBorderStyle = FormBorderStyle.None;
             Name = "VistaClienteV2";
             StartPosition = FormStartPosition.CenterScreen;
@@ -405,7 +386,6 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             pnl_anitguosped.ResumeLayout(false);
             pnl_anitguosped.PerformLayout();
-            flowLayoutPanel2.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -425,7 +405,6 @@
         private TableLayoutPanel tableLayoutPanel1;
         private Label label1;
         private FlowLayoutPanel flowLayoutPanel3;
-        private Panel pnl_sinlogin;
         private Label label2;
         private PictureBox pictureBox1;
         private Label label3;
@@ -435,13 +414,12 @@
         private Label label4;
         private PictureBox pictureBox3;
         private Panel panel3;
-        private Panel pnl_anitguosped;
-        private FlowLayoutPanel flowLayoutPanel2;
+        private static  FlowLayoutPanel flowLayoutPanel2;
         private Label label5;
-        private Componentes.ItemPedidoAntiguo itemPedidoAntiguo1;
-        private Componentes.ItemPedidoAntiguo itemPedidoAntiguo2;
         private Button button1;
         private Label label6;
+        public static Panel pnl_sinlogin;
+        public static Panel pnl_anitguosped;
         public static FlowLayoutPanel flowLayoutPanel1;
     }
 }
