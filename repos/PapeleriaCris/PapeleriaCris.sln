@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34309.116
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "PapeleriaCris", "PapeleriaCris\PapeleriaCris.vdproj", "{BF7C332C-6E7D-4481-99E9-898CF709C787}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Default = Debug|Default
+		Release|Default = Release|Default
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BF7C332C-6E7D-4481-99E9-898CF709C787}.Debug|Default.ActiveCfg = Debug
+		{BF7C332C-6E7D-4481-99E9-898CF709C787}.Debug|Default.Build.0 = Debug
+		{BF7C332C-6E7D-4481-99E9-898CF709C787}.Release|Default.ActiveCfg = Release
+		{BF7C332C-6E7D-4481-99E9-898CF709C787}.Release|Default.Build.0 = Release
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A5F9D3D8-EA01-4C1C-B6A8-2C75B6CD7761}
+	EndGlobalSection
+EndGlobal

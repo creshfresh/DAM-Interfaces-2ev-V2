@@ -39,7 +39,7 @@ namespace GestionPapeleria.Clases
                 string sqlQueryUpdate = "UPDATE lineaPedido SET cantidad = cantidad + 1 WHERE id_pedido = @idPedido AND id_articulo = @idArticulo";
                 string sqlQueryUpdateImporte = "UPDATE pedidos SET importe = (SELECT SUM(lp.cantidad * a.precio) FROM lineaPedido lp INNER JOIN articulos a ON lp.id_articulo = a.id_articulo WHERE lp.id_pedido = @idPedido) WHERE id_pedido = @idPedido";
 
-                using (SqlConnection con = new SqlConnection(Form1.connetionString))
+                using (SqlConnection con = new SqlConnection(GestionPapeleria.Auxiliar.GlobalVariables.DB_CONNECTION))
                 {
                     con.Open();
 
@@ -94,7 +94,7 @@ namespace GestionPapeleria.Clases
 
                 string sqlQuery = "INSERT INTO pedidos (id_cliente, fecha_pedido, importe, estado) OUTPUT INSERTED.id_pedido VALUES (@idCliente, @fechaPedido, @importe, @estado)";
 
-                using (SqlConnection con = new SqlConnection(Form1.connetionString))
+                using (SqlConnection con = new SqlConnection(GestionPapeleria.Auxiliar.GlobalVariables.DB_CONNECTION))
                 {
                     using (SqlCommand cmd = new SqlCommand(sqlQuery, con))
                     {
@@ -128,7 +128,7 @@ namespace GestionPapeleria.Clases
                 //
                 string sqlQuery = "SELECT id_pedido FROM pedidos WHERE id_cliente = @idCliente AND estado = 'CARRITO'";
 
-                using (SqlConnection con = new SqlConnection(Form1.connetionString))
+                using (SqlConnection con = new SqlConnection(GestionPapeleria.Auxiliar.GlobalVariables.DB_CONNECTION))
                 {
                     using (SqlCommand cmd = new SqlCommand(sqlQuery, con))
                     {
@@ -162,7 +162,7 @@ namespace GestionPapeleria.Clases
             {
                 string sqlQuery = "UPDATE pedidos SET estado = 'pagado' WHERE id_pedido = @idPedido";
 
-                using (SqlConnection con = new SqlConnection(Form1.connetionString))
+                using (SqlConnection con = new SqlConnection(GestionPapeleria.Auxiliar.GlobalVariables.DB_CONNECTION))
                 {
                     using (SqlCommand cmd = new SqlCommand(sqlQuery, con))
                     {
@@ -187,7 +187,7 @@ namespace GestionPapeleria.Clases
             {
                 string sqlQuery = "DELETE FROM pedidos WHERE id_pedido = @idPedido";
 
-                using (SqlConnection con = new SqlConnection(Form1.connetionString))
+                using (SqlConnection con = new SqlConnection(GestionPapeleria.Auxiliar.GlobalVariables.DB_CONNECTION))
                 {
                     using (SqlCommand cmd = new SqlCommand(sqlQuery, con))
                     {
@@ -214,7 +214,7 @@ namespace GestionPapeleria.Clases
                 // Eliminar la línea de pedido con el id_Articulo
                 string deleteLineaPedidoQuery = "DELETE FROM lineaPedido WHERE id_pedido = @idPedido AND id_articulo = @idArticulo";
 
-                using (SqlConnection con = new SqlConnection(Form1.connetionString))
+                using (SqlConnection con = new SqlConnection(GestionPapeleria.Auxiliar.GlobalVariables.DB_CONNECTION))
                 {
                     using (SqlCommand cmdDeleteLineaPedido = new SqlCommand(deleteLineaPedidoQuery, con))
                     {
@@ -275,7 +275,7 @@ namespace GestionPapeleria.Clases
                 // Paso 1: Actualizar la cantidad del artículo en la tabla lineaPedido
                 string sqlQueryUpdateCantidad = "UPDATE lineaPedido SET cantidad = @nuevaCantidad WHERE id_pedido = @idPedido AND id_articulo = @idArticulo";
 
-                using (SqlConnection con = new SqlConnection(Form1.connetionString))
+                using (SqlConnection con = new SqlConnection(GestionPapeleria.Auxiliar.GlobalVariables.DB_CONNECTION))
                 {
                     using (SqlCommand cmdUpdateCantidad = new SqlCommand(sqlQueryUpdateCantidad, con))
                     {
@@ -291,7 +291,7 @@ namespace GestionPapeleria.Clases
                 // Paso 2: Recalcular el precio total del pedido y actualizarlo en la tabla pedidos
                 string sqlQueryUpdatePrecioTotal = "UPDATE pedidos SET importe = (SELECT SUM(d.cantidad * a.precio) FROM detalles_pedido d INNER JOIN articulos a ON d.id_articulo = a.id_articulo WHERE d.id_pedido = @idPedido) WHERE id_pedido = @idPedido";
 
-                using (SqlConnection con = new SqlConnection(Form1.connetionString))
+                using (SqlConnection con = new SqlConnection(GestionPapeleria.Auxiliar.GlobalVariables.DB_CONNECTION))
                 {
                     using (SqlCommand cmdUpdatePrecioTotal = new SqlCommand(sqlQueryUpdatePrecioTotal, con))
                     {

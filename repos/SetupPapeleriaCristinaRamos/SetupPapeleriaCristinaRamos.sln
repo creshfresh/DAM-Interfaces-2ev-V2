@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34309.116
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "SetupPapeleriaCristinaRamos", "SetupPapeleriaCristinaRamos\SetupPapeleriaCristinaRamos.vdproj", "{DFB3B602-A903-423A-8071-4CBF75A74DBD}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Default = Debug|Default
+		Release|Default = Release|Default
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DFB3B602-A903-423A-8071-4CBF75A74DBD}.Debug|Default.ActiveCfg = Debug
+		{DFB3B602-A903-423A-8071-4CBF75A74DBD}.Debug|Default.Build.0 = Debug
+		{DFB3B602-A903-423A-8071-4CBF75A74DBD}.Release|Default.ActiveCfg = Release
+		{DFB3B602-A903-423A-8071-4CBF75A74DBD}.Release|Default.Build.0 = Release
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {9C364F1B-4326-4B09-AE8A-F20D95F6F580}
+	EndGlobalSection
+EndGlobal
