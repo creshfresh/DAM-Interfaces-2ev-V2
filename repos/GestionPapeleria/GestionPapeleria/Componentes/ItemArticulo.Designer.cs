@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ItemArticulo));
             panel1 = new Panel();
             lbl_precio = new Label();
             btn_comprar = new Button();
@@ -72,6 +71,7 @@
             btn_comprar.TabIndex = 46;
             btn_comprar.Text = "COMPRAR";
             btn_comprar.UseVisualStyleBackColor = true;
+            btn_comprar.Click += btn_comprar_Click;
             // 
             // lbl_nombre_art
             // 
@@ -85,7 +85,7 @@
             // 
             // pictureBox1
             // 
-            pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
+            pictureBox1.Image = Properties.Resources.stationery;
             pictureBox1.Location = new Point(52, 15);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(122, 124);
@@ -109,8 +109,8 @@
 
         public Panel panel1;
         public Label lbl_precio;
-        public Button btn_comprar;
         public Label lbl_nombre_art;
         public PictureBox pictureBox1;
+        public Button btn_comprar;
     }
 }

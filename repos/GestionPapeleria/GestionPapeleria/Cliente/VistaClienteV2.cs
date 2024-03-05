@@ -19,20 +19,18 @@ namespace GestionPapeleria.Cliente
         //ClienteAplicacion usuario;
         public VistaClienteV2()
         {
-         
+
             InitializeComponent();
             populateItemsArticulos();
-
-            //comprobarHayCliente();
-         
-
         }
-       public static void comprobarHayCliente ()
+        public static void comprobarHayCliente()
         {
-            if(Login.clienteLogueado != null)
+            if (Login.clienteLogueado != null)
             {
                 pnl_sinlogin.Visible = false;
+
                 pnl_anitguosped.Visible = true;
+                // ItemArticulo.btn_comprar.Enabled = true;
             }
         }
         //Popular los items de articulos 
@@ -50,13 +48,17 @@ namespace GestionPapeleria.Cliente
 
                 foreach (DataRow row in dt.Rows)
                 {
-                    ItemArticulo item = new ItemArticulo();
+                    int idArticulo = Convert.ToInt32(row["id_articulo"]);
+                    float precioArticulo = Convert.ToInt32(row["precio"]);
+                    ItemArticulo item = new ItemArticulo(idArticulo, precioArticulo);
                     item.Size = new Size(225, 240);
+
 
                     item.lbl_nombre_art.Text = row["nombre"].ToString();
                     item.lbl_precio.Text = Convert.ToDecimal(row["precio"]).ToString() + " $";
 
                     flowLayoutPanel1.Controls.Add(item);
+
                 }
 
             }
@@ -67,7 +69,7 @@ namespace GestionPapeleria.Cliente
             }
         }
 
-       
+
         private void close_cliente_v2_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -76,14 +78,16 @@ namespace GestionPapeleria.Cliente
 
         public static void cargarAntiguosPedidos()
         {
-            try {
+            btn_carrito.Visible = true;
+            try
+            {
                 SqlConnection con = new SqlConnection(Form1.connetionString);
                 con.Open();
 
                 SqlCommand cmd = new SqlCommand("ObtenerPedidosCliente", con);
 
                 cmd.CommandType = CommandType.StoredProcedure;
-  
+
                 cmd.Parameters.Add(new SqlParameter("@id_cliente ", Login.clienteLogueado.id_cliente));
                 cmd.ExecuteNonQuery();
 
@@ -93,11 +97,16 @@ namespace GestionPapeleria.Cliente
 
                 foreach (DataRow row in dt.Rows)
                 {
-                    ItemPedidoAntiguo item = new ItemPedidoAntiguo();
+
+                    flowLayoutPanel2.Controls.Remove(pb_nopedidoAntiguo);
+
+                    int id = Convert.ToInt32(row["id_pedido"]);
+
+                    ItemPedidoAntiguo item = new ItemPedidoAntiguo(id);
                     item.Size = new Size(262, 52);
 
-                    item.lbl_pedido_antiguo.Text += " " +row["id_pedido"].ToString();
-                    item.lbl_precioTotal.Text = " $"+Convert.ToDecimal(row["importe"]).ToString() ;
+                    item.lbl_pedido_antiguo.Text += " " + row["id_pedido"].ToString();
+                    item.lbl_precioTotal.Text = " $" + Convert.ToDecimal(row["importe"]).ToString();
                     item.lbl_fecha.Text = row["fecha_pedido"].ToString();
 
                     flowLayoutPanel2.Controls.Add(item);
@@ -123,6 +132,21 @@ namespace GestionPapeleria.Cliente
             this.Hide();
         }
 
-      
+        private void btn_carrito_Click(object sender, EventArgs e)
+        {
+            int resultado = Carrito.ObtenerIdCarritoCliente(Login.clienteLogueado.id_cliente);
+            
+            if (resultado != -1)
+            {
+                VistaCarrito cart = new VistaCarrito();
+                cart.llenarVistaCarrito();
+                cart.Show();
+
+            } else
+            {
+                MessageBox.Show("No tiene ningún producto en el carrito");
+            }
+        }
+     
     }
 }

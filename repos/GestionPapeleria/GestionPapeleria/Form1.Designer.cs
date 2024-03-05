@@ -178,7 +178,6 @@
             btn_alta_cliente = new Button();
             lbl_altaCliente = new Label();
             label44 = new Label();
-            btn_eliminar_cli = new Button();
             btn_editar_cli = new Button();
             label45 = new Label();
             label46 = new Label();
@@ -1508,7 +1507,6 @@
             tabPage4.Controls.Add(button19);
             tabPage4.Controls.Add(panel9);
             tabPage4.Controls.Add(panel10);
-            tabPage4.Controls.Add(btn_eliminar_cli);
             tabPage4.Controls.Add(btn_editar_cli);
             tabPage4.Controls.Add(label45);
             tabPage4.Controls.Add(label46);
@@ -2000,27 +1998,13 @@
             label44.TabIndex = 9;
             label44.Text = "Nombre completo";
             // 
-            // btn_eliminar_cli
-            // 
-            btn_eliminar_cli.BackColor = Color.FromArgb(115, 140, 191);
-            btn_eliminar_cli.FlatStyle = FlatStyle.Flat;
-            btn_eliminar_cli.Font = new Font("Nirmala UI", 9F, FontStyle.Bold);
-            btn_eliminar_cli.ForeColor = SystemColors.ButtonHighlight;
-            btn_eliminar_cli.Location = new Point(1170, 686);
-            btn_eliminar_cli.Name = "btn_eliminar_cli";
-            btn_eliminar_cli.Size = new Size(150, 48);
-            btn_eliminar_cli.TabIndex = 75;
-            btn_eliminar_cli.Text = "Eliminar";
-            btn_eliminar_cli.UseVisualStyleBackColor = false;
-            btn_eliminar_cli.Click += btn_eliminar_cli_Click;
-            // 
             // btn_editar_cli
             // 
             btn_editar_cli.BackColor = Color.FromArgb(115, 140, 191);
             btn_editar_cli.FlatStyle = FlatStyle.Flat;
             btn_editar_cli.Font = new Font("Nirmala UI", 9F, FontStyle.Bold);
             btn_editar_cli.ForeColor = SystemColors.ButtonHighlight;
-            btn_editar_cli.Location = new Point(1000, 686);
+            btn_editar_cli.Location = new Point(1170, 686);
             btn_editar_cli.Name = "btn_editar_cli";
             btn_editar_cli.Size = new Size(150, 48);
             btn_editar_cli.TabIndex = 74;
@@ -2442,11 +2426,11 @@
             // 
             // btn_VistaCliente_prov
             // 
-            btn_VistaCliente_prov.Location = new Point(1014, 12);
+            btn_VistaCliente_prov.Location = new Point(1044, 12);
             btn_VistaCliente_prov.Name = "btn_VistaCliente_prov";
-            btn_VistaCliente_prov.Size = new Size(152, 29);
+            btn_VistaCliente_prov.Size = new Size(122, 29);
             btn_VistaCliente_prov.TabIndex = 9;
-            btn_VistaCliente_prov.Text = "Vista Cliente prov";
+            btn_VistaCliente_prov.Text = "Cerrar sesión";
             btn_VistaCliente_prov.UseVisualStyleBackColor = true;
             btn_VistaCliente_prov.Click += btn_VistaCliente_prov_Click;
             // 
@@ -2525,7 +2509,6 @@
         private TabPage btn_volverInsertar;
         private Label lbl_altaProducto;
         private Button btn_insertar_art;
-        private static DataGridView dataGridView1;
         private Label label2;
         private Label label1;
         private TextBox tb_nombre;
@@ -2632,7 +2615,6 @@
         private Button btn_alta_cliente;
         private Label lbl_altaCliente;
         private Label label44;
-        private Button btn_eliminar_cli;
         private Button btn_editar_cli;
         private Label label45;
         private Label label46;
@@ -2716,5 +2698,6 @@
         private ComboBox cb_buscar_rol_user;
         private Button btn_buscar_rol_user;
         private Label lbl_buscar_rol_user;
+        private static DataGridView dataGridView1;
     }
 }

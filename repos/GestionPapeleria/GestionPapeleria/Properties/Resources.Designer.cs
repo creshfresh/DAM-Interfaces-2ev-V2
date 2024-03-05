@@ -83,6 +83,16 @@ namespace GestionPapeleria.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap iliminar {
+            get {
+                object obj = ResourceManager.GetObject("iliminar", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap nologin {
             get {
                 object obj = ResourceManager.GetObject("nologin", resourceCulture);
@@ -126,6 +136,26 @@ namespace GestionPapeleria.Properties {
         internal static System.Drawing.Bitmap pexels_antoni_shkraba_4348198 {
             get {
                 object obj = ResourceManager.GetObject("pexels-antoni-shkraba-4348198", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap sinpedido {
+            get {
+                object obj = ResourceManager.GetObject("sinpedido", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap stationery {
+            get {
+                object obj = ResourceManager.GetObject("stationery", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

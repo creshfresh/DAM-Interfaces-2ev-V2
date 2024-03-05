@@ -1,5 +1,6 @@
 ﻿using GestionPapeleria.Clases;
 using GestionPapeleria.Cliente;
+using GestionPapeleria.Componentes;
 using Microsoft.Data.SqlClient;
 using System;
 using System.Collections.Generic;
@@ -221,6 +222,7 @@ namespace GestionPapeleria
                         clienteLogueado = new ClienteAplicacion(id_cliente, nombreCompleto, correo, telefono, direccion, username);
                         VistaClienteV2.comprobarHayCliente();
                         VistaClienteV2.cargarAntiguosPedidos();
+                      
                     }
 
                 }

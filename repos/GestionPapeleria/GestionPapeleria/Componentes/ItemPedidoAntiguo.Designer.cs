@@ -72,6 +72,7 @@
             lbl_precioTotal.Size = new Size(62, 20);
             lbl_precioTotal.TabIndex = 3;
             lbl_precioTotal.Text = "$ 50.00\r\n";
+            lbl_precioTotal.Click += volveraPedir;
             // 
             // panel2
             // 
@@ -93,7 +94,7 @@
             Controls.Add(lbl_pedido_antiguo);
             Name = "ItemPedidoAntiguo";
             Size = new Size(252, 52);
-            Load += UserControl1_Load;
+            Click += volveraPedir;
             ResumeLayout(false);
             PerformLayout();
         }

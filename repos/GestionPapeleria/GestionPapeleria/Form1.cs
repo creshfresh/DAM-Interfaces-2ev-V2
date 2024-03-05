@@ -1003,27 +1003,38 @@ namespace GestionPapeleria
         private void dataGridView_clientes_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             int currentRowIndex = dataGridView_clientes.CurrentCell.RowIndex;
+       
+            try
+            {
             dataGridView_pedidos.Rows[currentRowIndex].Selected = true;
 
-            //id cliente
-            id_cliente = int.Parse(dataGridView_clientes.Rows[currentRowIndex].Cells[0].Value.ToString());
+                //id cliente
+                id_cliente = int.Parse(dataGridView_clientes.Rows[currentRowIndex].Cells[0].Value.ToString());
 
-            // nombreCompleto
-            nombreClienteCompleto = dataGridView_clientes.Rows[currentRowIndex].Cells[1].Value.ToString();
+                // nombreCompleto
+                nombreClienteCompleto = dataGridView_clientes.Rows[currentRowIndex].Cells[1].Value.ToString();
 
-            // correo
-            correo = dataGridView_clientes.Rows[currentRowIndex].Cells[2].Value.ToString();
+                // correo
+                correo = dataGridView_clientes.Rows[currentRowIndex].Cells[2].Value.ToString();
 
-            // telefono
-            telefono = dataGridView_clientes.Rows[currentRowIndex].Cells[3].Value.ToString();
+                // telefono
+                telefono = dataGridView_clientes.Rows[currentRowIndex].Cells[3].Value.ToString();
 
-            //direccion 
-            direccion = dataGridView_clientes.Rows[currentRowIndex].Cells[4].Value.ToString();
+                //direccion 
+                direccion = dataGridView_clientes.Rows[currentRowIndex].Cells[4].Value.ToString();
 
-            //username 
-            usernamecliente = dataGridView_clientes.Rows[currentRowIndex].Cells[5].Value.ToString();
+                //username 
+                usernamecliente = dataGridView_clientes.Rows[currentRowIndex].Cells[5].Value.ToString();
 
-            MessageBox.Show("Datos seleccionados", "Seleccionado");
+                MessageBox.Show("Datos seleccionados", "Seleccionado");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                throw;
+            }
+
+
 
         }
         private void llenarDatosFormularioEditarArticulo(object sender, EventArgs e)
@@ -1092,7 +1103,6 @@ namespace GestionPapeleria
 
                         MessageBox.Show("Éxito");
                         cargarArticulos();
-                        //  filtroMarca();
                     }
                     else if (dialogResult == DialogResult.No)
                     {
@@ -1472,8 +1482,10 @@ namespace GestionPapeleria
 
         private void btn_VistaCliente_prov_Click(object sender, EventArgs e)
         {
-            VistaClienteV2 vc = new VistaClienteV2();
-            vc.Show();
+            //VistaClienteV2 vc = new VistaClienteV2();
+            // vc.Show();
+            Login lg = new Login("admin");
+            lg.Show();
             this.Hide();
         }
 
@@ -1814,7 +1826,7 @@ namespace GestionPapeleria
         {
             borrarFormularioCliente();
         }
-
+        /*
         private void btn_eliminar_cli_Click(object sender, EventArgs e)
         {
             //Procedimiento almacenado para borrar un articulo  
@@ -1833,6 +1845,7 @@ namespace GestionPapeleria
                     DialogResult dialogResult = MessageBox.Show("¿Quieres eliminar el cliente seleccionado?", "Confirmar eliminación", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
                     if (dialogResult == DialogResult.Yes)
                     {
+                        
                         cmd.Parameters.AddWithValue("@id_cliente", id_cliente);
                         cmd.ExecuteNonQuery();
                         con.Close();
@@ -1860,7 +1873,7 @@ namespace GestionPapeleria
                 throw;
             }
         }
-
+        */
         private void btn_insertar_user_Click(object sender, EventArgs e)
         {
             insertarUsuarioAdmin();

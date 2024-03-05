@@ -44,53 +44,7 @@ namespace GestionPapeleria
         {
             tb_password_reg.PasswordChar = cb_password.Checked ? '\0' : '*';
         }
-        /*
-        private void btn_registro_Click(object sender, EventArgs e)
-        {
-            string diractual = tb_user_reg.Text;
-            if (tb_user_reg.Text.Length < 3 || tb_password_reg.Text.Length < 4 )
-
-               MessageBox.Show("Username o password no válido");
-    
-            else
-            {
-                //Comprobar si el userName existe en BBDD 
-
-
-
-
-                //Hacer una consulta con el userName al la tabla Clientes
-
-
-                if (Directory.Exists("data\\" + diractual))
-                {
-                    MessageBox.Show("Nombre de usuario ya registrado");
-                }
-                else
-                {
-                    string dir = tb_user_reg.Text;
-
-                    //Hacer la inserción cifrada en la tabla Clientes
-                    Directory.CreateDirectory("data\\" + dir);
-                    var sw = new StreamWriter("data\\" + dir + "\\data.ls");
-
-                    //Esto es lo que lo encripta
-                    string encusr = AesCrypt.Encrypt(tb_user_reg.Text);
-                    string encpss = AesCrypt.Encrypt(tb_password_reg.Text);
-
-                    sw.WriteLine(encusr);
-                    sw.WriteLine(encpss);
-                    sw.Close();
-                    cliente = new ClienteAplicacion(tb_user_reg.Text);
-
-                    //Mensaje de confirmación
-                    MessageBox.Show("Usuario creado correctamente");
-                    this.Close();
-                }
-                
-            }
-        }
-        */
+       
         private void btn_registro_Click(object sender, EventArgs e)
         {
             string username = tb_user_reg.Text;
@@ -109,10 +63,12 @@ namespace GestionPapeleria
                 if (usuarioExiste)
                 {
                     MessageBox.Show("Nombre de usuario ya registrado");
-
                 }
                 else
                 {
+                    try
+                    {
+
                     // El usuario no existe, proceder con la inserción
                     SqlConnection con = new SqlConnection(Form1.connetionString);
                     con.Open();
@@ -135,6 +91,10 @@ namespace GestionPapeleria
                     MessageBox.Show("Usuario creado correctamente, redirigiendo a la página principal");
                     VistaClienteV2 vc = new VistaClienteV2();
                     this.Close();
+                    } catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.ToString()); 
+                    }
                 }
 
             }

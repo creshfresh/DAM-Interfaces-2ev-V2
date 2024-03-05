@@ -57,3 +57,5 @@ C:\Users\cris_\source\repos\GestionPapeleria\GestionPapeleria\obj\Debug\net8.0-w
 C:\Users\cris_\source\repos\GestionPapeleria\GestionPapeleria\obj\Debug\net8.0-windows\GestionPapeleria.genruntimeconfig.cache
 C:\Users\cris_\source\repos\GestionPapeleria\GestionPapeleria\obj\Debug\net8.0-windows\ref\GestionPapeleria.dll
 C:\Users\cris_\source\repos\GestionPapeleria\GestionPapeleria\obj\Debug\net8.0-windows\GestionPapeleria.Componentes.ItemPedidoAntiguo.resources
+C:\Users\cris_\source\repos\GestionPapeleria\GestionPapeleria\obj\Debug\net8.0-windows\GestionPapeleria.Componentes.ItemCarrito.resources
+C:\Users\cris_\source\repos\GestionPapeleria\GestionPapeleria\obj\Debug\net8.0-windows\GestionPapeleria.Cliente.VistaCarrito.resources
