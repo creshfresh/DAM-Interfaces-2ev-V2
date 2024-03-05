@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(VistaClienteV2));
             pnl_topmenu_clientev2 = new Panel();
             btn_carrito = new Button();
@@ -36,6 +37,8 @@
             close_cliente_v2 = new PictureBox();
             tabControl1 = new TabControl();
             tabPage2 = new TabPage();
+            panel1 = new Panel();
+            label4 = new Label();
             label6 = new Label();
             label3 = new Label();
             flowLayoutPanel1 = new FlowLayoutPanel();
@@ -47,9 +50,11 @@
             pictureBox1 = new PictureBox();
             btn_login_admin = new Button();
             pnl_anitguosped = new Panel();
+            btn_ajustes_cuenta = new Button();
             label5 = new Label();
             flowLayoutPanel2 = new FlowLayoutPanel();
             pb_nopedidoAntiguo = new PictureBox();
+            toolTip1 = new ToolTip(components);
             pnl_topmenu_clientev2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pb_logo_cliente).BeginInit();
             ((System.ComponentModel.ISupportInitialize)close_cliente_v2).BeginInit();
@@ -133,6 +138,8 @@
             // 
             // tabPage2
             // 
+            tabPage2.Controls.Add(panel1);
+            tabPage2.Controls.Add(label4);
             tabPage2.Controls.Add(label6);
             tabPage2.Controls.Add(label3);
             tabPage2.Controls.Add(flowLayoutPanel1);
@@ -144,13 +151,34 @@
             tabPage2.Text = "    Articulos";
             tabPage2.UseVisualStyleBackColor = true;
             // 
+            // panel1
+            // 
+            panel1.BackColor = Color.Gainsboro;
+            panel1.ForeColor = SystemColors.ControlLightLight;
+            panel1.Location = new Point(56, 135);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(1000, 3);
+            panel1.TabIndex = 15;
+            // 
+            // label4
+            // 
+            label4.Anchor = AnchorStyles.None;
+            label4.AutoSize = true;
+            label4.Font = new Font("Nirmala UI", 10F, FontStyle.Bold);
+            label4.ForeColor = Color.FromArgb(235, 140, 52);
+            label4.Location = new Point(20, 155);
+            label4.Name = "label4";
+            label4.Size = new Size(156, 23);
+            label4.TabIndex = 14;
+            label4.Text = "Todos los artículos\r\n";
+            // 
             // label6
             // 
             label6.Font = new Font("Nirmala UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label6.ForeColor = SystemColors.AppWorkspace;
-            label6.Location = new Point(39, 105);
+            label6.Location = new Point(35, 73);
             label6.Name = "label6";
-            label6.Size = new Size(612, 61);
+            label6.Size = new Size(717, 48);
             label6.TabIndex = 13;
             label6.Text = "¡Gracias por visitar escribaypliegue , nuestra tienda de papelería en línea que vende los mejores bolígrafos, papel y materiales de arte de Japón y más allá! \r\n\r\n";
             // 
@@ -158,20 +186,20 @@
             // 
             label3.Anchor = AnchorStyles.None;
             label3.AutoSize = true;
-            label3.Font = new Font("Cooper Black", 35.2F);
+            label3.Font = new Font("Cooper Black", 25.2F);
             label3.ForeColor = Color.FromArgb(235, 140, 52);
-            label3.Location = new Point(20, 24);
+            label3.Location = new Point(20, 15);
             label3.Name = "label3";
-            label3.Size = new Size(865, 68);
+            label3.Size = new Size(617, 49);
             label3.TabIndex = 10;
             label3.Text = "¡Escribe, sueña, crea, repite!";
             // 
             // flowLayoutPanel1
             // 
             flowLayoutPanel1.AutoScroll = true;
-            flowLayoutPanel1.Location = new Point(20, 196);
+            flowLayoutPanel1.Location = new Point(20, 199);
             flowLayoutPanel1.Name = "flowLayoutPanel1";
-            flowLayoutPanel1.Size = new Size(1180, 542);
+            flowLayoutPanel1.Size = new Size(1180, 539);
             flowLayoutPanel1.TabIndex = 0;
             // 
             // tableLayoutPanel1
@@ -253,6 +281,7 @@
             // pnl_anitguosped
             // 
             pnl_anitguosped.BackColor = SystemColors.ControlLightLight;
+            pnl_anitguosped.Controls.Add(btn_ajustes_cuenta);
             pnl_anitguosped.Controls.Add(label5);
             pnl_anitguosped.Controls.Add(flowLayoutPanel2);
             pnl_anitguosped.Location = new Point(12, 64);
@@ -261,13 +290,23 @@
             pnl_anitguosped.TabIndex = 10;
             pnl_anitguosped.Visible = false;
             // 
+            // btn_ajustes_cuenta
+            // 
+            btn_ajustes_cuenta.Location = new Point(0, 731);
+            btn_ajustes_cuenta.Name = "btn_ajustes_cuenta";
+            btn_ajustes_cuenta.Size = new Size(262, 29);
+            btn_ajustes_cuenta.TabIndex = 12;
+            btn_ajustes_cuenta.Text = "⚙️ Cuenta";
+            btn_ajustes_cuenta.UseVisualStyleBackColor = true;
+            btn_ajustes_cuenta.Click += btn_ajustes_cuenta_Click;
+            // 
             // label5
             // 
             label5.Anchor = AnchorStyles.None;
             label5.AutoSize = true;
             label5.Font = new Font("Nirmala UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label5.ForeColor = Color.FromArgb(235, 140, 52);
-            label5.Location = new Point(44, 49);
+            label5.Location = new Point(44, 41);
             label5.Name = "label5";
             label5.Size = new Size(167, 20);
             label5.TabIndex = 11;
@@ -275,18 +314,20 @@
             // 
             // flowLayoutPanel2
             // 
+            flowLayoutPanel2.AutoScroll = true;
             flowLayoutPanel2.Controls.Add(pb_nopedidoAntiguo);
             flowLayoutPanel2.Location = new Point(0, 91);
             flowLayoutPanel2.Name = "flowLayoutPanel2";
-            flowLayoutPanel2.Size = new Size(262, 645);
+            flowLayoutPanel2.Size = new Size(262, 600);
             flowLayoutPanel2.TabIndex = 0;
             // 
             // pb_nopedidoAntiguo
             // 
+            pb_nopedidoAntiguo.Anchor = AnchorStyles.Top;
             pb_nopedidoAntiguo.Image = Properties.Resources.sinpedido;
             pb_nopedidoAntiguo.Location = new Point(3, 3);
             pb_nopedidoAntiguo.Name = "pb_nopedidoAntiguo";
-            pb_nopedidoAntiguo.Size = new Size(259, 181);
+            pb_nopedidoAntiguo.Size = new Size(233, 154);
             pb_nopedidoAntiguo.SizeMode = PictureBoxSizeMode.Zoom;
             pb_nopedidoAntiguo.TabIndex = 0;
             pb_nopedidoAntiguo.TabStop = false;
@@ -343,6 +384,10 @@
         private Label label5;
         private Label label3;
         private Label label6;
+        private Panel panel1;
+        private Label label4;
+        private ToolTip toolTip1;
+        public static Button btn_ajustes_cuenta;
         private static FlowLayoutPanel flowLayoutPanel3;
         public static Button btn_carrito;
         private static FlowLayoutPanel flowLayoutPanel2;

@@ -32,7 +32,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             tabcontrol = new TabControl();
             btn_volverInsertar = new TabPage();
-            button1 = new Button();
+            btn_help_articulos = new Button();
             panel2 = new Panel();
             btn_borrar_filtros_art = new Button();
             btn_buscar_marca_art = new Button();
@@ -83,7 +83,7 @@
             label20 = new Label();
             label21 = new Label();
             label22 = new Label();
-            button4 = new Button();
+            btn_help_categorias = new Button();
             panel1 = new Panel();
             btn_borrar_filtros_cat = new Button();
             btn_buscar_nombre_cat = new Button();
@@ -109,7 +109,7 @@
             label16 = new Label();
             label17 = new Label();
             label18 = new Label();
-            button7 = new Button();
+            btn_help_pedido = new Button();
             panel6 = new Panel();
             btn_buscar_estado_ped = new Button();
             cb_buscar_estado_ped = new ComboBox();
@@ -140,7 +140,7 @@
             label38 = new Label();
             label39 = new Label();
             label40 = new Label();
-            button19 = new Button();
+            btn_help_cliente = new Button();
             panel9 = new Panel();
             btn_buscar_telefono_cli = new Button();
             lb_telefono_cli = new Label();
@@ -185,7 +185,7 @@
             label47 = new Label();
             label48 = new Label();
             tabPage1 = new TabPage();
-            button28 = new Button();
+            btn_help_roluser = new Button();
             panel11 = new Panel();
             cb_buscar_rol_user = new ComboBox();
             btn_buscar_rol_user = new Button();
@@ -259,10 +259,11 @@
             tabcontrol.SelectedIndex = 0;
             tabcontrol.Size = new Size(1387, 838);
             tabcontrol.TabIndex = 4;
+            toolTip2.SetToolTip(tabcontrol, "Borrar la búsqueda");
             // 
             // btn_volverInsertar
             // 
-            btn_volverInsertar.Controls.Add(button1);
+            btn_volverInsertar.Controls.Add(btn_help_articulos);
             btn_volverInsertar.Controls.Add(panel2);
             btn_volverInsertar.Controls.Add(panel3);
             btn_volverInsertar.Controls.Add(btn_eliminar_art);
@@ -279,17 +280,18 @@
             btn_volverInsertar.TabIndex = 0;
             btn_volverInsertar.Text = "    Articulos";
             // 
-            // button1
+            // btn_help_articulos
             // 
-            button1.Font = new Font("Nirmala UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            button1.ForeColor = Color.FromArgb(115, 140, 191);
-            button1.Location = new Point(367, 691);
-            button1.Name = "button1";
-            button1.Size = new Size(40, 43);
-            button1.TabIndex = 36;
-            button1.Text = "🛈";
-            button1.TextAlign = ContentAlignment.TopLeft;
-            button1.UseVisualStyleBackColor = true;
+            btn_help_articulos.Font = new Font("Nirmala UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btn_help_articulos.ForeColor = Color.FromArgb(115, 140, 191);
+            btn_help_articulos.Location = new Point(367, 691);
+            btn_help_articulos.Name = "btn_help_articulos";
+            btn_help_articulos.Size = new Size(40, 43);
+            btn_help_articulos.TabIndex = 36;
+            btn_help_articulos.Text = "🛈";
+            btn_help_articulos.TextAlign = ContentAlignment.TopLeft;
+            btn_help_articulos.UseVisualStyleBackColor = true;
+            btn_help_articulos.Click += btn_help_articulos_Click;
             // 
             // panel2
             // 
@@ -687,6 +689,7 @@
             btn_eliminar_art.Size = new Size(150, 48);
             btn_eliminar_art.TabIndex = 31;
             btn_eliminar_art.Text = "Eliminar";
+            toolTip2.SetToolTip(btn_eliminar_art, "Debe seleccionar  datos de la tabla");
             btn_eliminar_art.UseVisualStyleBackColor = false;
             btn_eliminar_art.Click += elminarRegistroArticulo;
             // 
@@ -701,6 +704,7 @@
             btn_editar_art.Size = new Size(150, 48);
             btn_editar_art.TabIndex = 30;
             btn_editar_art.Text = "Editar";
+            toolTip2.SetToolTip(btn_editar_art, "Debe seleccionar  datos de la tabla");
             btn_editar_art.UseVisualStyleBackColor = false;
             btn_editar_art.Click += llenarDatosFormularioEditarArticulo;
             // 
@@ -759,7 +763,7 @@
             tabPage2.Controls.Add(label20);
             tabPage2.Controls.Add(label21);
             tabPage2.Controls.Add(label22);
-            tabPage2.Controls.Add(button4);
+            tabPage2.Controls.Add(btn_help_categorias);
             tabPage2.Controls.Add(panel1);
             tabPage2.Controls.Add(pnl_alta_cat);
             tabPage2.Controls.Add(btn_eliminar_cat);
@@ -880,17 +884,18 @@
             label22.Size = new Size(0, 20);
             label22.TabIndex = 49;
             // 
-            // button4
+            // btn_help_categorias
             // 
-            button4.Font = new Font("Nirmala UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            button4.ForeColor = Color.FromArgb(115, 140, 191);
-            button4.Location = new Point(367, 691);
-            button4.Name = "button4";
-            button4.Size = new Size(40, 43);
-            button4.TabIndex = 47;
-            button4.Text = "🛈";
-            button4.TextAlign = ContentAlignment.TopLeft;
-            button4.UseVisualStyleBackColor = true;
+            btn_help_categorias.Font = new Font("Nirmala UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btn_help_categorias.ForeColor = Color.FromArgb(115, 140, 191);
+            btn_help_categorias.Location = new Point(367, 691);
+            btn_help_categorias.Name = "btn_help_categorias";
+            btn_help_categorias.Size = new Size(40, 43);
+            btn_help_categorias.TabIndex = 47;
+            btn_help_categorias.Text = "🛈";
+            btn_help_categorias.TextAlign = ContentAlignment.TopLeft;
+            btn_help_categorias.UseVisualStyleBackColor = true;
+            btn_help_categorias.Click += btn_help_categorias_Click;
             // 
             // panel1
             // 
@@ -1046,6 +1051,7 @@
             btn_eliminar_cat.Size = new Size(150, 48);
             btn_eliminar_cat.TabIndex = 44;
             btn_eliminar_cat.Text = "Eliminar";
+            toolTip2.SetToolTip(btn_eliminar_cat, "Debe seleccionar  datos de la tabla");
             btn_eliminar_cat.UseVisualStyleBackColor = false;
             btn_eliminar_cat.Click += btn_eliminar_cat_Click;
             // 
@@ -1060,6 +1066,7 @@
             btn_editar_art_gordo.Size = new Size(150, 48);
             btn_editar_art_gordo.TabIndex = 43;
             btn_editar_art_gordo.Text = "Editar";
+            toolTip2.SetToolTip(btn_editar_art_gordo, "Debe seleccionar  datos de la tabla");
             btn_editar_art_gordo.UseVisualStyleBackColor = false;
             btn_editar_art_gordo.Click += llenarDatosFormularioEditarCategoria;
             // 
@@ -1118,7 +1125,7 @@
             tabPage3.Controls.Add(label16);
             tabPage3.Controls.Add(label17);
             tabPage3.Controls.Add(label18);
-            tabPage3.Controls.Add(button7);
+            tabPage3.Controls.Add(btn_help_pedido);
             tabPage3.Controls.Add(panel6);
             tabPage3.Controls.Add(panel7);
             tabPage3.Controls.Add(btn_eliminar_ped);
@@ -1146,6 +1153,7 @@
             btn_editar_pedido.Size = new Size(150, 48);
             btn_editar_pedido.TabIndex = 68;
             btn_editar_pedido.Text = "Editar";
+            toolTip2.SetToolTip(btn_editar_pedido, "Debe seleccionar  datos de la tabla");
             btn_editar_pedido.UseVisualStyleBackColor = false;
             btn_editar_pedido.Click += btn_editar_pedido_Click;
             // 
@@ -1181,17 +1189,18 @@
             label18.Size = new Size(0, 20);
             label18.TabIndex = 64;
             // 
-            // button7
+            // btn_help_pedido
             // 
-            button7.Font = new Font("Nirmala UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            button7.ForeColor = Color.FromArgb(115, 140, 191);
-            button7.Location = new Point(367, 691);
-            button7.Name = "button7";
-            button7.Size = new Size(40, 43);
-            button7.TabIndex = 63;
-            button7.Text = "🛈";
-            button7.TextAlign = ContentAlignment.TopLeft;
-            button7.UseVisualStyleBackColor = true;
+            btn_help_pedido.Font = new Font("Nirmala UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btn_help_pedido.ForeColor = Color.FromArgb(115, 140, 191);
+            btn_help_pedido.Location = new Point(367, 691);
+            btn_help_pedido.Name = "btn_help_pedido";
+            btn_help_pedido.Size = new Size(40, 43);
+            btn_help_pedido.TabIndex = 63;
+            btn_help_pedido.Text = "🛈";
+            btn_help_pedido.TextAlign = ContentAlignment.TopLeft;
+            btn_help_pedido.UseVisualStyleBackColor = true;
+            btn_help_pedido.Click += btn_help_pedido_Click;
             // 
             // panel6
             // 
@@ -1256,6 +1265,7 @@
             btn_borrar_filtros_ped.Size = new Size(113, 32);
             btn_borrar_filtros_ped.TabIndex = 44;
             btn_borrar_filtros_ped.Text = "Borrar filtro";
+            toolTip2.SetToolTip(btn_borrar_filtros_ped, "Borrar la búsqueda");
             btn_borrar_filtros_ped.UseVisualStyleBackColor = true;
             btn_borrar_filtros_ped.Click += btn_borrar_filtros_ped_Click;
             // 
@@ -1434,6 +1444,7 @@
             btn_eliminar_ped.Size = new Size(150, 48);
             btn_eliminar_ped.TabIndex = 60;
             btn_eliminar_ped.Text = "Eliminar";
+            toolTip2.SetToolTip(btn_eliminar_ped, "Debe seleccionar  datos de la tabla");
             btn_eliminar_ped.UseVisualStyleBackColor = false;
             btn_eliminar_ped.Click += eliminarPedido;
             // 
@@ -1448,6 +1459,7 @@
             btn_enviar_ped.Size = new Size(150, 48);
             btn_enviar_ped.TabIndex = 59;
             btn_enviar_ped.Text = "Enviar pedido";
+            toolTip2.SetToolTip(btn_enviar_ped, "Debe seleccionar  datos de la tabla");
             btn_enviar_ped.UseVisualStyleBackColor = false;
             btn_enviar_ped.Click += btn_enviar_ped_Click;
             // 
@@ -1504,7 +1516,7 @@
             tabPage4.Controls.Add(label38);
             tabPage4.Controls.Add(label39);
             tabPage4.Controls.Add(label40);
-            tabPage4.Controls.Add(button19);
+            tabPage4.Controls.Add(btn_help_cliente);
             tabPage4.Controls.Add(panel9);
             tabPage4.Controls.Add(panel10);
             tabPage4.Controls.Add(btn_editar_cli);
@@ -1544,17 +1556,18 @@
             label40.Size = new Size(0, 20);
             label40.TabIndex = 79;
             // 
-            // button19
+            // btn_help_cliente
             // 
-            button19.Font = new Font("Nirmala UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            button19.ForeColor = Color.FromArgb(115, 140, 191);
-            button19.Location = new Point(367, 691);
-            button19.Name = "button19";
-            button19.Size = new Size(40, 43);
-            button19.TabIndex = 78;
-            button19.Text = "🛈";
-            button19.TextAlign = ContentAlignment.TopLeft;
-            button19.UseVisualStyleBackColor = true;
+            btn_help_cliente.Font = new Font("Nirmala UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btn_help_cliente.ForeColor = Color.FromArgb(115, 140, 191);
+            btn_help_cliente.Location = new Point(367, 691);
+            btn_help_cliente.Name = "btn_help_cliente";
+            btn_help_cliente.Size = new Size(40, 43);
+            btn_help_cliente.TabIndex = 78;
+            btn_help_cliente.Text = "🛈";
+            btn_help_cliente.TextAlign = ContentAlignment.TopLeft;
+            btn_help_cliente.UseVisualStyleBackColor = true;
+            btn_help_cliente.Click += btn_help_cliente_Click;
             // 
             // panel9
             // 
@@ -1731,6 +1744,7 @@
             btn_borrar_filtros_cli.Size = new Size(113, 32);
             btn_borrar_filtros_cli.TabIndex = 44;
             btn_borrar_filtros_cli.Text = "Borrar filtro";
+            toolTip2.SetToolTip(btn_borrar_filtros_cli, "Borrar la búsqueda");
             btn_borrar_filtros_cli.UseVisualStyleBackColor = true;
             btn_borrar_filtros_cli.Click += btn_borrar_filtros_cli_Click;
             // 
@@ -2009,6 +2023,7 @@
             btn_editar_cli.Size = new Size(150, 48);
             btn_editar_cli.TabIndex = 74;
             btn_editar_cli.Text = "Editar";
+            toolTip2.SetToolTip(btn_editar_cli, "Debe seleccionar  datos de la tabla");
             btn_editar_cli.UseVisualStyleBackColor = false;
             btn_editar_cli.Click += llenarDatosFormularioEditarCliente;
             // 
@@ -2062,7 +2077,7 @@
             // 
             // tabPage1
             // 
-            tabPage1.Controls.Add(button28);
+            tabPage1.Controls.Add(btn_help_roluser);
             tabPage1.Controls.Add(panel11);
             tabPage1.Controls.Add(panel12);
             tabPage1.Controls.Add(btn_eliminar_user);
@@ -2079,17 +2094,18 @@
             tabPage1.Text = "Roles usuarios";
             tabPage1.UseVisualStyleBackColor = true;
             // 
-            // button28
+            // btn_help_roluser
             // 
-            button28.Font = new Font("Nirmala UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            button28.ForeColor = Color.FromArgb(115, 140, 191);
-            button28.Location = new Point(367, 691);
-            button28.Name = "button28";
-            button28.Size = new Size(40, 43);
-            button28.TabIndex = 93;
-            button28.Text = "🛈";
-            button28.TextAlign = ContentAlignment.TopLeft;
-            button28.UseVisualStyleBackColor = true;
+            btn_help_roluser.Font = new Font("Nirmala UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btn_help_roluser.ForeColor = Color.FromArgb(115, 140, 191);
+            btn_help_roluser.Location = new Point(367, 691);
+            btn_help_roluser.Name = "btn_help_roluser";
+            btn_help_roluser.Size = new Size(40, 43);
+            btn_help_roluser.TabIndex = 93;
+            btn_help_roluser.Text = "🛈";
+            btn_help_roluser.TextAlign = ContentAlignment.TopLeft;
+            btn_help_roluser.UseVisualStyleBackColor = true;
+            btn_help_roluser.Click += btn_help_roluser_Click;
             // 
             // panel11
             // 
@@ -2155,6 +2171,7 @@
             btn_borrar_filtros_users.Size = new Size(113, 32);
             btn_borrar_filtros_users.TabIndex = 44;
             btn_borrar_filtros_users.Text = "Borrar filtro";
+            toolTip2.SetToolTip(btn_borrar_filtros_users, "Borrar la búsqueda");
             btn_borrar_filtros_users.UseVisualStyleBackColor = true;
             btn_borrar_filtros_users.Click += btn_borrar_filtros_users_Click;
             // 
@@ -2324,6 +2341,7 @@
             btn_eliminar_user.Size = new Size(150, 48);
             btn_eliminar_user.TabIndex = 90;
             btn_eliminar_user.Text = "Eliminar";
+            toolTip2.SetToolTip(btn_eliminar_user, "Debe seleccionar  datos de la tabla");
             btn_eliminar_user.UseVisualStyleBackColor = false;
             btn_eliminar_user.Click += btn_eliminar_user_Click;
             // 
@@ -2338,6 +2356,7 @@
             btn_quitarprivilegio_user.Size = new Size(260, 48);
             btn_quitarprivilegio_user.TabIndex = 89;
             btn_quitarprivilegio_user.Text = "Quitar privilegio administrador";
+            toolTip2.SetToolTip(btn_quitarprivilegio_user, "Debe seleccionar  datos de la tabla");
             btn_quitarprivilegio_user.UseVisualStyleBackColor = false;
             btn_quitarprivilegio_user.Click += btn_quitarprivilegio_user_Click;
             // 
@@ -2532,7 +2551,7 @@
         private TabPage tabPage4;
         private Panel panel2;
         private TextBox tb_buscar_nombre_art;
-        private Button button1;
+        private Button btn_help_articulos;
         private Label lbl_buscarNombre_art;
         private ComboBox cb_buscar_marca_art;
         private Label label14;
@@ -2546,7 +2565,7 @@
         private Button btn_buscar_categoria_art;
         private Button btn_borrar_filtros_art;
         private Button btn_VistaCliente_prov;
-        private Button button4;
+        private Button btn_help_categorias;
         private Panel panel1;
         private Button btn_borrar_filtros_cat;
         private Button btn_buscar_nombre_cat;
@@ -2580,7 +2599,7 @@
         private Label label16;
         private Label label17;
         private Label label18;
-        private Button button7;
+        private Button btn_help_pedido;
         private Panel panel6;
         private Button button9;
         private Button button10;
@@ -2602,7 +2621,7 @@
         private Label label38;
         private Label label39;
         private Label label40;
-        private Button button19;
+        private Button btn_help_cliente;
         private Panel panel9;
         private Button btn_borrar_filtros_cli;
         private Button btn_buscar_nombre_cli;
@@ -2626,7 +2645,7 @@
         private Label label50;
         private Button button26;
         private TabPage tabPage1;
-        private Button button28;
+        private Button btn_help_roluser;
         private Panel panel11;
         private Button btn_borrar_filtros_users;
         private Button btn_buscar_username_user;

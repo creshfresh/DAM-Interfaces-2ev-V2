@@ -62,7 +62,7 @@ namespace GestionPapeleria
                 bool usuarioExiste = ExisteUsuario.VerificarClienteExistente(username);
                 if (usuarioExiste)
                 {
-                    MessageBox.Show("Nombre de usuario ya registrado");
+                    MessageBox.Show("Nombre de usuario ya registrado", "Error");
                 }
                 else
                 {
@@ -88,8 +88,9 @@ namespace GestionPapeleria
                     cliente = new ClienteAplicacion(tb_user_reg.Text);
 
                     //Mensaje de confirmación
-                    MessageBox.Show("Usuario creado correctamente, redirigiendo a la página principal");
-                    VistaClienteV2 vc = new VistaClienteV2();
+                    MessageBox.Show("Usuario creado correctamente, redirigiendo al login", "Éxito");
+                    Login vc = new Login("cliente");
+                    vc.Show();
                     this.Close();
                     } catch (Exception ex)
                     {

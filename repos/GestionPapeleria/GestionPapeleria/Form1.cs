@@ -14,7 +14,7 @@ namespace GestionPapeleria
         //Variables para Articulos
         public static string nombreArt, marcaArt, categoriaArt, precioArt, stockArt, proveedorArt, almacenArt, idCatArt;
         public static int idArt, id_almacenArt, id_proveedorArt, filtro_cat;
-        public static string  filtro_nombre, filtro_marca;
+        public static string filtro_nombre, filtro_marca;
 
         public bool estaEditando = false;
 
@@ -414,13 +414,13 @@ namespace GestionPapeleria
                             SqlCommand cmd = new SqlCommand("insertarCliente", con);
                             cmd.CommandType = CommandType.StoredProcedure;
 
-                   
+
                             // Comprobar que los campos estén rellenos
                             string nombreCompleto = tb_nombre_cli.Text;
                             string correo = tb_correo_cli.Text;
                             string telefono = tb_telefono_cli.Text;
                             string direccion = tb_direccion_cli.Text;
-                      
+
 
                             // Contraseña cifrada
                             string password = AesCrypt.Encrypt(tb_contrasena_cli.Text);
@@ -747,7 +747,7 @@ namespace GestionPapeleria
                     cmd.CommandType = CommandType.StoredProcedure;
 
                     // Comprobar que los campos estén rellenos
-                    
+
                     string nombreCompleto = tb_nombre_cli.Text;
                     string correo = tb_correo_cli.Text;
                     string telefono = tb_telefono_cli.Text;
@@ -767,7 +767,7 @@ namespace GestionPapeleria
 
 
                     cmd.ExecuteNonQuery();
-                    
+
                     con.Close();
                     MessageBox.Show("Cliente Editado", "Éxito");
                     cargarClientes();
@@ -1003,10 +1003,10 @@ namespace GestionPapeleria
         private void dataGridView_clientes_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             int currentRowIndex = dataGridView_clientes.CurrentCell.RowIndex;
-       
+
             try
             {
-            dataGridView_pedidos.Rows[currentRowIndex].Selected = true;
+                dataGridView_pedidos.Rows[currentRowIndex].Selected = true;
 
                 //id cliente
                 id_cliente = int.Parse(dataGridView_clientes.Rows[currentRowIndex].Cells[0].Value.ToString());
@@ -1332,7 +1332,7 @@ namespace GestionPapeleria
         {
             try
             {
-            filtro_cat = Convert.ToInt32(cb_buscar_categoria_art.SelectedValue);
+                filtro_cat = Convert.ToInt32(cb_buscar_categoria_art.SelectedValue);
             }
             catch
             {
@@ -1482,10 +1482,10 @@ namespace GestionPapeleria
 
         private void btn_VistaCliente_prov_Click(object sender, EventArgs e)
         {
-            //VistaClienteV2 vc = new VistaClienteV2();
-            // vc.Show();
-            Login lg = new Login("admin");
-            lg.Show();
+            MessageBox.Show("Cerrando sesión\n¡Vuelva pronto!", "Cierre");
+           VistaClienteV2 vc = new VistaClienteV2();
+            vc.Show();
+       
             this.Hide();
         }
 
@@ -1772,7 +1772,7 @@ namespace GestionPapeleria
         {
             tb_buscar_nombre_ped.Text = string.Empty;
             cb_buscar_estado_ped.SelectedIndex = -1;
-  
+
             tb_idpedido_ped.Text = idPedido.ToString();
         }
 
@@ -1806,7 +1806,7 @@ namespace GestionPapeleria
                 }
                 catch (Exception ex)
                 {
- 
+
                 }
 
             }
@@ -2132,7 +2132,7 @@ namespace GestionPapeleria
                 DataTable dt = new DataTable();
                 adapter.Fill(dt);
 
-                dataGridView_clientes.DataSource = dt; 
+                dataGridView_clientes.DataSource = dt;
                 borrarFiltrosClientes();
 
             }
@@ -2264,6 +2264,49 @@ namespace GestionPapeleria
         private void tb_buscar_telefono_cli_TextChanged(object sender, EventArgs e)
         {
             filtro_telefono = tb_buscar_telefono_cli.Text;
+        }
+
+        private void btn_help_articulos_Click(object sender, EventArgs e)
+        {
+
+            MessageBox.Show("· Puede dar de alta un nuevo elemento introduciendo los datos en el formulario y pulsando 'Insertar'" +
+                "\n· Para editar debe seleccionar la fila de la tabla y pulsar el botón 'Editar'" +
+                "\n· Para eliminar debe seleccionar la fila de la tabla y pulsar el botón 'Eliminar'" +
+                "\n· Para volver a ir al formulario de alta debe cliclar 'Ir a alta producto'", "Help", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void btn_help_categorias_Click(object sender, EventArgs e)
+        {
+
+            MessageBox.Show("· Puede dar de alta un nuevo elemento introduciendo los datos en el formulario y pulsando 'Insertar'" +
+                "\n· Para editar debe seleccionar la fila de la tabla y pulsar el botón 'Editar'" +
+                "\n· Para eliminar debe seleccionar la fila de la tabla y pulsar el botón 'Eliminar'", "Help", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void btn_help_pedido_Click(object sender, EventArgs e)
+        {
+
+            MessageBox.Show("· Puede dar de alta un nuevo elemento introduciendo los datos en el formulario y pulsando 'Insertar'" +
+                "\n· Para editar debe seleccionar la fila de la tabla y pulsar el botón 'Editar'" +
+                "\n· Para eliminar debe seleccionar la fila de la tabla y pulsar el botón 'Eliminar'" +
+                "\n· Para enviar un pedido debe seleccionar la fila y pulsar el botón 'Enviar pedido''", "Help", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void btn_help_cliente_Click(object sender, EventArgs e)
+        {
+
+            MessageBox.Show("· Puede dar de alta un nuevo elemento introduciendo los datos en el formulario y pulsando 'Insertar'" +
+                "\n· Para editar debe seleccionar la fila de la tabla y pulsar el botón 'Editar'" +
+                "\n· Para volver a ir al formulario de alta debe cliclar 'Ir a alta cliente'", "Help", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void btn_help_roluser_Click(object sender, EventArgs e)
+        {
+
+            MessageBox.Show("· Puede dar de alta un nuevo elemento introduciendo los datos en el formulario y pulsando 'Insertar'" +
+                "\n· Para editar debe seleccionar la fila de la tabla y pulsar el botón 'Editar'" +
+                "\n· Para eliminar debe seleccionar la fila de la tabla y pulsar el botón 'Eliminar'" +
+                "\n· Para quitar privilegios de administrador debe seleccionar la fila de la tabla y pulsar el botón 'Quitar privilegio administrador'", "Help", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
     }
 }

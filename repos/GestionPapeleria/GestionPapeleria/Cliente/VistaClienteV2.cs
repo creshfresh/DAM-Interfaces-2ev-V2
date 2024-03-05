@@ -103,7 +103,7 @@ namespace GestionPapeleria.Cliente
                     int id = Convert.ToInt32(row["id_pedido"]);
 
                     ItemPedidoAntiguo item = new ItemPedidoAntiguo(id);
-                    item.Size = new Size(262, 52);
+                    item.Size = new Size(245, 52);
 
                     item.lbl_pedido_antiguo.Text += " " + row["id_pedido"].ToString();
                     item.lbl_precioTotal.Text = " $" + Convert.ToDecimal(row["importe"]).ToString();
@@ -135,18 +135,25 @@ namespace GestionPapeleria.Cliente
         private void btn_carrito_Click(object sender, EventArgs e)
         {
             int resultado = Carrito.ObtenerIdCarritoCliente(Login.clienteLogueado.id_cliente);
-            
+
             if (resultado != -1)
             {
                 VistaCarrito cart = new VistaCarrito();
                 cart.llenarVistaCarrito();
                 cart.Show();
 
-            } else
+            }
+            else
             {
-                MessageBox.Show("No tiene ningún producto en el carrito");
+                MessageBox.Show("No tiene ningún producto en el carrito", "Info");
             }
         }
-     
+
+        private void btn_ajustes_cuenta_Click(object sender, EventArgs e)
+        {
+            //Cambiar los datos del cliente
+            AjustesCuenta ac = new AjustesCuenta(Login.clienteLogueado.id_cliente);
+            ac.Show();
+        }
     }
 }

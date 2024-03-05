@@ -62,16 +62,14 @@ namespace GestionPapeleria
                         {
                             SqlConnection con = new SqlConnection(Form1.connetionString);
                             string username = tb_user.Text;
-                            string password = AesCrypt.Encrypt(tb_password.Text);
-
-
+                            string encryptedPassword = AesCrypt.Encrypt(tb_password.Text);
                             con.Open();
 
                             SqlCommand command = new SqlCommand("login", con);
                             command.CommandType = CommandType.StoredProcedure;
 
                             command.Parameters.AddWithValue("@username", username);
-                            command.Parameters.AddWithValue("@password", password);
+                            command.Parameters.AddWithValue("@password", encryptedPassword);
 
                             SqlDataReader reader = command.ExecuteReader();
 
@@ -80,10 +78,11 @@ namespace GestionPapeleria
                                 string dbUsername = reader["username"].ToString();
                                 string dbPassword = reader["contrasenaCliente"].ToString();
 
-                                if (dbUsername == username && dbPassword == password)
+                                if (dbUsername == username && dbPassword == encryptedPassword)
                                 {
                                    
-                                    MessageBox.Show("¡Bienvenido!");
+                                    MessageBox.Show("¡Bienvenido!", "Inicio");
+                                    guardarClienteLogeado();
                                     VistaClienteV2 vistaCliente = new VistaClienteV2();
                                     vistaCliente.Show();
                       
@@ -92,12 +91,12 @@ namespace GestionPapeleria
                                 }
                                 else
                                 {
-                                    MessageBox.Show("Error en el password");
+                                    MessageBox.Show("Error en el password", "Error");
                                 }
                             }
                             else
                             {
-                                MessageBox.Show("Usuario no registrado");
+                                MessageBox.Show("Usuario no registrado", "Error");
                             }
 
                             reader.Close();
@@ -105,7 +104,7 @@ namespace GestionPapeleria
                         }
                         catch (Exception ex)
                         {
-                            MessageBox.Show("Fallo");
+                            MessageBox.Show("Fallo", "Error");
                             throw;
                         }
                     }
@@ -155,7 +154,7 @@ namespace GestionPapeleria
                                     {
                                         string rol = readerRol["rol"].ToString();
 
-                                        MessageBox.Show("Bienvenido " + username);
+                                        MessageBox.Show("Bienvenido " + username, "Inicio");
                                         Form1 form1 = new Form1(rol);
                                         form1.Show();
                                         this.Hide();
@@ -169,7 +168,7 @@ namespace GestionPapeleria
                             }
                             else
                             {
-                                MessageBox.Show("Usuario no registrado");
+                                MessageBox.Show("Usuario no registrado", "Error");
                             }
                             reader.Close();
                             con.Close();
@@ -177,11 +176,10 @@ namespace GestionPapeleria
                         }
                         catch (Exception ex)
                         {
-                            MessageBox.Show("Fallo");
+                            MessageBox.Show("Fallo", "Error");
                             throw;
                         }
                     }
-                    guardarClienteLogeado();
                 } 
              }       
         }
