@@ -27,20 +27,6 @@ namespace GestionPapeleria.Cliente
         {
             this.Close();
         }
-        private void label6_Click(object sender, EventArgs e)
-        {
-            tb_pass.PasswordChar = cb_password.Checked ? '\0' : '*';
-        }
-
-        private void cb_password_CheckedChanged(object sender, EventArgs e)
-        {
-            tb_pass.PasswordChar = cb_password.Checked ? '\0' : '*';
-        }
-
-        private void cb_passworagain_CheckedChanged(object sender, EventArgs e)
-        {
-            tb_repitepass.PasswordChar = cb_passworagain.Checked ? '\0' : '*';
-        }
 
 
         //Método para Cambiar los datos del cliente logueado
@@ -114,50 +100,6 @@ namespace GestionPapeleria.Cliente
                 throw;
             }
         }
-        public void cambiarContrasena()
-        {
 
-            try
-            {
-                SqlConnection con = new SqlConnection(Form1.connetionString);
-                SqlCommand cmd = new SqlCommand("CambiarContrasena", con);
-                con.Open();
-
-                //Indicamos que el comando va a ser un procedimiento almacenado
-                cmd.CommandType = CommandType.StoredProcedure;
-
-                string password = AesCrypt.Encrypt(tb_pass.Text);
-                string passworrdepit = AesCrypt.Encrypt(tb_repitepass.Text);
-                if (password == passworrdepit)
-                {
-                    cmd.Parameters.Add(new SqlParameter("@id_cliente", idcliente));
-                    cmd.Parameters.Add(new SqlParameter("@contrasenaCliente", passworrdepit));
-                }
-
-                MessageBox.Show(password);
-           //     MessageBox.Show("Contraseña cambiada con éxito", "Éxito");
-                con.Close();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Fail");
-                throw;
-            }
-
-        }
-
-        private void btn_guardarnuevapass_Click(object sender, EventArgs e)
-        {
-            if (tb_pass.Text != null && tb_repitepass.Text != null && tb_pass.Text == tb_repitepass.Text)
-            {
-                cambiarContrasena();
-                
-            }
-            else
-            {
-                MessageBox.Show("Debe introducir bien los datos", "Fallo", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
     }
-
 }

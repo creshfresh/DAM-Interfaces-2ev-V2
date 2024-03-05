@@ -123,6 +123,7 @@ namespace GestionPapeleria.Cliente
         {
             Login lg = new Login("cliente");
             lg.Show();
+            this.Show();
         }
 
         private void btn_login_admin_Click(object sender, EventArgs e)

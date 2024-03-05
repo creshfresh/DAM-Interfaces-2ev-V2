@@ -83,10 +83,10 @@ namespace GestionPapeleria
                                    
                                     MessageBox.Show("¡Bienvenido!", "Inicio");
                                     guardarClienteLogeado();
-                                    VistaClienteV2 vistaCliente = new VistaClienteV2();
-                                    vistaCliente.Show();
+                                    //VistaClienteV2 vistaCliente = new VistaClienteV2();
+                                    this.Close();
+                                    //vistaCliente.Show();
                       
-                                    this.Hide();
                          
                                 }
                                 else
